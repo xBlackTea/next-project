@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import './styles/global.css';
 
 export const metadata: Metadata = {
   title: "HALシネマ",
@@ -12,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body>{children}</body>
+      <body className="global">{children}</body>
     </html>
   );
 }
