@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import './styles/global.css';
+import { Header } from "./components/layouts/Header";
 
 export const metadata: Metadata = {
   title: "HALシネマ",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className="global">{children}</body>
+      <body className="global">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
