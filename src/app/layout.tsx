@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import './styles/global.css';
-import { Header } from "./components/layouts/Header";
+import { UIProvider } from "@yamada-ui/react";
+import { Header } from "./components/layouts";
 
 export const metadata: Metadata = {
   title: "HALシネマ",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body className="global">
-        <Header />
-        {children}
+        <UIProvider>
+          <Header />
+          {children}
+        </UIProvider>
       </body>
     </html>
   );
