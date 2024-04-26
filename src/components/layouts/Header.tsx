@@ -3,8 +3,6 @@ import { HeaderButton } from "../elements";
 
 export const Header = () => {
 
-    
-
     return (
         <>
         <Box
@@ -16,7 +14,7 @@ export const Header = () => {
             justifyContent="space-between"
             alignItems="center"
         >
-            <div>ここにロゴ</div>
+            <div style={{color: "#fff", fontWeight: "bold"}}>ここにロゴ</div>
             <Box
                 display="flex"
                 justifyContent="center"
@@ -24,7 +22,7 @@ export const Header = () => {
                 gap="10px"
             >
                 <Link href="tel:052-551-1051">
-                    <HeaderButton>052-551-1001</HeaderButton>
+                    <HeaderButton variant="outline">052-551-1001</HeaderButton>
                 </Link>
                 <HeaderButton>xxx@xxx.com</HeaderButton>
             </Box>
