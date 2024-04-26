@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import './styles/global.css';
 import { UIProvider } from "@yamada-ui/react";
-import { Header } from "./components/layouts";
+import { Header } from "@/components/layouts";
 
 export const metadata: Metadata = {
   title: "HALシネマ",
