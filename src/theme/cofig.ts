@@ -2,7 +2,7 @@
 import { ThemeConfig, extendConfig } from "@yamada-ui/react"
 
 const config: ThemeConfig = {
-    initialColorMode: "light",
+    initialColorMode: "dark",
 }
 
 export const customConfig = extendConfig(config)
