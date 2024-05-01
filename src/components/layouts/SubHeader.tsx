@@ -1,11 +1,16 @@
 "use client";
-import { Box, Button, Text, useBreakpoint } from "@yamada-ui/react";
-import { Icon } from "@yamada-ui/fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Box } from "@yamada-ui/react";
+import { SkewButton } from "../elements/subHeader/SkewButton";
 
 export const SubHeader = () => {
 
-    const breakpoint = useBreakpoint();
+    const subHeaderList = [
+        {JPTitle: "作品案内", ENTitle: "MOVIE GUIDE"},
+        {JPTitle: "劇場案内", ENTitle: "THEATER GUIDE"},
+        {JPTitle: "売店案内", ENTitle: "SHOP GUIDE"},
+        {JPTitle: "イベント案内", ENTitle: "EVENT GUIDE"},
+        {JPTitle: "サービス案内", ENTitle: "SERVICE GUIDE"},
+    ];
 
     return (
         <>
@@ -13,46 +18,31 @@ export const SubHeader = () => {
             w="full"
             h="60px"
             bg="subHeader.bg"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
         >
-            <Button
-                flexDirection="column"
+            <Box
+                h="full"
+                w="1200px"
+                maxW="100vw"
+                margin="0 auto"
+                display="flex"
                 justifyContent="center"
                 alignItems="center"
-                bg="transparent"
-                gap="0px"
-                h="full"
-                p="0 30px"
-                borderRadius="0px"
-                transform="skewX(150deg)"
-                borderLeft="solid 2px #999"
-                borderRight="solid 2px #999"
+                overflowX="scroll"
+                sx={{
+                    '::-webkit-scrollbar': {
+                    display: 'none',
+                    },
+                }}
             >
-                <Box transform="skewX(-150deg)" textAlign="center">
-                    <Text fontSize="md" color="subHeader.mainText" textAlign="left">作品案内</Text>
-                    <Text fontSize="md" color="secondary" textAlign="right">MOVIE GUIDE</Text>
-                </Box>
-            </Button>
-            <Button
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                bg="transparent"
-                gap="0px"
-                h="full"
-                p="0 30px"
-                borderRadius="0px"
-                transform="skewX(150deg)"
-                borderLeft="solid 2px #999"
-                borderRight="solid 2px #999"
-            >
-                <Box transform="skewX(-150deg)">
-                    <Text fontSize="md" color="subHeader.mainText" textAlign="left">劇場案内</Text>
-                    <Text fontSize="md" color="secondary" textAlign="right">THEATER GUIDE</Text>
-                </Box>
-            </Button>
+            {subHeaderList.map((_, index) =>
+                <SkewButton
+                    key={index}
+                    JPTiltle={_.JPTitle}
+                    ENTitle={_.ENTitle}
+                    index={index}
+                />
+            )}
+            </Box>
         </Box>
         </>
     );
