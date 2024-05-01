@@ -6,7 +6,10 @@ export const semantics: ThemeSemantics = {
         secondary: "flashy.500",
         subHeader: {
             bg: "#fff",
+            hoverBg: "neutral.100",
+            hoverBgArrow: "neutral.900",
             mainText: "#000",
+            line: "neutral.100",
         }
     },
     colorSchemes: {

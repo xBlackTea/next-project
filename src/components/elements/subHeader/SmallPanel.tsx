@@ -7,7 +7,7 @@ interface SkewButtonProps {
     index: number,
 };
 
-export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
+export const SmallPanel = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
 
     return (
         <>
@@ -17,17 +17,15 @@ export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
                 alignItems="center"
                 gap="0px"
                 h="full"
-                minW="200px"
+                w="50%"
                 p="0 50px"
                 bg="subHeader.bg"
                 borderRadius="0px"
-                borderLeft={index === 0 ? "solid 2px #999" : ""}
-                borderRight="solid 2px #999"
                 _hover={{ bg: "subHeader.hoverBg" }}
             >
-            <Box transform="skewX(-150deg)">
-                <Text fontSize="md" color="subHeader.mainText" textAlign="left">{JPTiltle}</Text>
-                <Text fontSize="md" color="secondary" textAlign="right">{ENTitle}</Text>
+            <Box textAlign="center">
+                <Text fontSize="md" color="subHeader.mainText">{JPTiltle}</Text>
+                <Text fontSize="md" color="secondary">{ENTitle}</Text>
             </Box>
         </Button>
         </>
