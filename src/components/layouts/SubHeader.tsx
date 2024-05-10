@@ -4,24 +4,25 @@ import { SkewButton } from "../elements/subHeader/SkewButton";
 import { LeftButton } from "../elements/subHeader/LeftButton";
 import { RightButton } from "../elements/subHeader/RightButton";
 import { SmallPanel } from "../elements/subHeader/SmallPanel";
+import { faCamera, faCaretDown, faPoo, faShop, faTheaterMasks } from "@fortawesome/free-solid-svg-icons";
 
 export const SubHeader = () => {
     
     const breakpoint = useBreakpoint();
 
     const subHeaderList = [
-        {JPTitle: "作品案内", ENTitle: "MOVIE GUIDE"},
-        {JPTitle: "劇場案内", ENTitle: "THEATER GUIDE"},
-        {JPTitle: "売店案内", ENTitle: "SHOP GUIDE"},
-        {JPTitle: "イベント案内", ENTitle: "EVENT GUIDE"},
-        {JPTitle: "サービス案内", ENTitle: "SERVICE GUIDE"},
+        {title: "作品案内", icon: faCamera},
+        {title: "劇場案内", icon: faTheaterMasks},
+        {title: "売店案内", icon: faShop},
+        {title: "イベント案内", icon: faCaretDown},
+        {title: "サービス案内", icon: faPoo},
     ];
 
     return (
         <>
         <Box
             w="full"
-            h="60px"
+            h={["sm", "md"].includes(breakpoint) ? "fit-content" : "50px"}
         >
             {["sm", "md"].includes(breakpoint) ?
                 <Box
@@ -32,9 +33,8 @@ export const SubHeader = () => {
                     {subHeaderList.map((_, index) =>
                         <SmallPanel
                             key={index}
-                            JPTiltle={_.JPTitle}
-                            ENTitle={_.ENTitle}
-                            index={index}
+                            icon={_.icon}
+                            title={_.title}
                         />
                     )}
                 </Box>
@@ -66,9 +66,9 @@ export const SubHeader = () => {
                     {subHeaderList.map((_, index) =>
                         <SkewButton
                             key={index}
-                            JPTiltle={_.JPTitle}
-                            ENTitle={_.ENTitle}
+                            title={_.title}
                             index={index}
+                            icon={_.icon}
                         />
                     )}
                     </Box>
