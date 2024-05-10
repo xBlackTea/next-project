@@ -1,23 +1,21 @@
 "use client";
-import { Box, Button, Text, useBreakpoint } from "@yamada-ui/react";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "@yamada-ui/fontawesome";
+import { Button, Text, useBreakpoint } from "@yamada-ui/react";
 
 interface SkewButtonProps {
-    JPTiltle: string,
-    ENTitle: string,
+    title: string,
     index: number,
+    icon: IconDefinition
 };
 
-export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
+export const SkewButton = ({ title, index, icon }: SkewButtonProps) => {
 
     const breakpoint = useBreakpoint();
 
     return (
         <>
         <Button
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                gap="0px"
                 h={["sm", "md"].includes(breakpoint) ? "30px" : "full"}
                 minW="200px"
                 p="0 50px"
@@ -26,11 +24,9 @@ export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
                 borderLeft={index === 0 ? "solid 2px #999" : ""}
                 borderRight="solid 2px #999"
                 _hover={{ bg: "subHeader.hoverBg" }}
+                leftIcon={<Icon transform="skewX(-150deg)" icon={icon} color={"secondary"}/>}
             >
-            <Box transform="skewX(-150deg)">
-                <Text fontSize="md" color="subHeader.mainText" textAlign="left">{JPTiltle}</Text>
-                <Text fontSize="md" color="secondary" textAlign="right">{ENTitle}</Text>
-            </Box>
+                <Text transform="skewX(-150deg)" fontSize="md" color="subHeader.mainText" textAlign="left">{title}</Text>
         </Button>
         </>
     );
