@@ -15,10 +15,6 @@ export const SubHeader = () => {
         {JPTitle: "売店案内", ENTitle: "SHOP GUIDE"},
         {JPTitle: "イベント案内", ENTitle: "EVENT GUIDE"},
         {JPTitle: "サービス案内", ENTitle: "SERVICE GUIDE"},
-        {JPTitle: "劇場案内", ENTitle: "THEATER GUIDE"},
-        {JPTitle: "売店案内", ENTitle: "SHOP GUIDE"},
-        {JPTitle: "イベント案内", ENTitle: "EVENT GUIDE"},
-        {JPTitle: "サービス案内", ENTitle: "SERVICE GUIDE"},
     ];
 
     return (
