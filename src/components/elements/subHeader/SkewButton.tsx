@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Text } from "@yamada-ui/react";
+import { Box, Button, Text, useBreakpoint } from "@yamada-ui/react";
 
 interface SkewButtonProps {
     JPTiltle: string,
@@ -9,6 +9,8 @@ interface SkewButtonProps {
 
 export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
 
+    const breakpoint = useBreakpoint();
+
     return (
         <>
         <Button
@@ -16,7 +18,7 @@ export const SkewButton = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
                 justifyContent="center"
                 alignItems="center"
                 gap="0px"
-                h="full"
+                h={["sm", "md"].includes(breakpoint) ? "30px" : "full"}
                 minW="200px"
                 p="0 50px"
                 bg="subHeader.bg"
