@@ -13,16 +13,16 @@ export const TopSlider = () => {
             size={["sm", "md"].includes(breakpoint) ? "sm" : "md"}
             autoplay
         >
-            <CarouselSlide as={Center} bg="primary">
+            <CarouselSlide as={Center}  color="#fff" bg="primary">
                 1
             </CarouselSlide>
-            <CarouselSlide as={Center} bg="secondary">
+            <CarouselSlide as={Center} color="#fff" bg="secondary">
                 2
             </CarouselSlide>
-            <CarouselSlide as={Center} bg="warning">
+            <CarouselSlide as={Center} color="#fff" bg="warning">
                 3
             </CarouselSlide>
-            <CarouselSlide as={Center} bg="danger">
+            <CarouselSlide as={Center} color="#fff" bg="danger">
                 4
             </CarouselSlide>
         </Carousel>
