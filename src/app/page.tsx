@@ -1,5 +1,5 @@
 import MovieCard from "@/components/layouts/home/MovieCard";
-import { Box } from "@yamada-ui/react";
+import { Box, Center } from "@yamada-ui/react";
 import React from "react";
 import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
@@ -7,7 +7,7 @@ import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
 export default function Page() {
   return (
     <>
-      <Box>
+      <Box display="flex" justifyContent="center" flexWrap="wrap">
         {movieCard.map((data: fetchMovieResponse) => (
           <MovieCard
             key={data.id}
