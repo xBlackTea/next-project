@@ -1,32 +1,28 @@
 "use client";
-import { Box, Button, Text } from "@yamada-ui/react";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "@yamada-ui/fontawesome";
+import { Button, Text } from "@yamada-ui/react";
 
 interface SkewButtonProps {
-    JPTiltle: string,
-    ENTitle: string,
-    index: number,
+    title: string,
+    icon: IconDefinition
 };
 
-export const SmallPanel = ({ JPTiltle, ENTitle, index }: SkewButtonProps) => {
+export const SmallPanel = ({ title, icon }: SkewButtonProps) => {
 
     return (
         <>
         <Button
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                gap="0px"
                 h="full"
                 w="50%"
                 p="0 50px"
                 bg="subHeader.bg"
                 borderRadius="0px"
+                border="solid 1px #999"
                 _hover={{ bg: "subHeader.hoverBg" }}
+                leftIcon={<Icon icon={icon} color={"secondary"}/>}
             >
-            <Box textAlign="center">
-                <Text fontSize="md" color="subHeader.mainText">{JPTiltle}</Text>
-                <Text fontSize="md" color="secondary">{ENTitle}</Text>
-            </Box>
+                <Text fontSize="md" color="subHeader.mainText">{title}</Text>
         </Button>
         </>
     );
