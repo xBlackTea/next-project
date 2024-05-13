@@ -2,7 +2,7 @@
 import { Box, Link, useBreakpoint } from "@yamada-ui/react";
 import { Icon } from "@yamada-ui/fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { HeaderButton, MenuButton, ScreenButton } from "../elements/header";
+import { HeaderButton, MenuButton, ScreenButton } from "../atom";
 
 export const Header = () => {
 

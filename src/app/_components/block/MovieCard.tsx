@@ -7,7 +7,7 @@ type issueMovieProps = {
   title: string;
 };
 
-export default function MovieCard(props: issueMovieProps) {
+export function MovieCard(props: issueMovieProps) {
   return (
     <>
       <Card w="390px" h="590px" m="5px">

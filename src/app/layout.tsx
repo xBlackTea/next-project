@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { colorModeManager, ColorModeScript, UIProvider } from "@yamada-ui/react";
-import { Header, SubHeader } from "@/components/layouts";
 import theme from "@/theme";
 import { customConfig } from "@/theme/config";
+import { Header, SubHeader } from "./_layouts/block";
 
 export const metadata: Metadata = {
   title: "HALシネマ",
