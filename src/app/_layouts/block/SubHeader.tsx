@@ -1,10 +1,7 @@
 "use client";
 import { Box, useBreakpoint } from "@yamada-ui/react";
-import { SkewButton } from "../elements/subHeader/SkewButton";
-import { LeftButton } from "../elements/subHeader/LeftButton";
-import { RightButton } from "../elements/subHeader/RightButton";
-import { SmallPanel } from "../elements/subHeader/SmallPanel";
 import { faCamera, faCaretDown, faPoo, faShop, faTheaterMasks } from "@fortawesome/free-solid-svg-icons";
+import { LeftButton, RightButton, SkewButton, SmallPanel } from "../atom";
 
 export const SubHeader = () => {
     

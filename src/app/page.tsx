@@ -1,9 +1,8 @@
-import MovieCard from "@/components/layouts/home/MovieCard";
 import { Box } from "@yamada-ui/react";
 import React from "react";
 import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
-import { TopSlider } from "./_components/TopSlider";
+import { MovieCard, TopSlider } from "./_components/block";
 
 export default function Page() {
   return (

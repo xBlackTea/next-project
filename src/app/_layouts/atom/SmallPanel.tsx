@@ -13,16 +13,16 @@ export const SmallPanel = ({ title, icon }: SkewButtonProps) => {
     return (
         <>
         <Button
-                h="full"
-                w="50%"
-                p="0 50px"
-                bg="subHeader.bg"
-                borderRadius="0px"
-                border="solid 1px #999"
-                _hover={{ bg: "subHeader.hoverBg" }}
-                leftIcon={<Icon icon={icon} color={"secondary"}/>}
-            >
-                <Text fontSize="md" color="subHeader.mainText">{title}</Text>
+            h="full"
+            w="50%"
+            p="0 50px"
+            bg="subHeader.bg"
+            borderRadius="0px"
+            border="solid 1px #999"
+            _hover={{ bg: "subHeader.hoverBg" }}
+            leftIcon={<Icon icon={icon} color={"secondary"}/>}
+        >
+            <Text fontSize="md" color="subHeader.mainText">{title}</Text>
         </Button>
         </>
     );

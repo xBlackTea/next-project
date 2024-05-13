@@ -1,4 +1,4 @@
-import { faBars, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "@yamada-ui/fontawesome";
 import { Box, Text } from "@yamada-ui/react";
 
