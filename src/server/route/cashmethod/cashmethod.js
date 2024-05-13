@@ -1,0 +1,1 @@
+// cashmethodモデルのAPIを定義
