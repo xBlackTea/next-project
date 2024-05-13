@@ -35,7 +35,7 @@ export const Header = () => {
 
             <Link href="/mypage">
               <HeaderButton icon={<Icon icon={faEnvelope} />}>
-                xxx@xxx.com
+                マイページ
               </HeaderButton>
             </Link>
 
