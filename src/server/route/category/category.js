@@ -1,0 +1,1 @@
+// categoryモデルのAPIを定義
