@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    container_name: hal_chinema_db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hal_chinema
+    volumes:
+      - ./db:/var/lib/postgresql/data
