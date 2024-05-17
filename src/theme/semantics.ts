@@ -10,7 +10,13 @@ export const semantics: ThemeSemantics = {
             hoverBgArrow: "neutral.900",
             mainText: "#000",
             line: "neutral.100",
-        }
+        },
+        carousel: {
+            bg: ["black", "flashy.700"],
+        },
+        footer: {
+            bg: ["#ddd", "#222"],
+        },
     },
     colorSchemes: {
         secondary: "flashy",
