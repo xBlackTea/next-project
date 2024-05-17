@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  Box,
   colorModeManager,
   ColorModeScript,
   UIProvider,
@@ -28,7 +29,12 @@ export default function RootLayout({
           config={customConfig}>
           <Header />
           <SubHeader />
-          {children}
+            <Box
+              maxW="2100px"
+              margin="0 auto"
+            >
+              {children}
+            </Box>
           <Footer />
         </UIProvider>
       </body>

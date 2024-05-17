@@ -19,7 +19,6 @@ export const TopSlider = () => {
                 as="center"
                 m="0 auto 20px auto"
                 pt="20px"
-                maxW="2100px"
                 autoplay
                 dragFree
             >
@@ -39,9 +38,16 @@ export const TopSlider = () => {
                             h="full"
                             aspectRatio="5/3"
                             objectFit="cover"
-                            _hover={{
-                                transform: "scale(1.1)",
-                                transition: "transform 0.3s ease-in-out"
+                            sx={{
+                                transform: "scale(1)",
+                                transition: "transform 0.3s ease-in-out",
+                                "&:hover": {
+                                    transform: "scale(1.1)",
+                                    transition: "transform 0.3s ease-in-out",
+                                },
+                                "&:not(:hover)": {
+                                    transition: "transform 0.3s ease-in-out",
+                                },
                             }}
                         />
                     </CarouselSlide>
