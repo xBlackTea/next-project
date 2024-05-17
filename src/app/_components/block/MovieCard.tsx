@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { Card, CardFooter, CardHeader, Image, Text, useBreakpoint } from "@yamada-ui/react";
+import { Card, CardFooter, CardHeader, Image, Text, useBreakpoint, useColorMode } from "@yamada-ui/react";
 
 type issueMovieProps = {
   key: number;
@@ -11,6 +11,7 @@ type issueMovieProps = {
 export function MovieCard(props: issueMovieProps) {
 
   const breakpoint = useBreakpoint();
+  const { colorMode } = useColorMode();
   const GAP = 30;
 
   return (
@@ -22,14 +23,14 @@ export function MovieCard(props: issueMovieProps) {
           `calc(33.3333% - ${GAP}px)`
         }
         sx={{
-          '&:hover .img': {
-            transition: 'filter 0.3s ease-in-out',
-            filter: 'brightness(100%)'
-          },
-          '&:not(:hover) .img': {
-            transition: 'filter 0.3s ease-in-out',
-            filter: 'brightness(70%)'
-          }
+            '&:hover .img': {
+              transition: colorMode === "dark" ? 'filter 0.3s ease-in-out' : "",
+              filter: colorMode === "dark" ? 'brightness(100%)' : "",
+            },
+            '&:not(:hover) .img': {
+              transition: colorMode === "dark" ? 'filter 0.3s ease-in-out'  :"",
+              filter: colorMode === "dark" ? 'brightness(70%)' : "",
+            }
         }}
         cursor="pointer"
       >
