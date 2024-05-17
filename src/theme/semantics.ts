@@ -11,6 +11,9 @@ export const semantics: ThemeSemantics = {
             mainText: "#000",
             line: "neutral.100",
         },
+        carousel: {
+            bg: ["black", "flashy.700"],
+        },
         footer: {
             bg: ["#ddd", "#222"],
         },
