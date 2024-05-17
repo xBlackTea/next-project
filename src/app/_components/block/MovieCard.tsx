@@ -21,6 +21,7 @@ export function MovieCard(props: issueMovieProps) {
           breakpoint === "md" ? `calc(50% - ${GAP}px)` : 
           `calc(33.3333% - ${GAP}px)`
         }
+        cursor="pointer"
       >
         <CardHeader display="flex" justifyContent="center">
           <Image
@@ -28,6 +29,7 @@ export function MovieCard(props: issueMovieProps) {
             w="100%"
             aspectRatio="9\16"
             objectFit="cover"
+            borderRadius="5px"
             alt={props.title}
           />
         </CardHeader>
