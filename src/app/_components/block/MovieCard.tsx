@@ -21,10 +21,21 @@ export function MovieCard(props: issueMovieProps) {
           breakpoint === "md" ? `calc(50% - ${GAP}px)` : 
           `calc(33.3333% - ${GAP}px)`
         }
+        sx={{
+          '&:hover .img': {
+            transition: 'filter 0.3s ease-in-out',
+            filter: 'brightness(100%)'
+          },
+          '&:not(:hover) .img': {
+            transition: 'filter 0.3s ease-in-out',
+            filter: 'brightness(70%)'
+          }
+        }}
         cursor="pointer"
       >
         <CardHeader display="flex" justifyContent="center">
           <Image
+          className="img"
             src={props.movie_image}
             w="100%"
             aspectRatio="9\16"
