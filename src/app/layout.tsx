@@ -6,7 +6,7 @@ import {
 } from "@yamada-ui/react";
 import theme from "@/theme";
 import { customConfig } from "@/theme/config";
-import { Header, SubHeader } from "./_layouts/block";
+import { Footer, Header, SubHeader } from "./_layouts/block";
 
 export const metadata: Metadata = {
   title: "HALシネマ",
@@ -29,6 +29,7 @@ export default function RootLayout({
           <Header />
           <SubHeader />
           {children}
+          <Footer />
         </UIProvider>
       </body>
     </html>
