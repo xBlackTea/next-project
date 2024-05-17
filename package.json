@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@prisma/client": "^5.14.0",
     "@types/react-slick": "^0.23.13",
     "@yamada-ui/carousel": "^1.0.29",
     "@yamada-ui/fontawesome": "^1.0.23",

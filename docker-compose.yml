@@ -9,5 +9,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DB: hal_chinema
-    volumes:
-      - ./db:/var/lib/postgresql/data
+    networks:
+      - hal_chinema
+networks:
+  hal_chinema:
