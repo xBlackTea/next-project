@@ -3,6 +3,7 @@ import React from "react";
 import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
 import { MovieCard, TopSlider } from "./_components/block";
+import TheaterList from "./_components/TheaterList";
 
 export default function Page() {
   return (
@@ -18,6 +19,8 @@ export default function Page() {
           />
         ))}
       </Box>
+
+      <TheaterList />
     </>
   );
 }
