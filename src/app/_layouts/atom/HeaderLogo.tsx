@@ -7,6 +7,9 @@ export const HeaderLogo = () => {
             href="/"
         >
             <Image
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
                 maxH="35px"
                 maxW="50vw"
                 src="/HAL_Cienema_Logo_White.svg"
