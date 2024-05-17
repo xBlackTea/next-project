@@ -1,5 +1,5 @@
 "use client";
-import { Box, Link, useBreakpoint } from "@yamada-ui/react";
+import { Box, Image, Link, useBreakpoint } from "@yamada-ui/react";
 import { Icon } from "@yamada-ui/fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { HeaderButton, MenuButton, ScreenButton } from "../atom";
@@ -18,7 +18,14 @@ export const Header = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <div style={{ color: "#fff", fontWeight: "bold" }}>ここにロゴ</div>
+        <Link href='/' style={{ textDecoration: "none" }}>
+          <Image
+            src='/HAL_Cienema_Logo_White.svg'
+            objectFit="cover"
+            height={50}
+            alt='HAL_Cienema_Logo_White'
+          />
+        </Link>
 
         {["sm", "md"].includes(breakpoint) ? (
           <MenuButton />
