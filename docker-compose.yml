@@ -11,5 +11,6 @@ services:
       POSTGRES_DB: hal_chinema
     networks:
       - hal_chinema
+
 networks:
   hal_chinema:

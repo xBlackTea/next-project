@@ -30,3 +30,22 @@ model Screen {
   screen_capacity Int
   movie_id Int
 }
+
+// movieモデル
+model Movie {
+  movie_id Int @id @default(autoincrement())
+  movie_name String
+  movie_detail String
+  movie_time Int // 単位はどうする？
+  category_id Int
+}
+
+// Seatモデル
+model Seat {
+  seat_id Int @id @default(autoincrement())
+  // number管理だと厳しい？
+  seat_width Int
+  seat_height Int
+  movie_start DateTime
+  screen_id Int
+}
