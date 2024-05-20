@@ -1,7 +1,7 @@
-import { UIStyle } from '@yamada-ui/react';
+import { UIStyle } from "@yamada-ui/react";
 
 export const globalStyle: UIStyle = {
-    body: {
-        bg: ["white", "black"],
-    },
-}
+  body: {
+    bg: ["#white", "black"],
+  },
+};
