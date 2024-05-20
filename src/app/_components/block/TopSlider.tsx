@@ -1,5 +1,5 @@
 "use client";
-import { Box, Center, Image, useBreakpoint, useColorMode } from "@yamada-ui/react";
+import { Box, Center, Image, Text, useBreakpoint, useColorMode } from "@yamada-ui/react";
 import React from 'react';
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel";
 import { movieCard } from "@/mock/movie/mock";
@@ -24,6 +24,12 @@ export const TopSlider = () => {
             >
                 {movieCard.map((card, index) => (
                     <CarouselSlide
+                        _hover={{
+                            ".child": {
+                                opacity: "1",
+                            }
+                        }}
+                        position="relative"
                         as={Center}
                         key={index}
                         h="90%"
@@ -50,6 +56,26 @@ export const TopSlider = () => {
                                 },
                             }}
                         />
+                        <Text
+                            className="child"
+                            position="absolute"
+                            bottom={0}
+                            left={0}
+                            opacity={0}
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            w="full"
+                            backgroundColor="rgba(0, 0, 0, 0.7)"
+                            color="#fff"
+                            p="5px 10px"
+                            sx={{
+                                transition: "opacity 0.3s ease"
+                            }}
+                            isTruncated
+                        >
+                            {card.title}
+                        </Text>
                     </CarouselSlide>
                 ))}
                 <Box
