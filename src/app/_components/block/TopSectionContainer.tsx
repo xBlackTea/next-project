@@ -13,7 +13,7 @@ export const TopSectionContainer = ({ children }: TopSectionContainerProp) => {
       justifyContent="center"
       alignItems="space-between"
       flexDirection="column"
-      gap="20px"
+      gap="15px"
       mt="70px"
     >
       {children}

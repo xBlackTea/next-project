@@ -21,9 +21,9 @@ export default function Page() {
           justifyContent="center"
           alignItems="start"
           flexWrap="wrap"
-          gap="30px"
+          gap="15px"
           w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "80%"}
-          m="20px auto"
+          m="0px auto"
         >
           {movieCard.map((data: fetchMovieResponse) => (
             <MovieCard
