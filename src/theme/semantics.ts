@@ -22,6 +22,7 @@ export const semantics: ThemeSemantics = {
 
         topSectionHeader: {
             bg: ["black", "blue.500"],
+            hover: ["black", "blue.500"],
             title: "#fff",
             button: ["blue.500", "#000"],
         }

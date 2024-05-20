@@ -1,7 +1,6 @@
-import { faRightLong } from '@fortawesome/free-solid-svg-icons';
-import { Icon } from '@yamada-ui/fontawesome';
-import { Box, Button, Link, Text, useBreakpoint } from '@yamada-ui/react'
+import { Box, Text, useBreakpoint } from '@yamada-ui/react'
 import React from 'react'
+import { SectionHeaderButton } from '../atom';
 
 interface TopSectionHeaderProps {
     title: string;
@@ -20,28 +19,27 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            p={["sm", "md"].includes(breakpoint) ? " 0 20px" : "0 60px"}
+            overflow="hidden"
+            p={["sm", "md"].includes(breakpoint) ? "0" : "0 0 0 60px"}
         >
 
             <Text
-                fontSize="xl"
+                fontSize="lg"
                 fontWeight="bold"
                 color="topSectionHeader.title"
                 isTruncated
+                display={["sm", "md"].includes(breakpoint) ? "flex" : "block"}
+                justifyContent="center"
+                alignItems="center"
+                w={
+                    ["sm", "md"].includes(breakpoint) ? "50%" :
+                    "70%"
+                }
             >
                 {title}
             </Text>
 
-            <Link href={link}>
-                <Button
-                    h="35px"
-                    color="topSectionHeader.title"
-                    bgColor={["blue.500", "#000"]}
-                    rightIcon={<Icon icon={faRightLong} />}
-                >
-                    一覧
-                </Button>
-            </Link>
+            <SectionHeaderButton link={link}/>
 
         </Box>
     )
