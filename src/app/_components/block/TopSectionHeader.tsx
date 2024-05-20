@@ -33,7 +33,9 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
             <Link href={link}>
                 <Button
                     h="35px"
-                    bgColor='topSectionHeader.button'
+                    color="topSectionHeader.title"
+                    // bgColor='topSectionHeader.button'
+                    bgColor={["blue.500", "#000"]}
                     rightIcon={<Icon icon={faRightLong} />}
                 >
                     一覧
