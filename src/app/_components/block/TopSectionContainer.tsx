@@ -14,7 +14,7 @@ export const TopSectionContainer = ({ children }: TopSectionContainerProp) => {
       alignItems="space-between"
       flexDirection="column"
       gap="15px"
-      mt="70px"
+      mt="0px"
     >
       {children}
     </Box>
