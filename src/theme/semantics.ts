@@ -1,9 +1,11 @@
 import { ThemeSemantics } from "@yamada-ui/react"
+import { text } from "stream/consumers"
 
 export const semantics: ThemeSemantics = {
     colors: {
         primary: "neutral.950",
-        secondary: "flashy.500",
+        secondary: "blue.500",
+
         subHeader: {
             bg: "#fff",
             hoverBg: "neutral.100",
@@ -12,13 +14,19 @@ export const semantics: ThemeSemantics = {
             line: "neutral.100",
         },
         carousel: {
-            bg: ["black", "flashy.700"],
+            bg: ["black", "blue.700"],
         },
         footer: {
-            bg: ["#ddd", "#222"],
+            bg: ["#000", "blue.500"],
         },
+
+        topSectionHeader: {
+            bg: ["black", "blue.500"],
+            title: "#fff",
+            button: ["blue.500", "#000"],
+        }
     },
     colorSchemes: {
-        secondary: "flashy",
+        secondary: "blue",
     }
 }
