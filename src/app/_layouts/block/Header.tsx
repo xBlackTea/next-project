@@ -5,6 +5,7 @@ import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { HeaderButton, HeaderLogo, MenuButton, ScreenButton } from "../atom";
 
 export const Header = () => {
+  
   const breakpoint = useBreakpoint();
 
   return (

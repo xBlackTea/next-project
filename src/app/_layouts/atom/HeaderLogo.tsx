@@ -12,9 +12,9 @@ export const HeaderLogo = () => {
                 alignItems="center"
                 maxH="35px"
                 maxW="50vw"
-                src="/HAL_Cienema_Logo_White.svg"
+                src="/HAL_Cinema_Logo_White.svg"
                 objectFit="cover"
-                alt='HAL_Cienema_Logo_White'
+                alt='HAL_Cinema_Logo_White'
             />
         </Link>
     )

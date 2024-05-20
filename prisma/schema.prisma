@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -22,6 +16,10 @@ model User {
   student Boolean
   created_at DateTime @updatedAt
   updated_at DateTime @updatedAt
+
+  // 外部キー設定
+  cash Cash?
+  reservation Reservation?
 }
 
 // screenモデル
@@ -29,6 +27,26 @@ model Screen {
   screen_id Int @id @default(autoincrement())
   screen_capacity Int
   movie_id Int
+
+  // 外部キー設定
+  movie Movie @relation(fields: [movie_id], references: [movie_id])
+  seats Seat[]
+  reservation Reservation?
+}
+
+// reservationモデル
+model Reservation {
+  reservation_id Int @id @default(autoincrement())
+  screen_id Int @unique
+  movie_id Int @unique
+  seat_id Int @unique
+  user_id Int @unique
+
+  // 外部キー設定
+  user User @relation(fields: [user_id], references: [user_id])
+  movie Movie @relation(fields: [movie_id], references: [movie_id])
+  seat Seat @relation(fields: [seat_id], references: [seat_id])
+  screen Screen @relation(fields: [screen_id], references: [screen_id])
 }
 
 // movieモデル
@@ -38,6 +56,12 @@ model Movie {
   movie_detail String
   movie_time Int // 単位はどうする？
   category_id Int
+
+  // 外部キー設定
+  category Category @relation(fields: [category_id], references: [category_id])
+  screens Screen[]
+  cash Cash?
+  reservations Reservation?
 }
 
 // Seatモデル
@@ -48,4 +72,52 @@ model Seat {
   seat_height Int
   movie_start DateTime
   screen_id Int
+
+  // 外部キー設定
+  screen Screen @relation(fields: [screen_id], references: [screen_id])
+  reservation Reservation?
+}
+
+// cashmethodモデル
+model CashMethod {
+  method_id Int @id @default(autoincrement())
+  method String
+
+  // 外部キー設定
+  cashes Cash?
+}
+
+// priceモデル
+model Price {
+  price_id Int @id @default(autoincrement())
+  price Int
+  //↓学割
+  school_type Int 
+  
+  // 外部キー設定
+  cashes Cash?
+}
+
+// categoryモデル
+model Category {
+  category_id Int @id @default(autoincrement())
+  category_name String
+
+  // 外部キー設定
+  movies Movie[]
+}
+
+// cashモデル
+model Cash {
+  cash_id Int @id @default(autoincrement())
+  movie_id Int @unique
+  price_id Int @unique
+  user_id Int @unique
+  method_id Int @unique
+
+  // 外部キー設定
+  user User @relation(fields: [user_id], references: [user_id])
+  movie Movie @relation(fields: [movie_id], references: [movie_id])
+  method CashMethod @relation(fields: [method_id], references: [method_id])
+  price Price @relation(fields: [price_id], references: [price_id])
 }

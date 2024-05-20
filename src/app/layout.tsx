@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import {
   Box,
   colorModeManager,
@@ -6,9 +7,11 @@ import {
   UIProvider,
 } from "@yamada-ui/react";
 import { Kaisei_Decol } from "next/font/google";
+
 import theme from "@/theme";
 import { customConfig } from "@/theme/config";
-import { Footer, Header, SubHeader } from "./_layouts/block";
+import { Footer, Header, HeaderDrawer, SubHeader } from "./_layouts/block";
+import { ContextProvider } from "@/provider/Provider";
 
 const font = Kaisei_Decol({ weight: "400", subsets: ["latin"] });
 
@@ -26,6 +29,7 @@ export default function RootLayout({
     <html lang="jp">
       <body className={font.className}>
         <ColorModeScript type="cookie" nonce="testing" />
+
         <UIProvider
           colorModeManager={{ ...colorModeManager }.cookieStorage}
           theme={theme}
@@ -37,6 +41,19 @@ export default function RootLayout({
             {children}
           </Box>
           <Footer />
+
+          <ContextProvider>
+            <Header />
+            <SubHeader />
+
+            <Box maxW="2100px" margin="0 auto">
+              {children}
+            </Box>
+
+            <Footer />
+
+            <HeaderDrawer />
+          </ContextProvider>
         </UIProvider>
       </body>
     </html>
