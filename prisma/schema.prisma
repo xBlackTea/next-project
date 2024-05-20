@@ -52,7 +52,7 @@ model Seat {
 
 // cashmethodモデル
 model cashmethod {
-  cash_id Int @id @default(autoincrement())
+  method_id Int @id @default(autoincrement())
   method String
 }
 
@@ -64,4 +64,17 @@ model price {
   schol_type Int 
 }
 
+//categoryモデル
+model category {
+  category_id Int @id @default(autoincrement())
+  category_name String
+}
 
+//cashモデル
+model cash {
+  cash_id Int @id @default(autoincrement())
+  movie_id Int
+  price_id Int
+  id Int
+  method_id Int
+}
