@@ -1,7 +1,7 @@
-version: "3.8"
+version: "3"
 services:
   db:
-    image: postgres:latest
+    image: postgres:14
     ports:
       - "5432:5432"
     container_name: hal_chinema_db
