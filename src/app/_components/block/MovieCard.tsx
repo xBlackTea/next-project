@@ -19,7 +19,7 @@ type issueMovieProps = {
 export function MovieCard(props: issueMovieProps) {
   const breakpoint = useBreakpoint();
   const { colorMode } = useColorMode();
-  const GAP = 30;
+  const GAP = 15;
 
   return (
     <>
