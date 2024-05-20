@@ -35,13 +35,6 @@ export default function RootLayout({
           theme={theme}
           config={customConfig}
         >
-          <Header />
-          <SubHeader />
-          <Box maxW="2100px" margin="0 auto">
-            {children}
-          </Box>
-          <Footer />
-
           <ContextProvider>
             <Header />
             <SubHeader />
