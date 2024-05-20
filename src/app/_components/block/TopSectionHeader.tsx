@@ -1,6 +1,6 @@
 import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { Icon } from '@yamada-ui/fontawesome';
-import { Box, Button, Link, Text } from '@yamada-ui/react'
+import { Box, Button, Link, Text, useBreakpoint } from '@yamada-ui/react'
 import React from 'react'
 
 interface TopSectionHeaderProps {
@@ -10,6 +10,8 @@ interface TopSectionHeaderProps {
 
 export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
 
+    const breakpoint = useBreakpoint();
+
     return (
         <Box
             bgColor="topSectionHeader.bg"
@@ -18,7 +20,7 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            p="0 20px"
+            p={["sm", "md"].includes(breakpoint) ? " 0 20px" : "0 60px"}
         >
 
             <Text
@@ -34,7 +36,6 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
                 <Button
                     h="35px"
                     color="topSectionHeader.title"
-                    // bgColor='topSectionHeader.button'
                     bgColor={["blue.500", "#000"]}
                     rightIcon={<Icon icon={faRightLong} />}
                 >
