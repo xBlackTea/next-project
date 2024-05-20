@@ -49,3 +49,19 @@ model Seat {
   movie_start DateTime
   screen_id Int
 }
+
+// cashmethodモデル
+model cashmethod {
+  cash_id Int @id @default(autoincrement())
+  method String
+}
+
+// priceモデル
+model price {
+  price_id Int @id @default(autoincrement())
+  price Int
+  //↓学割
+  schol_type Int 
+}
+
+
