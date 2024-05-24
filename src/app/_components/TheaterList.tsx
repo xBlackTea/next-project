@@ -23,10 +23,14 @@ const theater = [
 const TheaterList = () => {
   return (
     <>
-      <Box display="flex" as={Center}>
-        {theater.map((data) => (
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap="20px"
+        as={Center}>
+        {theater.map((data, index) => (
           <TheaterCard
-            key={data.id}
+            key={index}
             theaterImage={data.theaterImage}
             theaterName={data.theaterName}
           />
