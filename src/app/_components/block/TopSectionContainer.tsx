@@ -1,4 +1,4 @@
-import { Box } from "@yamada-ui/react";
+import { Box, useBreakpoint } from "@yamada-ui/react";
 import { ReactNode } from "react";
 
 interface TopSectionContainerProp {
@@ -6,15 +6,18 @@ interface TopSectionContainerProp {
 }
 
 export const TopSectionContainer = ({ children }: TopSectionContainerProp) => {
+
+  const breakpoint = useBreakpoint();
+
   return (
     <Box
-      w="full"
+      w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "80%"}
+      m="75px auto 0 auto"
       display="flex"
       justifyContent="center"
       alignItems="space-between"
       flexDirection="column"
-      gap="15px"
-      mt="0px"
+      gap="30px"
     >
       {children}
     </Box>
