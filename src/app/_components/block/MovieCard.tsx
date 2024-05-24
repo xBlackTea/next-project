@@ -26,7 +26,7 @@ export function MovieCard(props: issueMovieProps) {
       <Card
         w={
           breakpoint === "sm"
-            ? `calc(100% - ${GAP}px)`
+            ? `calc(50% - ${GAP}px)`
             : breakpoint === "md"
             ? `calc(50% - ${GAP}px)`
             : `calc(33.3333% - ${GAP}px)`
@@ -41,8 +41,11 @@ export function MovieCard(props: issueMovieProps) {
             filter: colorMode === "dark" ? "brightness(70%)" : "",
           },
         }}
+        overflow="hidden"
         cursor="pointer"
         variant="outline"
+        color="movieCard.color"
+        backgroundColor="movieCard.bg"
       >
         <CardHeader display="flex" justifyContent="center">
           <Image
@@ -55,15 +58,19 @@ export function MovieCard(props: issueMovieProps) {
             alt={props.title}
           />
         </CardHeader>
-        <CardFooter>
+        <CardFooter
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Text
             fontSize={
-              breakpoint === "sm" ? "1xl" : breakpoint === "md" ? "2xl" : "3xl"
+              breakpoint === "sm" ? "sm" : breakpoint === "md" ? "md" : "lg"
             }
             isTruncated
             w="100%"
           >
-            {props.title}
+            {props.title}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
           </Text>
         </CardFooter>
       </Card>

@@ -6,14 +6,14 @@ import {
   ColorModeScript,
   UIProvider,
 } from "@yamada-ui/react";
-import { Kaisei_Decol } from "next/font/google";
+import { Michroma } from "next/font/google";
 
 import theme from "@/theme";
 import { customConfig } from "@/theme/config";
 import { Footer, Header, HeaderDrawer, SubHeader } from "./_layouts/block";
 import { ContextProvider } from "@/provider/Provider";
 
-const font = Kaisei_Decol({ weight: "400", subsets: ["latin"] });
+const font = Michroma({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "HALシネマ",
