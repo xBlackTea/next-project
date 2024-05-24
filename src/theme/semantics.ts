@@ -13,6 +13,10 @@ export const semantics: ThemeSemantics = {
             mainText: "#000",
             line: "neutral.100",
         },
+        movieCard: {
+            color: ["#000", "#fff"],
+            bg: ["#f8f8f8", "transparent"],
+        },
         carousel: {
             bg: ["black", "blue.700"],
         },
