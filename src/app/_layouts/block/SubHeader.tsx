@@ -8,7 +8,7 @@ export const SubHeader = () => {
     const breakpoint = useBreakpoint();
 
     const subHeaderList = [
-        {title: "作品案内AAAA", icon: faCamera},
+        {title: "作品案内", icon: faCamera},
         {title: "劇場案内", icon: faTheaterMasks},
         {title: "売店案内", icon: faShop},
         {title: "イベント案内", icon: faCaretDown},
