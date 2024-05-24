@@ -1,4 +1,4 @@
-import { Button } from "@yamada-ui/react";
+import { Button, Text } from "@yamada-ui/react";
 import { ReactElement, ReactNode } from "react";
 
 interface HeaderButtonProps  {
@@ -18,7 +18,9 @@ export const HeaderButton = ({ icon, children, variant }: HeaderButtonProps ) =>
             fontWeight="bold"
             leftIcon={icon}
         >
-            {children}
+            <Text>
+                {children}
+            </Text>
         </Button>
         </>
     );
