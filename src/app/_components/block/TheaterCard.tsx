@@ -1,26 +1,47 @@
-import { Card, CardFooter, CardHeader, Image, Text } from "@yamada-ui/react";
+import { Card, CardBody, CardHeader, Heading, Image, Text, VStack } from "@yamada-ui/react";
 import React from "react";
 
-type theaterType = {
-  key: number;
+interface theaterType {
   theaterImage: string;
   theaterName: string;
 };
 
-const TheaterCard = (props: theaterType) => {
+const TheaterCard = ({theaterImage, theaterName}: theaterType) => {
   return (
     <>
-      <Card w="390px" m="5px">
-        <CardHeader display="flex" justifyContent="center">
-          <Image
-            src={props.theaterImage}
-            alt={props.theaterImage}
-            w="370px"
-          ></Image>
-        </CardHeader>
-        <CardFooter justifyContent="center">
-          <Text fontSize="3xl">{props.theaterName}</Text>
-        </CardFooter>
+      <Card
+        direction={{ base: "row", md: "column" }}
+        overflow="hidden"
+        variant="outline"
+        cursor="pointer"
+        m="0 auto"
+        w={{base: "100%", md: "90%"}}
+        h={{base: "200px", md: "fit-content"}}
+        sx={{
+          "&:hover .goTheaterPage": {
+            textDecoration: "underline",
+          }
+        }}
+      >
+        <Image
+          src={theaterImage}
+          objectFit="cover"
+          maxW={{ base: "30%", md: "100%" }}
+        />
+
+        <VStack gap="0">
+          <CardHeader display="center" justifyContent="space-between" alignItems="center">
+            <Heading size="md">{theaterName}</Heading>
+            <Heading className="goTheaterPage" size="sm" color="secondary">{`劇場を見る >`}</Heading>
+          </CardHeader>
+
+          <CardBody>
+            <Text wordBreak="break-all" lineClamp={5}>
+              『SLAMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              DUNK』（スラムダンク）は、バスケットボールを題材にした井上雄彦による日本の漫画作品。主人公の不良少年桜木花道の挑戦と成長を軸にしたバスケットボール漫画。
+            </Text>
+          </CardBody>
+        </VStack>
       </Card>
     </>
   );
