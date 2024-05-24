@@ -1,5 +1,5 @@
 "use client"
-import { Box, Container, useBreakpoint } from "@yamada-ui/react";
+import { Box } from "@yamada-ui/react";
 import React from "react";
 import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
@@ -7,8 +7,6 @@ import { MovieCard, TopSectionContainer, TopSectionHeader, TopSlider } from "./_
 import TheaterList from "./_components/TheaterList";
 
 export default function Page() {
-
-  const breakpoint = useBreakpoint();
 
   return (
     <>
@@ -22,8 +20,6 @@ export default function Page() {
           alignItems="start"
           flexWrap="wrap"
           gap="15px"
-          w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "80%"}
-          m="0px auto"
         >
           {movieCard.map((data: fetchMovieResponse) => (
             <MovieCard
