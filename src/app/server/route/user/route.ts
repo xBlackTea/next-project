@@ -1,37 +1,78 @@
 // usersモデルのAPIを定義
-import { NextResponse } from "next/server";
-
+import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse, NextRequest } from "next/server";
 import { Pool } from "pg";
+import bcrypt from "bcrypt";
 
+// PSQL接続情報
 const pool = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   host: process.env.DB_HOST,
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
   database: process.env.DB_NAME,
-  // ssl:
-  //   (process.env.DB_SSL && process.env.DB_SSL.toLowerCase() == "true") || false
-  //     ? { rejectUnauthorized: false }
-  //     : false,
 });
 
-// APIテスト用（userデータ全部GETしてくる）
-export async function GET() {
-  const client = await pool.connect();
-  const ret = await client.query('SELECT * FROM "User"', []);
-  await client.release(true);
-
-  console.log(ret);
-
-  return NextResponse.json(ret.rows);
+interface User {
+  user_id: number;
+  user_name: string;
+  password: string;
+  e_mail: string;
+  age: number;
+  student: boolean;
+  created_at: Date;
+  updated_at: Date;
 }
 
-// export async function CreateUser(req: Request) {
-//   const client = await pool.connect();
-//   const ret = await client.query('SELECT * FROM "User"', []);
-//   await client.release(true);
+// GETメソッドの処理
+export async function GET() {
+  const client = await pool.connect();
+  try {
+    const ret = await client.query('SELECT * FROM "User"', []);
+    return NextResponse.json(ret.rows);
+  } catch (error) {
+    console.error("Error executing query", error);
+    return NextResponse.json(
+      { error: "Error executing query" },
+      { status: 500 }
+    );
+  } finally {
+    client.release();
+  }
+}
 
-//   console.log(ret);
+// POSTメソッドの処理
+export async function POST(req: NextRequest) {
+  try {
+    const { user_name, e_mail, age, password, student }: User =
+      await req.json();
 
-//   return NextResponse.json(ret.rows);
-// }
+    // パスワードのハッシュ化
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const client = await pool.connect();
+    try {
+      const query = `
+        INSERT INTO "User" (user_name, password, e_mail, age, student, created_at, updated_at) 
+        VALUES ($1, $2, $3, $4, $5, NOW(), NOW()) 
+        RETURNING *`;
+      const values = [user_name, hashedPassword, e_mail, age, student];
+      const result = await client.query(query, values);
+      return NextResponse.json(result.rows[0], { status: 201 });
+    } catch (error) {
+      console.error("Error executing query", error);
+      return NextResponse.json(
+        { error: "Error executing query" },
+        { status: 500 }
+      );
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Invalid request payload", error);
+    return NextResponse.json(
+      { error: "Invalid request payload" },
+      { status: 400 }
+    );
+  }
+}
