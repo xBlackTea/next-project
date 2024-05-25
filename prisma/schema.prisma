@@ -12,6 +12,7 @@ model User {
   user_id Int @id @default(autoincrement())
   user_name String
   e_mail String @unique
+  password String
   age String
   student Boolean
   created_at DateTime @updatedAt
