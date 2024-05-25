@@ -1,6 +1,6 @@
 import { Box, Center } from "@yamada-ui/react";
 import React from "react";
-import TheaterCard from "./block/TheaterCard";
+import TheaterCard from "./TheaterCard";
 
 const theater = [
   {
@@ -11,12 +11,12 @@ const theater = [
   {
     id: 2,
     theaterImage: "hal_nagoya.jpg",
-    theaterName: "HAL東京",
+    theaterName: "HAL名古屋",
   },
   {
     id: 3,
     theaterImage: "hal_osaka.jpg",
-    theaterName: "HAL東京",
+    theaterName: "HAL大阪",
   },
 ];
 
