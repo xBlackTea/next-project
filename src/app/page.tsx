@@ -11,6 +11,7 @@ import {
   TopSlider,
 } from "./_components/block";
 import TheaterList from "./_components/block/TheaterList";
+import ShopList from "./_components/block/ShopList";
 
 export default function Page() {
   const breakpoint = useBreakpoint();
@@ -41,6 +42,11 @@ export default function Page() {
       <TopSectionContainer>
         <TopSectionHeader title="劇場案内" link="/theaters" />
         <TheaterList />
+      </TopSectionContainer>
+
+      <TopSectionContainer>
+        <TopSectionHeader title="売店案内" link="/shops" />
+        <ShopList />
       </TopSectionContainer>
     </>
   );
