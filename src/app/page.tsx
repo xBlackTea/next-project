@@ -5,6 +5,7 @@ import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
 import { MovieCard, TopSectionContainer, TopSectionHeader, TopSlider } from "./_components/block";
 import TheaterList from "./_components/TheaterList";
+import ShopList from "./_components/block/ShopList";
 
 export default function Page() {
 
@@ -38,6 +39,11 @@ export default function Page() {
       <TopSectionContainer>
         <TopSectionHeader title="劇場案内" link="/theaters" />
         <TheaterList />
+      </TopSectionContainer>
+
+      <TopSectionContainer>
+        <TopSectionHeader title="売店案内" link="/shops" />
+        <ShopList />
       </TopSectionContainer>
     </>
   );
