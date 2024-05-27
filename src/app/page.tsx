@@ -12,6 +12,8 @@ import {
 } from "./_components/block";
 import TheaterList from "./_components/block/TheaterList";
 import ShopList from "./_components/block/ShopList";
+import { EventList } from "./_components/block/EventList";
+import { ServiceList } from "./_components/block/ServiceList";
 
 export default function Page() {
   const breakpoint = useBreakpoint();
@@ -47,6 +49,16 @@ export default function Page() {
       <TopSectionContainer>
         <TopSectionHeader title="売店案内" link="/shops" />
         <ShopList />
+      </TopSectionContainer>
+
+      <TopSectionContainer>
+        <TopSectionHeader title="イベント案内" link="/event" />
+        <EventList />
+      </TopSectionContainer>
+
+      <TopSectionContainer>
+        <TopSectionHeader title="サービス案内" link="/service" />
+        <ServiceList />
       </TopSectionContainer>
     </>
   );
