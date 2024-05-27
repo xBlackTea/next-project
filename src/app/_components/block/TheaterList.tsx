@@ -26,7 +26,6 @@ const TheaterList = () => {
       <Box
         display="flex"
         flexDirection="column"
-        gap="20px"
         as={Center}>
         {theater.map((data, index) => (
           <TheaterCard

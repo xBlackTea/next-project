@@ -19,7 +19,7 @@ type issueMovieProps = {
 export function MovieCard(props: issueMovieProps) {
   const breakpoint = useBreakpoint();
   const { colorMode } = useColorMode();
-  const GAP = 15;
+  const GAP = 10;
 
   return (
     <>
@@ -41,20 +41,22 @@ export function MovieCard(props: issueMovieProps) {
             filter: colorMode === "dark" ? "brightness(70%)" : "",
           },
         }}
+        borderRadius="2px"
         overflow="hidden"
         cursor="pointer"
         variant="outline"
         color="movieCard.color"
         backgroundColor="movieCard.bg"
+        marginTop="15px"
       >
-        <CardHeader display="flex" justifyContent="center">
+        <CardHeader display="flex" justifyContent="center" margin="10px" padding="0px">
           <Image
             className="img"
             src={props.movie_image}
             w="100%"
             aspectRatio="9\16"
             objectFit="cover"
-            borderRadius="3px"
+            borderRadius="2px"
             alt={props.title}
           />
         </CardHeader>

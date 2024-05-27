@@ -17,7 +17,7 @@ export const TopSlider = () => {
                 slideSize={["sm"].includes(breakpoint) ? "100%" : ["md"].includes(breakpoint) ? "50%" : ["lg"].includes(breakpoint) ? "50%" : ["xl"].includes(breakpoint) ? "33.3333%" : "25%"}
                 size={["sm", "md"].includes(breakpoint) ? "sm" : "md"}
                 as="center"
-                m="0 auto 20px auto"
+                m="0 auto"
                 pt="20px"
                 autoplay
                 dragFree

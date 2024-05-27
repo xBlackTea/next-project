@@ -14,7 +14,8 @@ const TheaterCard = ({theaterImage, theaterName}: theaterType) => {
         overflow="hidden"
         variant="outline"
         cursor="pointer"
-        m="0 auto"
+        borderRadius="2px"
+        m="15px auto 0 auto"
         w={{base: "100%", md: "90%"}}
         h={{base: "200px", md: "fit-content"}}
         sx={{

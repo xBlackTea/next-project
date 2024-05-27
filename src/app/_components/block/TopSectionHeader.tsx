@@ -16,6 +16,7 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
             bgColor="topSectionHeader.bg"
             w="full"
             h="50px"
+            borderRadius="2px"
             display="flex"
             justifyContent="space-between"
             alignItems="center"
