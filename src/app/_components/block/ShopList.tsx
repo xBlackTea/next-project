@@ -24,8 +24,8 @@ const shop = [
 const ShopList = () => {
   return (
     <>
-      <Box m="0 auto 20px auto">
-        <SimpleGrid w="1200px" columns={{ base: 2, md: 1 }} gap="30px">
+      <Box m="0 auto 15px auto">
+        <SimpleGrid w="1200px" columns={{ base: 2, md: 1 }} gap="20px">
           {shop.map((data) => (
             <ShopInformation
               key={data.id}

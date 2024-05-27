@@ -25,11 +25,10 @@ export default function Page() {
       <TopSectionContainer>
         <TopSectionHeader title="作品案内" link="/movies" />
         <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="start"
           flexWrap="wrap"
-          gap="15px"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
         >
           {movieCard.map((data: fetchMovieResponse) => (
             <MovieCard
