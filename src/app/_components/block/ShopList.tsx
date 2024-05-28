@@ -23,19 +23,17 @@ const shop = [
 
 const ShopList = () => {
   return (
-    <>
-      <Box m="0 auto 15px auto">
-        <SimpleGrid w="1200px" columns={{ base: 2, md: 1 }} gap="20px">
-          {shop.map((data) => (
-            <ShopInformation
-              key={data.id}
-              shopImage={data.shopImage}
-            />
-          ))}
-        </SimpleGrid>
-      </Box>
-    </>
+    <Box m="15px auto 0 auto" w="100%">
+      <SimpleGrid columns={2} gap={"15px"}>
+        {shop.map((data) => (
+          <ShopInformation
+            key={data.id}
+            shopImage={data.shopImage}
+          />
+        ))}
+      </SimpleGrid>
+    </Box>
   )
 }
 
-export default ShopList
+export default ShopList;
