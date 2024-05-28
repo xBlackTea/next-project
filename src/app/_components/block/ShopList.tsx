@@ -3,22 +3,22 @@ import { Box, SimpleGrid } from '@yamada-ui/react';
 import ShopInformation from './ShopInformation';
 
 const shop = [
-    {
-        id: 1,
-        shopImage: "cinema_donuts.jpg",
-    },
-    {
-        id: 2,
-        shopImage: "cinema_donuts.jpg",
-    },
-    {
-        id: 3,
-        shopImage: "cinema_donuts.jpg",
-    },
-    {
-        id: 4,
-        shopImage: "cinema_donuts.jpg",
-    },
+  {
+    id: 1,
+    shopImage: "cinema_donuts.jpg",
+  },
+  {
+    id: 2,
+    shopImage: "cinema_donuts.jpg",
+  },
+  {
+    id: 3,
+    shopImage: "cinema_donuts.jpg",
+  },
+  {
+    id: 4,
+    shopImage: "cinema_donuts.jpg",
+  },
 ];
 
 const ShopList = () => {

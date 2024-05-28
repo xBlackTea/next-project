@@ -10,7 +10,6 @@ const ShopInformation = (props: shopType) => {
   // const{key, shopImage} = props
   return (
     <>
-
       <GridItem w="600px" h="4xs" rounded="md" bg="#ddd">        
         <Image
           src={props.shopImage}
@@ -18,7 +17,6 @@ const ShopInformation = (props: shopType) => {
           width="100%"
         />
       </GridItem>
-      
     </>
   )
 }
