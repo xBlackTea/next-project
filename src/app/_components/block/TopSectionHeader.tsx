@@ -21,7 +21,7 @@ export const TopSectionHeader = ({title ,link}: TopSectionHeaderProps) => {
       justifyContent="space-between"
       alignItems="center"
       overflow="hidden"
-      p={["sm", "md"].includes(breakpoint) ? "0" : "0 0 0 60px"}
+      p={["sm", "md"].includes(breakpoint) ? "0" : "0 0 0 20px"}
     >
       <Text
         fontSize="lg"
