@@ -1,4 +1,4 @@
-import { GridItem, Image, SimpleGrid } from '@yamada-ui/react';
+import { GridItem, Image } from '@yamada-ui/react';
 import React from 'react';
 
 type shopType = {
@@ -7,20 +7,16 @@ type shopType = {
 };
 
 const ShopInformation = (props: shopType) => {
-  // const{key, shopImage} = props
   return (
-    <>
-
-      <GridItem w="600px" h="4xs" rounded="md" bg="#ddd">        
-        <Image
-          src={props.shopImage}
-          alt={props.shopImage}
-          width="100%"
-        />
-      </GridItem>
-      
-    </>
+    <GridItem w="100%" rounded="2px" bg="#ddd">
+      <Image
+        src={props.shopImage}
+        alt={props.shopImage}
+        width="100%"
+        height="auto"
+      />
+    </GridItem>
   )
 }
 
-export default ShopInformation
+export default ShopInformation;

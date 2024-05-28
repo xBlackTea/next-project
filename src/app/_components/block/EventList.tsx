@@ -5,14 +5,15 @@ import ShopInformation from "./ShopInformation";
 
 export const EventList = () => {
   return (
-    <>
-      <Box m="0 auto 20px auto">
-        <SimpleGrid w="1200px" columns={{ base: 2, md: 1 }} gap="30px">
-          {eventList.map((data: eventType) => (
-            <ShopInformation key={data.id} shopImage={data.eventImage} />
-          ))}
-        </SimpleGrid>
-      </Box>
-    </>
+    <Box m="15px auto 0 auto" w="100%">
+      <SimpleGrid columns={2} gap={"15px"}>
+        {eventList.map((data: eventType) => (
+          <ShopInformation
+            key={data.id}
+            shopImage={data.eventImage}
+          />
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
