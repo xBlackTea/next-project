@@ -21,8 +21,11 @@ export const SignUpForm = () => {
 
         <form action="">
           <Box m="20px 0">
-            <Text>NICKNAME</Text>
-            <Input placeholder="ニックネーム" />
+            <Text>NAME</Text>
+            <Box display="flex" justifyContent="space-between">
+              <Input placeholder="苗字" w="49%" />
+              <Input placeholder="名前" w="49%" />
+            </Box>
           </Box>
 
           <Box m="20px 0">
@@ -32,7 +35,8 @@ export const SignUpForm = () => {
 
           <Box m="20px 0 ">
             <Text>PASSWORD</Text>
-            <Input placeholder="パスワード" />
+            <Input type="password" placeholder="パスワード" />
+            <Input mt="20px" type="password" placeholder="パスワード再入力" />
           </Box>
 
           <Box m="20px 0">
@@ -45,13 +49,8 @@ export const SignUpForm = () => {
             <RadioGroup direction="row">
               <Radio value="男性">男性</Radio>
               <Radio value="女性">女性</Radio>
-              <Radio value="その他">その他</Radio>
+              <Radio value="その他">選択しない</Radio>
             </RadioGroup>
-          </Box>
-
-          <Box m="20px 0">
-            <Text>STUDENT</Text>
-            <Checkbox>学生</Checkbox>
           </Box>
 
           <Center>
