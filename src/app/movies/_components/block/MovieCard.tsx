@@ -23,7 +23,7 @@ export function MovieCard(props: issueMovieProps) {
   return (
     <>
       <Card
-        w="275px"
+        w="calc(33.3333% - 15px)"
         marginTop="15px"
         marginLeft="15px"
         borderRadius="2px"
@@ -47,7 +47,7 @@ export function MovieCard(props: issueMovieProps) {
           <Image
             className="img"
             src={props.movie_image}
-            w="250px"
+            w="100%"
             aspectRatio="9\16"
             objectFit="cover"
             borderRadius="2px"

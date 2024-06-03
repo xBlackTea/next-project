@@ -12,7 +12,8 @@ export const TopSectionContainer = ({ children }: TopSectionContainerProp) => {
   return (
     <Box
       w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "80%"}
-      m="15px auto 0 auto"
+      maxW="1500px"
+      margin="15px auto 0 auto"
       display="flex"
       justifyContent="center"
       alignItems="space-between"

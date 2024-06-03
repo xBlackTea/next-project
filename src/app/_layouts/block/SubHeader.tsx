@@ -70,6 +70,7 @@ export const SubHeader = () => {
           </Box>
         )}
       </Box>
+      <Box w="full" h="10px" bg="black"/>
     </>
   );
-};
+}
