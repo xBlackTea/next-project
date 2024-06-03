@@ -36,8 +36,13 @@ export default function RootLayout({
           config={customConfig}
         >
           <ContextProvider>
-            <Header />
-            <SubHeader />
+            <Box maxW="2100px" m="0 auto">
+              <Header />
+            </Box>
+
+            <Box maxW="2100px" m="0 auto">
+              <SubHeader />
+            </Box>
 
             <Box maxW="2100px" margin="0 auto">
               {children}
