@@ -4,12 +4,7 @@ import { Box, Container, useBreakpoint } from "@yamada-ui/react";
 import React from "react";
 import { movieCard } from "@/mock/movie/mock";
 import { fetchMovieResponse } from "@/mock/movie/MovieInterface";
-import {
-  MovieCard,
-  TopSectionContainer,
-  TopSectionHeader,
-  TopSlider,
-} from "./_components/block";
+import { MovieCard, TopSectionContainer, TopSectionHeader, TopSlider, } from "./_components/block";
 import TheaterList from "./_components/block/TheaterList";
 import ShopList from "./_components/block/ShopList";
 import { EventList } from "./_components/block/EventList";
