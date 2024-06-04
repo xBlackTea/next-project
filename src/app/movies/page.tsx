@@ -1,12 +1,16 @@
+"use client"
 import { movieCard } from '@/mock/movie/mock';
 import { fetchMovieResponse } from '@/mock/movie/MovieInterface';
 import React from 'react';
-import { Box } from '@yamada-ui/react';
+import { Box, useBreakpoint } from '@yamada-ui/react';
 import { MovieCard } from './_components/block/MovieCard';
 
 const Page = () => {
+
+  const breakpoint = useBreakpoint();
+
   return (
-    <div style={{ display:"flex", margin:"0 auto", maxWidth:"1500px", height:"auto", backgroundColor:"#fff"}}>
+    <Box display="flex" margin="0 auto" w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "80%"} maxWidth="1500px" height="auto" backgroundColor="#fff">
       <div style={{width:"20%", maxWidth:"300px", backgroundColor:"#111"}}>
         <div style={{height:"15px", color:"#fff"}}></div>
         <div style={{height:"50px", backgroundColor:"#08f",textAlign:"center", fontSize:"30px", lineHeight:"1.5", color:"#fff"}}>ジャンル</div>
@@ -53,7 +57,7 @@ const Page = () => {
           ))}
         </Box>
       </div>
-    </div>
+    </Box>
   );
 };
 
