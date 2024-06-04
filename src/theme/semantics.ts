@@ -1,4 +1,5 @@
 import { MovieCaption } from "@/app/movie_detail/_components/MovieCaption";
+import { ScheduleAccordion } from "@/app/movie_detail/_components/ScheduleAccordion";
 import { ThemeSemantics } from "@yamada-ui/react";
 import { text } from "stream/consumers";
 
@@ -37,6 +38,10 @@ export const semantics: ThemeSemantics = {
     },
     movieCaption: {
       bg: ["#15202b", "blue.500"],
+    },
+    scheduleAccordion: {
+      bg: ["#15202b", "transparent"],
+      text: ["#FFF", "#FFF"],
     },
   },
   colorSchemes: {
