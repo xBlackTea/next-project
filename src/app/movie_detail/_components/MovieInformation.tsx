@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Image, Text } from "@yamada-ui/react";
+import { Box, Card, CardBody, Image, Text } from "@yamada-ui/react";
 import { movieCard } from "@/mock/movie/mock";
 
 export const MovieInformation = () => {
@@ -24,7 +24,12 @@ export const MovieInformation = () => {
           aspectRatio="16/9"
         />
         <CardBody>
-          <Text>{testMovieDetail.detail}</Text>
+          <Box h="200px">
+            <Text fontSize="1.4rem" fontWeight="bold">
+              {testMovieDetail.title}
+            </Text>
+            <Text>{testMovieDetail.detail}</Text>
+          </Box>
         </CardBody>
       </Card>
     </>

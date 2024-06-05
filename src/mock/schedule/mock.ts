@@ -9,7 +9,7 @@ export const scheduleData = [
     id: 2,
     screening_time: "9:35~12:10",
     screen_number: "screen8",
-    reservation: true,
+    reservation: false,
   },
   {
     id: 3,
