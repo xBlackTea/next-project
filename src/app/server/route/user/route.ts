@@ -76,3 +76,70 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function PUT(req: NextRequest) {
+  try {
+    const { user_id, user_name, e_mail, age, password, student }: User =
+      await req.json();
+
+    // パスワードのハッシュ化
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const client = await pool.connect();
+    try {
+      const query = `
+        UPDATE "User" 
+        SET user_name = $1, password = $2, e_mail = $3, age = $4, student = $5, updated_at = NOW()
+        WHERE user_id = $6
+        RETURNING *`;
+      const values = [user_name, hashedPassword, e_mail, age, student, user_id];
+      const result = await client.query(query, values);
+      return NextResponse.json(result.rows[0], { status: 200 });
+    } catch (error) {
+      console.error("Error executing query", error);
+      return NextResponse.json(
+        { error: "Error executing query" },
+        { status: 500 }
+      );
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Invalid request payload", error);
+    return NextResponse.json(
+      { error: "Invalid request payload" },
+      { status: 400 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { user_id }: User = await req.json();
+
+    const client = await pool.connect();
+    try {
+      const query = `
+        DELETE FROM "User" 
+        WHERE user_id = $1
+        RETURNING *`;
+      const values = [user_id];
+      const result = await client.query(query, values);
+      return NextResponse.json(result.rows[0], { status: 200 });
+    } catch (error) {
+      console.error("Error executing query", error);
+      return NextResponse.json(
+        { error: "Error executing query" },
+        { status: 500 }
+      );
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Invalid request payload", error);
+    return NextResponse.json(
+      { error: "Invalid request payload" },
+      { status: 400 }
+    );
+  }
+}
