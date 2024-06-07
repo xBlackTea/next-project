@@ -5,7 +5,7 @@ import FooterCopyright from "../atom/FooterCopyright";
 
 export const Footer = () => {
   return (
-    <Box w="100vw" h="400px" p="20px" bgColor="footer.bg">
+    <Box w="100vw" p="12px" bgColor="footer.bg">
       <FooterLogo />
 
       <Box display="flex" justifyContent="center" m="40px">

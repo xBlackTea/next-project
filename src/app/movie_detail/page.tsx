@@ -8,19 +8,19 @@ import { ScheduleAccordion } from "./_components/ScheduleAccordion";
 const page = () => {
   return (
     <>
-      <Box w="80%" m=" 0 auto">
+      <Box w="80%" maxW="1500px" m=" 0 auto">
         <BreadcrumbList />
       </Box>
 
-      <Box w="80%" m=" 0 auto">
+      <Box w="80%" maxW="1500px" m=" 0 auto">
         <MovieCaption />
       </Box>
 
-      <Box w="80%" m=" 0 auto">
+      <Box w="80%" maxW="1500px" m=" 0 auto">
         <MovieInformation />
       </Box>
 
-      <Box w="80%" m=" 0 auto">
+      <Box w="80%" maxW="1500px" m=" 0 auto">
         <ScheduleAccordion />
       </Box>
     </>

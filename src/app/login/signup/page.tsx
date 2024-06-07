@@ -5,7 +5,7 @@ import { SignUpForm } from "./_components/SignUpForm";
 const page = () => {
   return (
     <>
-      <Center w="1000px" m="auto">
+      <Center w="95%" maxW="1500px" m="auto">
         <SignUpForm />
       </Center>
     </>
