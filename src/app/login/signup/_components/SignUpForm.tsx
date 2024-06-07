@@ -1,20 +1,26 @@
+"use client";
 import { DatePicker } from "@yamada-ui/calendar";
 import {
   Box,
   Button,
   Center,
-  Checkbox,
   Input,
   Radio,
   RadioGroup,
   Text,
+  useBreakpoint,
 } from "@yamada-ui/react";
 import React from "react";
 
 export const SignUpForm = () => {
+  const breakpoint = useBreakpoint();
+
   return (
     <>
-      <Box w="90%" m="40px">
+      <Box
+        w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "70%"}
+        m="40px"
+      >
         <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
           SIGN UP
         </Text>
