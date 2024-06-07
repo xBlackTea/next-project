@@ -14,37 +14,30 @@ model User {
   e_mail String @unique
   password String
   age String
-  student Boolean
   created_at DateTime @updatedAt
   updated_at DateTime @updatedAt
 
   // 外部キー設定
   cash Cash?
-  reservation Reservation?
+  schedule Schedule?
 }
 
 // screenモデル
 model Screen {
   screen_id Int @id @default(autoincrement())
   screen_capacity Int
-  movie_id Int
 
-  // 外部キー設定
-  movie Movie @relation(fields: [movie_id], references: [movie_id])
-  seats Seat[]
-  reservation Reservation?
 }
 
-// reservationモデル
-model Reservation {
-  reservation_id Int @id @default(autoincrement())
+// scheduleモデル
+model schedule {
+  schedule_id Int @id @default(autoincrement())
   screen_id Int @unique
   movie_id Int @unique
   seat_id Int @unique
-  user_id Int @unique
+  movie_start String
 
   // 外部キー設定
-  user User @relation(fields: [user_id], references: [user_id])
   movie Movie @relation(fields: [movie_id], references: [movie_id])
   seat Seat @relation(fields: [seat_id], references: [seat_id])
   screen Screen @relation(fields: [screen_id], references: [screen_id])
@@ -62,21 +55,17 @@ model Movie {
   category Category @relation(fields: [category_id], references: [category_id])
   screens Screen[]
   cash Cash?
-  reservations Reservation?
+  schedule Schedule?
 }
 
 // Seatモデル
 model Seat {
   seat_id Int @id @default(autoincrement())
   // number管理だと厳しい？
-  seat_width Int
-  seat_height Int
-  movie_start DateTime
-  screen_id Int
-
+  //↓縦横関係なく座席名を取得
+  seat_point String 
   // 外部キー設定
-  screen Screen @relation(fields: [screen_id], references: [screen_id])
-  reservation Reservation?
+  schedule Schedule?
 }
 
 // cashmethodモデル
@@ -91,13 +80,22 @@ model CashMethod {
 // priceモデル
 model Price {
   price_id Int @id @default(autoincrement())
-  price Int
-  //↓学割
-  school_type Int 
+  price Int 
   
   // 外部キー設定
   cashes Cash?
 }
+
+// discountモデル
+model discount {
+  discount_id Int @id @default(autoincrement())
+  discount_id Int 
+  
+  // 外部キー設定
+  cashes Cash?
+}
+
+
 
 // categoryモデル
 model Category {
@@ -115,10 +113,12 @@ model Cash {
   price_id Int @unique
   user_id Int @unique
   method_id Int @unique
+  discount_id Int @unique
 
   // 外部キー設定
   user User @relation(fields: [user_id], references: [user_id])
   movie Movie @relation(fields: [movie_id], references: [movie_id])
   method CashMethod @relation(fields: [method_id], references: [method_id])
   price Price @relation(fields: [price_id], references: [price_id])
+  discount Discount @relation(fields: [discount_id], references: [discount_id])
 }
