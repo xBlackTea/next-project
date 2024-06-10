@@ -1,11 +1,11 @@
 import React from "react";
-import { BreadcrumbList } from "./_components/BreadcrumbList";
 import { Box } from "@yamada-ui/react";
+import { BreadcrumbList } from "./_components/BreadcrumbList";
 import { MovieCaption } from "./_components/MovieCaption";
 import { MovieInformation } from "./_components/MovieInformation";
 import { ScheduleAccordion } from "./_components/ScheduleAccordion";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <Box w="80%" maxW="1500px" m=" 0 auto">
@@ -27,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

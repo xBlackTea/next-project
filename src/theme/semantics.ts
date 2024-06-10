@@ -1,5 +1,5 @@
-import { MovieCaption } from "@/app/movie_detail/_components/MovieCaption";
-import { ScheduleAccordion } from "@/app/movie_detail/_components/ScheduleAccordion";
+import { MovieCaption } from "@/app/movie_detail/[id]/_components/MovieCaption";
+import { ScheduleAccordion } from "@/app/movie_detail/[id]/_components/ScheduleAccordion";
 import { ThemeSemantics } from "@yamada-ui/react";
 import { text } from "stream/consumers";
 
