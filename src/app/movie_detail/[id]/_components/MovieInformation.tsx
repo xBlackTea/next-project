@@ -3,22 +3,14 @@ import { Box, Card, CardBody, Image, Text } from "@yamada-ui/react";
 import { movieCard } from "@/mock/movie/mock";
 
 export const MovieInformation = () => {
-  const testMovieDetail = movieCard[0];
-
-  // type props = {
-  //   id: number;
-  //   movie_image: string;
-  //   movie_wide_image: string;
-  //   title: string;
-  //   detail: string;
-  // };
+  const movieDetail = movieCard[0];
 
   return (
     <>
       <Card borderRadius="0" m="20px 0" boxShadow="none" variant="outline">
         <Image
           objectFit="cover"
-          src={testMovieDetail.movie_wide_image}
+          src={movieDetail.movie_wide_image}
           alt="movieImage"
           w="100%"
           aspectRatio="16/9"
@@ -26,9 +18,9 @@ export const MovieInformation = () => {
         <CardBody>
           <Box h="200px">
             <Text fontSize="1.4rem" fontWeight="bold">
-              {testMovieDetail.title}
+              {movieDetail.title}
             </Text>
-            <Text>{testMovieDetail.detail}</Text>
+            <Text>{movieDetail.detail}</Text>
           </Box>
         </CardBody>
       </Card>

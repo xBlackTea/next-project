@@ -9,11 +9,13 @@ import {
   useBreakpoint,
   useColorMode,
 } from "@yamada-ui/react";
+import Link from "next/link";
 
 type issueMovieProps = {
   key: number;
   movie_image: string;
   title: string;
+  id: number;
 };
 
 export function MovieCard(props: issueMovieProps) {
@@ -49,32 +51,39 @@ export function MovieCard(props: issueMovieProps) {
         backgroundColor="movieCard.bg"
         marginTop="15px"
       >
-        <CardHeader display="flex" justifyContent="center" margin="10px" padding="0px">
-          <Image
-            className="img"
-            src={props.movie_image}
-            w="100%"
-            aspectRatio="9\16"
-            objectFit="cover"
-            borderRadius="2px"
-            alt={props.title}
-          />
-        </CardHeader>
-        <CardFooter
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Text
-            fontSize={
-              breakpoint === "sm" ? "sm" : breakpoint === "md" ? "md" : "lg"
-            }
-            isTruncated
-            w="100%"
+        <Link key={props.id} href={`../movie_detail/${props.id}`}>
+          <CardHeader
+            display="flex"
+            justifyContent="center"
+            margin="10px"
+            padding="0px"
           >
-            {props.title}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-          </Text>
-        </CardFooter>
+            <Image
+              className="img"
+              src={props.movie_image}
+              w="100%"
+              aspectRatio="9\16"
+              objectFit="cover"
+              borderRadius="2px"
+              alt={props.title}
+            />
+          </CardHeader>
+          <CardFooter
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text
+              fontSize={
+                breakpoint === "sm" ? "sm" : breakpoint === "md" ? "md" : "lg"
+              }
+              isTruncated
+              w="100%"
+            >
+              {props.title}
+            </Text>
+          </CardFooter>
+        </Link>
       </Card>
     </>
   );
