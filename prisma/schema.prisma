@@ -10,11 +10,13 @@ datasource db {
 // Userモデル
 model User {
   user_id     Int      @id @default(autoincrement())
-  user_name   String
+  first_name  String
+  last_name   String
   schedule_id Int?      
   e_mail      String   @unique
-  password    String
-  age         String
+  password    String  
+  birthday    String
+  gender      String
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
