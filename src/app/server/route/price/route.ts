@@ -1,26 +1,28 @@
-// seatモデルのAPIを定義
-import { NextRequest, NextResponse } from "next/server";
+// priceモデルのAPIを定義
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse, NextRequest } from "next/server";
 import { Pool } from "pg";
+import bcrypt from "bcrypt";
+import { resourceLimits } from "worker_threads";
 
-// db接続情報
+// db接続
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
-interface Seat {
-    seat_id: number;
-    seat_point: string;
+interface Price {
+    price_id: number;
+    price: number;
 }
 
 // GETメソッドの処理
 export async function GET() {
     const client = await pool.connect();
     try{
-        const ret = await client.query('SELECT * FROM "Seat"',[]);
+        const ret = await client.query('SELECT * FROM "Price"',[]);
         return NextResponse.json(ret.rows);
     } catch (error) {
-        console.error('Error executing query', error);
+        console.error("Error executing query", error);
         return NextResponse.json(
             { error: "Error executing query" },
             { status: 500 }
@@ -33,14 +35,14 @@ export async function GET() {
 // POSTメソッドの処理
 export async function POST(req:NextRequest) {
     try{
-        const { seat_point }: Seat = await req.json();
+        const { price }: Price = await req.json();
         const client = await pool.connect();
-        try {
-            const query = `
-            INSERT INTO "Seat" (seat_point)
+        try{
+            const query =`
+            INSERT INTO "Price" (price)
             VALUES ($1)
             RETURNING *`;
-            const values = [seat_point];
+            const values = [price];
             const result = await client.query(query,values);
             return NextResponse.json(result.rows[0], { status: 201 });
         } catch (error) {
@@ -53,10 +55,10 @@ export async function POST(req:NextRequest) {
             client.release();
         }
     } catch (error) {
-        console.error('Invalid request error', error);
+        console.error("Invalid request error", error);
         return NextResponse.json(
-            { error: 'Invalid request error' },
-            { status: 400 }
+            { error: "Invalid request error" },
+            {status: 400}
         );
     }
 }

@@ -16,15 +16,17 @@ const pool = new Pool({
 });
 
 interface User {
-	user_id: number;
-	user_name: string;
-	password: string;
-	e_mail: string;
-	age: number;
-	student: boolean;
-	created_at: Date;
-	updated_at: Date;
 
+  user_id: number;
+  first_name: string;
+  last_name: string;
+  password: string;
+  e_mail: string;
+  birthday: Date;
+  gender: string;
+  schedule_id: number;
+  created_at: Date;
+  updated_at: Date;
 }
 
 // GETメソッドの処理
@@ -47,8 +49,15 @@ export async function GET() {
 // ユーザー登録POSTメソッドの処理
 export async function POST(req: NextRequest) {
   try {
-    const { user_name, e_mail, age, password, schedule_id }: User =
-      await req.json();
+    const {
+      first_name,
+      last_name,
+      e_mail,
+      birthday,
+      password,
+      schedule_id,
+      gender,
+    }: User = await req.json();
 
 
 		// パスワードのハッシュ化
@@ -58,10 +67,18 @@ export async function POST(req: NextRequest) {
     const client = await pool.connect();
     try {
       const query = `
-        INSERT INTO "User" (user_name, password, e_mail, age, schedule_id, created_at, updated_at) 
-        VALUES ($1, $2, $3, $4, $5, NOW(), NOW()) 
+        INSERT INTO "User" (first_name, last_name, password, e_mail, birthday, schedule_id, gender, created_at, updated_at) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), NOW()) 
         RETURNING *`;
-      const values = [user_name, hashedPassword, e_mail, age, schedule_id];
+      const values = [
+        first_name,
+        last_name,
+        hashedPassword,
+        e_mail,
+        birthday,
+        schedule_id,
+        gender,
+      ];
       const result = await client.query(query, values);
 
       const ret = NextResponse.json(result.rows[0], { status: 201 });
@@ -96,8 +113,15 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const { user_id, user_name, e_mail, age, password, schedule_id }: User =
-      await req.json();
+    const {
+      first_name,
+      last_name,
+      password,
+      e_mail,
+      birthday,
+      gender,
+      schedule_id,
+    }: User = await req.json();
 
 		// パスワードのハッシュ化
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -106,16 +130,16 @@ export async function PUT(req: NextRequest) {
 		try {
 			const query = `
         UPDATE "User" 
-        SET user_name = $1, password = $2, e_mail = $3, age = $4, schedule_id = $5, updated_at = NOW()
-        WHERE user_id = $6
-        RETURNING *`;
+        SET first_name = $1, last_name = $2, password = $3, e_mail = $4, birthday
+      `;
       const values = [
-        user_name,
-        hashedPassword,
+        first_name,
+        last_name,
+        password,
         e_mail,
-        age,
+        birthday,
+        gender,
         schedule_id,
-        user_id,
       ];
       
       const result = await client.query(query, values);
