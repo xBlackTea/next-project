@@ -12,20 +12,17 @@ const pool = new Pool({
 	database: process.env.DB_NAME,
 });
 
-interface Cash {
-  movie_id: number;
-  price_id: number;
-  user_id:number;
-  cash_id:number;
-  method_id:number;
-  discount_id:number;
-}
+interface Discount {
+    discount_id:number;
+    discount_type:string;
+  }
+
 
 // getメソッド
 export async function GET() {
   const client = await pool.connect();
   try{
-      const ret = await client.query('SELECT * FROM "Cash"',[]);
+      const ret = await client.query('SELECT * FROM "Discount"',[]);
       return NextResponse.json(ret.rows);
   } catch (error) {
       console.error("Error executing query",error);
@@ -41,17 +38,17 @@ export async function GET() {
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
   try {
-    const {movie_id,price_id,user_id,cash_id,method_id,discount_id }: Cash =
+    const {discount_id,discount_type }: Discount =
       await req.json();
 
 
 		const client = await pool.connect();
 		try {
 			const query = `
-        INSERT INTO "User" (movie_id,price_id,user_id,method_id,discount_id,cash_id) 
-        VALUES ($1, $2, $3, $4, $5, $6) 
+        INSERT INTO "User" (discount_type,discount_id) 
+        VALUES ($1, $2) 
         RETURNING *`;
-      const values = [movie_id,price_id,user_id,method_id,cash_id,discount_id];
+      const values = [discount_id,discount_type];
       const result = await client.query(query, values);
       return NextResponse.json(result.rows[0], { status: 201 });
     } catch (error) {

@@ -9,13 +9,9 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
-interface Cash {
-    movie_id: number;
-    price_id: number;
-    user_id:number;
-    cash_id:number;
-    method_id:number;
+interface Discount {
     discount_id:number;
+    discount_type:string;
   }
 
 // データ単体取得
@@ -43,20 +39,16 @@ export async function GET(req:NextRequest, { params }: { params: { id: number } 
 // 更新メソッド
 export async function PATCH(req:NextRequest, { params }: { params: { id: number } }) {
     try{
-        const { movie_id,price_id,user_id,cash_id,method_id,discount_id }: Cash = await req.json();
+        const { discount_id,discount_type }: Discount = await req.json();
         const client = await pool.connect();
         const { id } = params;
         try {
             const query = `
             UPDATE "Cash"
-            SET movie_id = $1,
-            price_id =$2,
-            user_id = $3,
-            method_id = $4,
-            discount_id = $5,
-            WHERE cash_id = $6
+            SET movie_type = $1
+            WHERE discount_id = $2
             RETURNING *`;
-            const values = [movie_id,price_id,user_id,cash_id,method_id,discount_id,id];
+            const values = [discount_id,discount_type,id];
             const result = await client.query(query, values);
             return NextResponse.json(result.rows[0], { status: 201 });
         } catch (error) {
@@ -85,18 +77,18 @@ export async function DELETE(req:NextRequest, { params }: { params: { id: number
         const client = await pool.connect();
         try{
             const query =`
-            DELETE FROM "Cash"
-            WHERE cash_id = $1
+            DELETE FROM "Discount"
+            WHERE discount_id = $1
             RETURNING *`;
             const values = [id];
             const result = await client.query(query,values);
             if (result.rowCount == 0) {
                 return NextResponse.json(
-                    { error: "Cash not found" },
+                    { error: "Discount not found" },
                     { status: 404 }
                 );
             }
-            return NextResponse.json( { message: "Cash delete successfully" } );
+            return NextResponse.json( { message: "Discount delete successfully" } );
         } finally {
             client.release();
         }
