@@ -1,4 +1,4 @@
-import { Box, Center, Grid, GridItem, Image, Text } from '@yamada-ui/react'
+import { Box, Center } from '@yamada-ui/react'
 import React from 'react'
 import Foods from './_components/block/Foods'
 import Drink from './_components/block/Drink'

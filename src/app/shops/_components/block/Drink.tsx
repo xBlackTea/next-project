@@ -1,4 +1,4 @@
-import { Box, List, Text } from '@yamada-ui/react'
+import { Box, Text } from '@yamada-ui/react'
 import React from 'react'
 
 const Drink = () => {
