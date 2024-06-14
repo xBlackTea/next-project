@@ -15,24 +15,31 @@ import React from 'react';
 export const SignUpForm = () => {
 	const breakpoint = useBreakpoint();
 
-	return (
-		<>
-			<Box
-				w={breakpoint === 'sm' ? '100%' : breakpoint === 'md' ? '90%' : '70%'}
-				m="40px"
-			>
-				<Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
-					SIGN UP
-				</Text>
 
-				<form action="">
-					<Box m="20px 0">
-						<Text>NAME</Text>
-						<Box display="flex" justifyContent="space-between">
-							<Input placeholder="苗字" w="49%" />
-							<Input placeholder="名前" w="49%" />
-						</Box>
-					</Box>
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = data.get("name");
+  };
+
+  return (
+    <>
+      <Box
+        w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "70%"}
+        m="40px">
+        <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
+          SIGN UP
+        </Text>
+
+        <form onClick={handleSubmit}>
+          <Box m="20px 0">
+            <Text>NAME</Text>
+            <Box display="flex" justifyContent="space-between">
+              <Input placeholder="苗字" w="49%" />
+              <Input placeholder="名前" w="49%" />
+            </Box>
+          </Box>
+
 
 					<Box m="20px 0">
 						<Text>MAIL</Text>
