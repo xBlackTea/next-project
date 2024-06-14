@@ -9,6 +9,7 @@ import React from "react";
 import { ScheduleList } from "./ScheduleList";
 import { scheduleData } from "@/mock/schedule/mock";
 import { fetchScheduleInterface } from "@/mock/schedule/scheduleInterface";
+import { getNextWeekDates } from "@/utils/scheduleDate";
 
 export const ScheduleAccordion = () => {
   const style = {
@@ -17,15 +18,7 @@ export const ScheduleAccordion = () => {
     w: "100%",
   };
 
-  const items: SegmentedControlItem[] = [
-    { label: "6月3日", value: "6月3日" },
-    { label: "6月4日", value: "6月4日" },
-    { label: "6月5日", value: "6月5日" },
-    { label: "6月6日", value: "6月6日" },
-    { label: "6月7日", value: "6月7日" },
-    { label: "6月8日", value: "6月8日" },
-    { label: "6月9日", value: "6月9日" },
-  ];
+  const items: SegmentedControlItem[] = getNextWeekDates();
 
   return (
     <>
