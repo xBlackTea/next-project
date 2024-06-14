@@ -43,7 +43,7 @@ export const LoginForm = () => {
       <Box
         w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "70%"}
         m="40px">
-        <form onClick={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
             LOG IN
           </Text>
