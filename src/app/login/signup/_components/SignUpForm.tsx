@@ -15,17 +15,22 @@ import React from "react";
 export const SignUpForm = () => {
   const breakpoint = useBreakpoint();
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = data.get("name");
+  };
+
   return (
     <>
       <Box
         w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "70%"}
-        m="40px"
-      >
+        m="40px">
         <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
           SIGN UP
         </Text>
 
-        <form action="">
+        <form onClick={handleSubmit}>
           <Box m="20px 0">
             <Text>NAME</Text>
             <Box display="flex" justifyContent="space-between">
