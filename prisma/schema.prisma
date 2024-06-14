@@ -11,7 +11,7 @@ datasource db {
 model User {
   user_id     Int      @id @default(autoincrement())
   user_name   String
-  schedule_id Int      @unique
+  schedule_id Int?      
   e_mail      String   @unique
   password    String
   age         String
@@ -19,7 +19,7 @@ model User {
   updated_at  DateTime @updatedAt
 
   // 外部キー設定
-  schedule Schedule @relation(fields: [schedule_id], references: [schedule_id])
+  schedule Schedule? @relation(fields: [schedule_id], references: [schedule_id])
   cashes   Cash[]
 }
 

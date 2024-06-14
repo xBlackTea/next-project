@@ -1,8 +1,10 @@
 // usersモデルのAPIを定義
-import { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse, NextRequest } from 'next/server';
-import { Pool } from 'pg';
-import bcrypt from 'bcrypt';
+import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse, NextRequest } from "next/server";
+import { Pool } from "pg";
+import bcrypt from "bcrypt";
+import { supabase } from "../../supabase_index";
+
 
 // PSQL接続情報
 const pool = new Pool({
@@ -22,6 +24,7 @@ interface User {
 	student: boolean;
 	created_at: Date;
 	updated_at: Date;
+
 }
 
 // GETメソッドの処理
@@ -41,46 +44,60 @@ export async function GET() {
 	}
 }
 
-// POSTメソッドの処理
+// ユーザー登録POSTメソッドの処理
 export async function POST(req: NextRequest) {
-	try {
-		const { user_name, e_mail, age, password, student }: User =
-			await req.json();
+  try {
+    const { user_name, e_mail, age, password, schedule_id }: User =
+      await req.json();
+
 
 		// パスワードのハッシュ化
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		const client = await pool.connect();
-		try {
-			const query = `
-        INSERT INTO "User" (user_name, password, e_mail, age, student, created_at, updated_at) 
+
+    const client = await pool.connect();
+    try {
+      const query = `
+        INSERT INTO "User" (user_name, password, e_mail, age, schedule_id, created_at, updated_at) 
         VALUES ($1, $2, $3, $4, $5, NOW(), NOW()) 
         RETURNING *`;
-			const values = [user_name, hashedPassword, e_mail, age, student];
-			const result = await client.query(query, values);
-			return NextResponse.json(result.rows[0], { status: 201 });
-		} catch (error) {
-			console.error('Error executing query', error);
-			return NextResponse.json(
-				{ error: 'Error executing query' },
-				{ status: 500 }
-			);
-		} finally {
-			client.release();
-		}
-	} catch (error) {
-		console.error('Invalid request payload', error);
-		return NextResponse.json(
-			{ error: 'Invalid request payload' },
-			{ status: 400 }
-		);
-	}
+      const values = [user_name, hashedPassword, e_mail, age, schedule_id];
+      const result = await client.query(query, values);
+
+      const ret = NextResponse.json(result.rows[0], { status: 201 });
+
+      // SupaBaseにユーザー登録
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: e_mail,
+        password: password,
+      });
+      if (signUpError) {
+        throw signUpError;
+      }
+
+      return ret;
+    } catch (error) {
+      console.error("Error executing query", error);
+      return NextResponse.json(
+        { error: "Error executing query" },
+        { status: 500 }
+      );
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Invalid request payload", error);
+    return NextResponse.json(
+      { error: "Invalid request payload" },
+      { status: 400 }
+    );
+  }
 }
 
 export async function PUT(req: NextRequest) {
-	try {
-		const { user_id, user_name, e_mail, age, password, student }: User =
-			await req.json();
+  try {
+    const { user_id, user_name, e_mail, age, password, schedule_id }: User =
+      await req.json();
 
 		// パスワードのハッシュ化
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -89,28 +106,36 @@ export async function PUT(req: NextRequest) {
 		try {
 			const query = `
         UPDATE "User" 
-        SET user_name = $1, password = $2, e_mail = $3, age = $4, student = $5, updated_at = NOW()
+        SET user_name = $1, password = $2, e_mail = $3, age = $4, schedule_id = $5, updated_at = NOW()
         WHERE user_id = $6
         RETURNING *`;
-			const values = [user_name, hashedPassword, e_mail, age, student, user_id];
-			const result = await client.query(query, values);
-			return NextResponse.json(result.rows[0], { status: 200 });
-		} catch (error) {
-			console.error('Error executing query', error);
-			return NextResponse.json(
-				{ error: 'Error executing query' },
-				{ status: 500 }
-			);
-		} finally {
-			client.release();
-		}
-	} catch (error) {
-		console.error('Invalid request payload', error);
-		return NextResponse.json(
-			{ error: 'Invalid request payload' },
-			{ status: 400 }
-		);
-	}
+      const values = [
+        user_name,
+        hashedPassword,
+        e_mail,
+        age,
+        schedule_id,
+        user_id,
+      ];
+      
+      const result = await client.query(query, values);
+      return NextResponse.json(result.rows[0], { status: 200 });
+    } catch (error) {
+      console.error("Error executing query", error);
+      return NextResponse.json(
+        { error: "Error executing query" },
+        { status: 500 }
+      );
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Invalid request payload", error);
+    return NextResponse.json(
+      { error: "Invalid request payload" },
+      { status: 400 }
+    );
+  }
 }
 
 export async function DELETE(req: NextRequest) {
