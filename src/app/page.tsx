@@ -35,7 +35,7 @@ export default function Page() {
               key={data.id}
               movie_image={data.movie_image}
               title={data.title}
-              id={data.id}
+              id={"a"}
             />
           ))}
         </Box>
