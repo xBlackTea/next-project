@@ -1,19 +1,20 @@
-"use client";
-import { DatePicker } from "@yamada-ui/calendar";
+'use client';
+import { DatePicker } from '@yamada-ui/calendar';
 import {
-  Box,
-  Button,
-  Center,
-  Input,
-  Radio,
-  RadioGroup,
-  Text,
-  useBreakpoint,
-} from "@yamada-ui/react";
-import React from "react";
+	Box,
+	Button,
+	Center,
+	Input,
+	Radio,
+	RadioGroup,
+	Text,
+	useBreakpoint,
+} from '@yamada-ui/react';
+import React from 'react';
 
 export const SignUpForm = () => {
-  const breakpoint = useBreakpoint();
+	const breakpoint = useBreakpoint();
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,38 +40,39 @@ export const SignUpForm = () => {
             </Box>
           </Box>
 
-          <Box m="20px 0">
-            <Text>MAIL</Text>
-            <Input placeholder="メールアドレス" />
-          </Box>
 
-          <Box m="20px 0 ">
-            <Text>PASSWORD</Text>
-            <Input type="password" placeholder="パスワード" />
-            <Input mt="20px" type="password" placeholder="パスワード再入力" />
-          </Box>
+					<Box m="20px 0">
+						<Text>MAIL</Text>
+						<Input placeholder="メールアドレス" />
+					</Box>
 
-          <Box m="20px 0">
-            <Text>BIRTHDAY</Text>
-            <DatePicker placeholder="誕生日" defaultType="year" />
-          </Box>
+					<Box m="20px 0 ">
+						<Text>PASSWORD</Text>
+						<Input type="password" placeholder="パスワード" />
+						<Input mt="20px" type="password" placeholder="パスワード再入力" />
+					</Box>
 
-          <Box m="20px 0">
-            <Text>GENDER</Text>
-            <RadioGroup direction="row">
-              <Radio value="男性">男性</Radio>
-              <Radio value="女性">女性</Radio>
-              <Radio value="その他">選択しない</Radio>
-            </RadioGroup>
-          </Box>
+					<Box m="20px 0">
+						<Text>BIRTHDAY</Text>
+						<DatePicker placeholder="誕生日" defaultType="year" />
+					</Box>
 
-          <Center>
-            <Button w="100%" m="20px auto" colorScheme="secondary">
-              登録
-            </Button>
-          </Center>
-        </form>
-      </Box>
-    </>
-  );
+					<Box m="20px 0">
+						<Text>GENDER</Text>
+						<RadioGroup direction="row">
+							<Radio value="男性">男性</Radio>
+							<Radio value="女性">女性</Radio>
+							<Radio value="その他">選択しない</Radio>
+						</RadioGroup>
+					</Box>
+
+					<Center>
+						<Button w="100%" m="20px auto" colorScheme="secondary">
+							登録
+						</Button>
+					</Center>
+				</form>
+			</Box>
+		</>
+	);
 };

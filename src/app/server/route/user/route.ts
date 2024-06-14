@@ -5,41 +5,43 @@ import { Pool } from "pg";
 import bcrypt from "bcrypt";
 import { supabase } from "../../supabase_index";
 
+
 // PSQL接続情報
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
-  database: process.env.DB_NAME,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	host: process.env.DB_HOST,
+	port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
+	database: process.env.DB_NAME,
 });
 
 interface User {
-  user_id: number;
-  user_name: string;
-  password: string;
-  e_mail: string;
-  age: number;
-  schedule_id: number;
-  created_at: Date;
-  updated_at: Date;
+	user_id: number;
+	user_name: string;
+	password: string;
+	e_mail: string;
+	age: number;
+	student: boolean;
+	created_at: Date;
+	updated_at: Date;
+
 }
 
 // GETメソッドの処理
 export async function GET() {
-  const client = await pool.connect();
-  try {
-    const ret = await client.query('SELECT * FROM "User"', []);
-    return NextResponse.json(ret.rows);
-  } catch (error) {
-    console.error("Error executing query", error);
-    return NextResponse.json(
-      { error: "Error executing query" },
-      { status: 500 }
-    );
-  } finally {
-    client.release();
-  }
+	const client = await pool.connect();
+	try {
+		const ret = await client.query('SELECT * FROM "User"', []);
+		return NextResponse.json(ret.rows);
+	} catch (error) {
+		console.error('Error executing query', error);
+		return NextResponse.json(
+			{ error: 'Error executing query' },
+			{ status: 500 }
+		);
+	} finally {
+		client.release();
+	}
 }
 
 // ユーザー登録POSTメソッドの処理
@@ -48,8 +50,10 @@ export async function POST(req: NextRequest) {
     const { user_name, e_mail, age, password, schedule_id }: User =
       await req.json();
 
-    // パスワードのハッシュ化
-    const hashedPassword = await bcrypt.hash(password, 10);
+
+		// パスワードのハッシュ化
+		const hashedPassword = await bcrypt.hash(password, 10);
+
 
     const client = await pool.connect();
     try {
@@ -95,12 +99,12 @@ export async function PUT(req: NextRequest) {
     const { user_id, user_name, e_mail, age, password, schedule_id }: User =
       await req.json();
 
-    // パスワードのハッシュ化
-    const hashedPassword = await bcrypt.hash(password, 10);
+		// パスワードのハッシュ化
+		const hashedPassword = await bcrypt.hash(password, 10);
 
-    const client = await pool.connect();
-    try {
-      const query = `
+		const client = await pool.connect();
+		try {
+			const query = `
         UPDATE "User" 
         SET user_name = $1, password = $2, e_mail = $3, age = $4, schedule_id = $5, updated_at = NOW()
         WHERE user_id = $6
@@ -113,6 +117,7 @@ export async function PUT(req: NextRequest) {
         schedule_id,
         user_id,
       ];
+      
       const result = await client.query(query, values);
       return NextResponse.json(result.rows[0], { status: 200 });
     } catch (error) {
@@ -134,32 +139,32 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  try {
-    const { user_id }: User = await req.json();
+	try {
+		const { user_id }: User = await req.json();
 
-    const client = await pool.connect();
-    try {
-      const query = `
+		const client = await pool.connect();
+		try {
+			const query = `
         DELETE FROM "User" 
         WHERE user_id = $1
         RETURNING *`;
-      const values = [user_id];
-      const result = await client.query(query, values);
-      return NextResponse.json(result.rows[0], { status: 200 });
-    } catch (error) {
-      console.error("Error executing query", error);
-      return NextResponse.json(
-        { error: "Error executing query" },
-        { status: 500 }
-      );
-    } finally {
-      client.release();
-    }
-  } catch (error) {
-    console.error("Invalid request payload", error);
-    return NextResponse.json(
-      { error: "Invalid request payload" },
-      { status: 400 }
-    );
-  }
+			const values = [user_id];
+			const result = await client.query(query, values);
+			return NextResponse.json(result.rows[0], { status: 200 });
+		} catch (error) {
+			console.error('Error executing query', error);
+			return NextResponse.json(
+				{ error: 'Error executing query' },
+				{ status: 500 }
+			);
+		} finally {
+			client.release();
+		}
+	} catch (error) {
+		console.error('Invalid request payload', error);
+		return NextResponse.json(
+			{ error: 'Invalid request payload' },
+			{ status: 400 }
+		);
+	}
 }
