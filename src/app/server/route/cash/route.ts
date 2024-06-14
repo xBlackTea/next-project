@@ -17,8 +17,9 @@ interface Cash {
   price_id: number;
   user_id:number;
   cash_id:number;
+  method_id:number;
+  discount_id:number;
 }
-
 
 // getメソッド
 export async function GET() {
@@ -40,17 +41,17 @@ export async function GET() {
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
   try {
-    const {movie_id,price_id,user_id,cash_id }: Cash =
+    const {movie_id,price_id,user_id,cash_id,method_id,discount_id }: Cash =
       await req.json();
 
 
 		const client = await pool.connect();
 		try {
 			const query = `
-        INSERT INTO "User" (movie_id,price_id,id,cash_id) 
-        VALUES ($1, $2, $3, $4) 
+        INSERT INTO "User" (movie_id,price_id,user_id,method_id,discount_id,cash_id) 
+        VALUES ($1, $2, $3, $4, $5, $6) 
         RETURNING *`;
-      const values = [movie_id,price_id,user_id,cash_id];
+      const values = [movie_id,price_id,user_id,method_id,cash_id,discount_id];
       const result = await client.query(query, values);
       return NextResponse.json(result.rows[0], { status: 201 });
     } catch (error) {

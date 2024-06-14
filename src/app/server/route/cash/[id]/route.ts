@@ -14,6 +14,8 @@ interface Cash {
     price_id: number;
     user_id:number;
     cash_id:number;
+    method_id:number;
+    discount_id:number;
   }
 
 // データ単体取得
@@ -41,7 +43,7 @@ export async function GET(req:NextRequest, { params }: { params: { id: number } 
 // 更新メソッド
 export async function PATCH(req:NextRequest, { params }: { params: { id: number } }) {
     try{
-        const { movie_id,price_id,user_id,cash_id }: Cash = await req.json();
+        const { movie_id,price_id,user_id,cash_id,method_id,discount_id }: Cash = await req.json();
         const client = await pool.connect();
         const { id } = params;
         try {
@@ -49,10 +51,12 @@ export async function PATCH(req:NextRequest, { params }: { params: { id: number 
             UPDATE "Cash"
             SET movie_id = $1,
             price_id =$2,
-            id = $3
-            WHERE cash_id = $4
+            user_id = $3,
+            method_id = $4,
+            discount_id = $5,
+            WHERE cash_id = $6
             RETURNING *`;
-            const values = [movie_id,price_id,user_id,cash_id , id];
+            const values = [movie_id,price_id,user_id,cash_id,method_id,discount_id,id];
             const result = await client.query(query, values);
             return NextResponse.json(result.rows[0], { status: 201 });
         } catch (error) {
