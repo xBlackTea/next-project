@@ -1,15 +1,15 @@
 import {
-  Accordion,
-  AccordionItem,
-  Box,
-  SegmentedControl,
-  SegmentedControlItem,
-} from "@yamada-ui/react";
-import React from "react";
-import { ScheduleList } from "./ScheduleList";
-import { scheduleData } from "@/mock/schedule/mock";
-import { fetchScheduleInterface } from "@/mock/schedule/scheduleInterface";
-import { getNextWeekDates } from "@/utils/scheduleDate";
+	Accordion,
+	AccordionItem,
+	Box,
+	SegmentedControl,
+	SegmentedControlItem,
+} from '@yamada-ui/react';
+import React from 'react';
+import { ScheduleList } from './ScheduleList';
+import { scheduleData } from '@/mock/schedule/mock';
+import { fetchScheduleInterface } from '@/mock/schedule/scheduleInterface';
+import { getNextWeekDates } from '@/utils/scheduleDate';
 
 export const ScheduleAccordion = () => {
 	const style = {
@@ -18,7 +18,7 @@ export const ScheduleAccordion = () => {
 		w: '100%',
 	};
 
-  const items: SegmentedControlItem[] = getNextWeekDates();
+	const items: SegmentedControlItem[] = getNextWeekDates();
 
 	return (
 		<>
