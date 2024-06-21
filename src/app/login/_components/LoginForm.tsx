@@ -1,13 +1,13 @@
-"use client";
+'use client';
 import {
-  Box,
-  Text,
-  Input,
-  useBreakpoint,
-  Center,
-  Button,
-} from "@yamada-ui/react";
-import React from "react";
+	Box,
+	Text,
+	Input,
+	useBreakpoint,
+	Center,
+	Button,
+} from '@yamada-ui/react';
+import React from 'react';
 
 export const LoginForm = () => {
   const breakpoint = useBreakpoint();
@@ -72,4 +72,5 @@ export const LoginForm = () => {
       </Box>
     </>
   );
+
 };
