@@ -29,16 +29,6 @@ export const Header = () => {
 						alignItems="center"
 						gap="10px"
 					>
-						<HeaderButton variant="outline" icon={<Icon icon={faPhone} />}>
-							052-551-1001
-						</HeaderButton>
-
-						<Link href="/mypage">
-							<HeaderButton icon={<Icon icon={faEnvelope} />}>
-								マイページ
-							</HeaderButton>
-						</Link>
-
 						<ScreenButton />
 					</Box>
 				)}

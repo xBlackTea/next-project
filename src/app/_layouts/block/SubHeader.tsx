@@ -4,6 +4,7 @@ import {
 	faCamera,
 	faCaretDown,
 	faEnvelope,
+	faPerson,
 	faShop,
 	faTheaterMasks,
 } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +19,7 @@ export const SubHeader = () => {
 		{ title: '売店案内', icon: faShop },
 		{ title: 'イベント案内', icon: faCaretDown },
 		{ title: 'サービス案内', icon: faEnvelope },
+		{ title: 'マイページ', icon: faPerson },
 	];
 
 	return (
