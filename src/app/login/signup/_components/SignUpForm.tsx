@@ -14,7 +14,6 @@ import React from "react";
 
 export const SignUpForm = () => {
   const breakpoint = useBreakpoint();
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
