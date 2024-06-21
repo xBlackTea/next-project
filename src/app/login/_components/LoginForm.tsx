@@ -1,15 +1,18 @@
 'use client';
 import {
-	Box,
-	Text,
-	Input,
-	useBreakpoint,
-	Center,
-	Button,
-} from '@yamada-ui/react';
-import React from 'react';
+  Box,
+  Text,
+  Input,
+  useBreakpoint,
+  Center,
+  Button,
+} from "@yamada-ui/react";
+import React from "react";
+import { useRouter } from "next/router";
+
 
 export const LoginForm = () => {
+  const router = useRouter();
   const breakpoint = useBreakpoint();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,6 +40,7 @@ export const LoginForm = () => {
       console.error(e);
     }
   };
+  router.push("/");
 
   return (
     <>
