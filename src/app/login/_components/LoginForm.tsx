@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   Box,
   Text,
@@ -9,6 +9,7 @@ import {
 } from "@yamada-ui/react";
 import React from "react";
 import { useRouter } from "next/router";
+
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -75,4 +76,5 @@ export const LoginForm = () => {
       </Box>
     </>
   );
+
 };

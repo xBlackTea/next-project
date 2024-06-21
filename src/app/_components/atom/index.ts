@@ -1,1 +1,1 @@
-export * from "./SectionHeaderButton"
+export * from './SectionHeaderButton';

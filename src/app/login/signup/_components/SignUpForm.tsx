@@ -1,19 +1,22 @@
-"use client";
-import { DatePicker } from "@yamada-ui/calendar";
+'use client';
+import { DatePicker } from '@yamada-ui/calendar';
 import {
-  Box,
-  Button,
-  Center,
-  Input,
-  Radio,
-  RadioGroup,
-  Text,
-  useBreakpoint,
-} from "@yamada-ui/react";
-import React from "react";
+	Box,
+	Button,
+	Center,
+	Input,
+	Radio,
+	RadioGroup,
+	Text,
+	useBreakpoint,
+} from '@yamada-ui/react';
+import React from 'react';
 
 export const SignUpForm = () => {
-  const breakpoint = useBreakpoint();
+
+	const breakpoint = useBreakpoint();
+
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -61,6 +64,7 @@ export const SignUpForm = () => {
               <Input name="first_name" placeholder="名前" w="49%" />
             </Box>
           </Box>
+
 
           <Box m="20px 0">
             <Text>MAIL</Text>
@@ -110,4 +114,5 @@ export const SignUpForm = () => {
       </Box>
     </>
   );
+
 };
