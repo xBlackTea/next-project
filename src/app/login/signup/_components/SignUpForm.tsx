@@ -11,9 +11,10 @@ import {
 	useBreakpoint,
 } from '@yamada-ui/react';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export const SignUpForm = () => {
-
+  const router = useRouter();
 	const breakpoint = useBreakpoint();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,6 +39,7 @@ export const SignUpForm = () => {
       if (res.ok) {
         const json = await res.json();
         console.log(json);
+        router.push("/");
       } else {
         console.error("HTTP-Error: " + res.status);
       }

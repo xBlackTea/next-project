@@ -8,8 +8,8 @@ import {
   Button,
 } from "@yamada-ui/react";
 import React from "react";
-import { useRouter } from "next/router";
-
+import { useRouter } from "next/navigation";
+import { signInByEmail } from './login'
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -23,24 +23,14 @@ export const LoginForm = () => {
       password: formData.get("password"),
     };
     try {
-      const res = await fetch("/server/route/user/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) {
-        const json = await res.json();
-        console.log(json);
-      } else {
-        console.error("HTTP-Error: " + res.status);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+      const login = await signInByEmail(data.e_mail as string, data.password as string);
+      console.log(login);
+      router.push("/");
+    } catch (error) {
+      console.error("Error executing query", error);
+    }   
+    
   };
-  router.push("/");
 
   return (
     <>
