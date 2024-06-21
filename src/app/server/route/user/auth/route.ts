@@ -10,6 +10,21 @@ const pool = new Pool({
 	port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
 	database: process.env.DB_NAME,
 });
+
+export async function GET(req: NextRequest) {
+  try {
+    const client = await pool.connect();
+    const ret = await client.query('SELECT * FROM "User" WHERE user_id = $1');
+    return NextResponse.json(ret.rows);
+  } catch (error) {
+    console.error("Error executing query", error);
+    return NextResponse.json(
+      { error: "Error executing query" },
+      { status: 500 }
+    );
+  }
+}
+
 // サインインPOSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {

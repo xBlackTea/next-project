@@ -13,6 +13,7 @@ import {
 import React from 'react';
 
 export const SignUpForm = () => {
+
 	const breakpoint = useBreakpoint();
 
 
