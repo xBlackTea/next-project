@@ -15,6 +15,8 @@ interface Movie {
 	movie_detail: string;
 	movie_time: number;
 	category_id: number;
+	movie_image1: string;
+	movie_image2: string;
 }
 
 // GETメソッドの処理
@@ -37,15 +39,28 @@ export async function GET() {
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {
-		const { movie_name, movie_detail, movie_time, category_id }: Movie =
-			await req.json();
+		const {
+			movie_name,
+			movie_detail,
+			movie_time,
+			category_id,
+			movie_image1,
+			movie_image2,
+		}: Movie = await req.json();
 		const client = await pool.connect();
 		try {
 			const query = `
-            INSERT INTO "Movie" (movie_name, movie_detail, movie_time, category_id)
-            VALUES ($1, $2, $3, $4)
+            INSERT INTO "Movie" (movie_name, movie_detail, movie_time, category_id, movie_image1, movie_image2)
+            VALUES ($1, $2, $3, $4,$5,$6)
             RETURNING *`;
-			const values = [movie_name, movie_detail, movie_time, category_id];
+			const values = [
+				movie_name,
+				movie_detail,
+				movie_time,
+				category_id,
+				movie_image1,
+				movie_image2,
+			];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {
