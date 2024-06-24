@@ -9,17 +9,18 @@ import {
 	faTheaterMasks,
 } from '@fortawesome/free-solid-svg-icons';
 import { LeftButton, RightButton, SkewButton, SmallPanel } from '../atom';
+import { link } from 'fs';
 
 export const SubHeader = () => {
 	const breakpoint = useBreakpoint();
 
 	const subHeaderList = [
-		{ title: '作品案内', icon: faCamera },
-		{ title: '劇場案内', icon: faTheaterMasks },
-		{ title: '売店案内', icon: faShop },
-		{ title: 'イベント案内', icon: faCaretDown },
-		{ title: 'サービス案内', icon: faEnvelope },
-		{ title: 'マイページ', icon: faPerson },
+		{ title: '作品案内', icon: faCamera, link: '../../movies' },
+		{ title: '劇場案内', icon: faTheaterMasks, link: '../../theaters' },
+		{ title: '売店案内', icon: faShop, link: '../../shops' },
+		{ title: 'イベント案内', icon: faCaretDown, link: '../../events' },
+		{ title: 'サービス案内', icon: faEnvelope, link: '../../services' },
+		{ title: 'マイページ', icon: faPerson, link: '../../mypage' },
 	];
 
 	return (
@@ -31,7 +32,12 @@ export const SubHeader = () => {
 				{['sm', 'md'].includes(breakpoint) ? (
 					<Box display="flex" flexWrap="wrap" w="full">
 						{subHeaderList.map((_, index) => (
-							<SmallPanel key={index} icon={_.icon} title={_.title} />
+							<SmallPanel
+								key={index}
+								icon={_.icon}
+								title={_.title}
+								link={_.link}
+							/>
 						))}
 					</Box>
 				) : (
@@ -65,6 +71,7 @@ export const SubHeader = () => {
 									title={_.title}
 									index={index}
 									icon={_.icon}
+									link={_.link}
 								/>
 							))}
 						</Box>
