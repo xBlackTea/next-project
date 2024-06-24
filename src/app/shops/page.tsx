@@ -25,7 +25,7 @@ const page = () => {
 				>
 					<a href="../">トップページ</a>
 					{' > '}
-					<a href="shop">売店案内</a>
+					<a href="shops">売店案内</a>
 				</p>
 			</Center>
 
