@@ -33,17 +33,17 @@ const pool = new Pool({
 // 	}
 
 export async function GET(req: NextRequest) {
-  try {
-    const client = await pool.connect();
-    const ret = await client.query('SELECT * FROM "User" WHERE user_id = $1');
-    return NextResponse.json(ret.rows);
-  } catch (error) {
-    console.error("Error executing query", error);
-    return NextResponse.json(
-      { error: "Error executing query" },
-      { status: 500 }
-    );
-  }
+	try {
+		const client = await pool.connect();
+		const ret = await client.query('SELECT * FROM "User" WHERE user_id = $1');
+		return NextResponse.json(ret.rows);
+	} catch (error) {
+		console.error('Error executing query', error);
+		return NextResponse.json(
+			{ error: 'Error executing query' },
+			{ status: 500 }
+		);
+	}
 }
 
 // サインインPOSTメソッドの処理
