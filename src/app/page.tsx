@@ -52,12 +52,12 @@ export default function Page() {
 			</TopSectionContainer>
 
 			<TopSectionContainer>
-				<TopSectionHeader title="イベント案内" link="/event" />
+				<TopSectionHeader title="イベント案内" link="/events" />
 				<EventList />
 			</TopSectionContainer>
 
 			<TopSectionContainer>
-				<TopSectionHeader title="サービス案内" link="/service" />
+				<TopSectionHeader title="サービス案内" link="/services" />
 				<ServiceList />
 			</TopSectionContainer>
 		</>
