@@ -11,6 +11,41 @@ const pool = new Pool({
 	port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
 	database: process.env.DB_NAME,
 });
+
+// サインインPOSTメソッドの処理
+// export async function POST(req: NextRequest) {
+// 	try {
+// 		const { e_mail, password } = await req.json();
+// 		const { error } = await supabase.auth.signInWithPassword({
+// 			email: e_mail,
+// 			password: password,
+// 		});
+// 		if (error) {
+// 			return NextResponse.json({ error: error.message }, { status: 500 });
+// 		}
+// 		return NextResponse.json({ message: 'success' }, { status: 200 });
+// 	} catch (error) {
+// 		console.error('Invalid request payload', error);
+// 		return NextResponse.json(
+// 			{ error: 'Invalid request payload' },
+// 			{ status: 400 }
+// 		);
+// 	}
+
+export async function GET(req: NextRequest) {
+  try {
+    const client = await pool.connect();
+    const ret = await client.query('SELECT * FROM "User" WHERE user_id = $1');
+    return NextResponse.json(ret.rows);
+  } catch (error) {
+    console.error("Error executing query", error);
+    return NextResponse.json(
+      { error: "Error executing query" },
+      { status: 500 }
+    );
+  }
+}
+
 // サインインPOSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {

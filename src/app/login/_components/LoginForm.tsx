@@ -1,53 +1,85 @@
 'use client';
 import {
-	Box,
-	Text,
-	Input,
-	useBreakpoint,
-	Center,
-	Button,
-} from '@yamada-ui/react';
-import React from 'react';
+  Box,
+  Text,
+  Input,
+  useBreakpoint,
+  Center,
+  Button,
+} from "@yamada-ui/react";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { signInByEmail } from './login'
 
 export const LoginForm = () => {
-	const breakpoint = useBreakpoint();
+// const breakpoint = useBreakpoint();
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-		const data = {
-			e_mail: formData.get('e_mail'),
-			password: formData.get('password'),
-		};
-		try {
-			const res = await fetch('/server/route/user/auth', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			if (res.ok) {
-				const json = await res.json();
-				console.log(json);
-			} else {
-				console.error('HTTP-Error: ' + res.status);
-			}
-		} catch (e) {
-			console.error(e);
-		}
-	};
+// 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+// 		e.preventDefault();
+// 		const formData = new FormData(e.currentTarget);
+// 		const data = {
+// 			e_mail: formData.get('e_mail'),
+// 			password: formData.get('password'),
+// 		};
+// 		try {
+// 			const res = await fetch('/server/route/user/auth', {
+// 				method: 'POST',
+// 				headers: {
+// 					'Content-Type': 'application/json',
+// 				},
+// 				body: JSON.stringify(data),
+// 			});
+// 			if (res.ok) {
+// 				const json = await res.json();
+// 				console.log(json);
+// 			} else {
+// 				console.error('HTTP-Error: ' + res.status);
+// 			}
+// 		} catch (e) {
+// 			console.error(e);
+// 		}
+// 	};
 
-	return (
-		<>
-			<Box
-				w={breakpoint === 'sm' ? '100%' : breakpoint === 'md' ? '90%' : '70%'}
-				m="40px"
-			>
-				<form onClick={handleSubmit}>
-					<Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
-						LOG IN
-					</Text>
+// 	return (
+// 		<>
+// 			<Box
+// 				w={breakpoint === 'sm' ? '100%' : breakpoint === 'md' ? '90%' : '70%'}
+// 				m="40px"
+// 			>
+// 				<form onClick={handleSubmit}>
+// 					<Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
+// 						LOG IN
+// 					</Text>
+
+  const router = useRouter();
+  const breakpoint = useBreakpoint();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      e_mail: formData.get("e_mail"),
+      password: formData.get("password"),
+    };
+    try {
+      const login = await signInByEmail(data.e_mail as string, data.password as string);
+      console.log(login);
+      router.push("/");
+    } catch (error) {
+      console.error("Error executing query", error);
+    }   
+    
+  };
+
+  return (
+    <>
+      <Box
+        w={breakpoint === "sm" ? "100%" : breakpoint === "md" ? "90%" : "70%"}
+        m="40px">
+        <form onSubmit={handleSubmit}>
+          <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
+            LOG IN
+          </Text>
 
 					<Box m="20px 0">
 						<Text>MAIL</Text>

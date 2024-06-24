@@ -126,7 +126,7 @@ export async function PUT(req: NextRequest) {
 		try {
 			const query = `
         UPDATE "User" 
-        SET first_name = $1, last_name = $2, password = $3, e_mail = $4, birthday
+        SET first_name = $1, last_name = $2, password = $3, e_mail = $4, birthday = $5
       `;
 			const values = [
 				first_name,
