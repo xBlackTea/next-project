@@ -1,12 +1,16 @@
-import { Box } from "@yamada-ui/react";
-import React from "react";
+import { Box } from '@yamada-ui/react';
+import React from 'react';
 
-export const Caption = (title: string) => {
-  return (
-    <>
-      <Box w="100%" h="150px">
-        {title}
-      </Box>
-    </>
-  );
+type captionProps = {
+	title: string;
+};
+
+export const Caption = (title: captionProps) => {
+	return (
+		<>
+			<Box m="20px auto" w="80%" p="15px" color="#fff" bgColor="caption.bg">
+				{title.title}
+			</Box>
+		</>
+	);
 };

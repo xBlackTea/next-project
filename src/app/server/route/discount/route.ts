@@ -13,34 +13,31 @@ const pool = new Pool({
 });
 
 interface Discount {
-    discount_id:number;
-    discount_type:string;
-  }
-
+	discount_id: number;
+	discount_type: string;
+}
 
 // getメソッド
 export async function GET() {
-  const client = await pool.connect();
-  try{
-      const ret = await client.query('SELECT * FROM "Discount"',[]);
-      return NextResponse.json(ret.rows);
-  } catch (error) {
-      console.error("Error executing query",error);
-      return NextResponse.json(
-          { error: "Error executing query" },
-          { status: 500 }
-      );
-  } finally {
-      client.release();
-  }
+	const client = await pool.connect();
+	try {
+		const ret = await client.query('SELECT * FROM "Discount"', []);
+		return NextResponse.json(ret.rows);
+	} catch (error) {
+		console.error('Error executing query', error);
+		return NextResponse.json(
+			{ error: 'Error executing query' },
+			{ status: 500 }
+		);
+	} finally {
+		client.release();
+	}
 }
 
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
-  try {
-    const {discount_id,discount_type }: Discount =
-      await req.json();
-
+	try {
+		const { discount_id, discount_type }: Discount = await req.json();
 
 		const client = await pool.connect();
 		try {
@@ -48,23 +45,23 @@ export async function POST(req: NextRequest) {
         INSERT INTO "User" (discount_type,discount_id) 
         VALUES ($1, $2) 
         RETURNING *`;
-      const values = [discount_id,discount_type];
-      const result = await client.query(query, values);
-      return NextResponse.json(result.rows[0], { status: 201 });
-    } catch (error) {
-      console.error("Error executing query", error);
-      return NextResponse.json(
-        { error: "Error executing query" },
-        { status: 500 }
-      );
-    } finally {
-      client.release();
-    }
-  } catch (error) {
-    console.error("Invalid request payload", error);
-    return NextResponse.json(
-      { error: "Invalid request payload" },
-      { status: 400 }
-    );
-  }
+			const values = [discount_id, discount_type];
+			const result = await client.query(query, values);
+			return NextResponse.json(result.rows[0], { status: 201 });
+		} catch (error) {
+			console.error('Error executing query', error);
+			return NextResponse.json(
+				{ error: 'Error executing query' },
+				{ status: 500 }
+			);
+		} finally {
+			client.release();
+		}
+	} catch (error) {
+		console.error('Invalid request payload', error);
+		return NextResponse.json(
+			{ error: 'Invalid request payload' },
+			{ status: 400 }
+		);
+	}
 }

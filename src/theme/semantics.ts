@@ -1,5 +1,6 @@
 import { MovieCaption } from '@/app/movie_detail/[id]/_components/MovieCaption';
 import { ScheduleAccordion } from '@/app/movie_detail/[id]/_components/ScheduleAccordion';
+import { TheaterSchedule } from '@/app/theaters/[id]/theater_schedule/_components/TheaterSchedule';
 import { ThemeSemantics } from '@yamada-ui/react';
 import { text } from 'stream/consumers';
 
@@ -36,12 +37,15 @@ export const semantics: ThemeSemantics = {
 		breadcrumbList: {
 			bg: ['#15202b', 'blue.500'],
 		},
-		movieCaption: {
+		caption: {
 			bg: ['#15202b', 'blue.500'],
 		},
 		scheduleAccordion: {
 			bg: ['#15202b', 'transparent'],
 			text: ['#FFF', '#FFF'],
+		},
+		theaterSchedule: {
+			bg: ['#f8f8f8', 'transparent'],
 		},
 	},
 	colorSchemes: {

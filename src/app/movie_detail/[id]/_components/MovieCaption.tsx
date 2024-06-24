@@ -3,7 +3,7 @@ import React from 'react';
 
 export const MovieCaption = () => {
 	return (
-		<Box w="100%" p="15px" m="20px 0" color="#fff" bgColor="movieCaption.bg">
+		<Box w="100%" p="15px" m="20px 0" color="#fff" bgColor="caption.bg">
 			作品詳細
 		</Box>
 	);
