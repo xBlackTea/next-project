@@ -12,8 +12,9 @@ import {
 
 type issueMovieProps = {
 	key: number;
+	id: number;
 	movie_image: string;
-	title: string;
+	movie_name: string;
 };
 
 export function MovieCard(props: issueMovieProps) {
@@ -56,7 +57,7 @@ export function MovieCard(props: issueMovieProps) {
 						aspectRatio="9\16"
 						objectFit="cover"
 						borderRadius="2px"
-						alt={props.title}
+						alt={props.movie_name}
 					/>
 				</CardHeader>
 				<CardFooter display="flex" justifyContent="center" alignItems="center">
@@ -67,7 +68,7 @@ export function MovieCard(props: issueMovieProps) {
 						isTruncated
 						w="100%"
 					>
-						{props.title}
+						{props.movie_name}
 					</Text>
 				</CardFooter>
 			</Card>
