@@ -1,12 +1,53 @@
 'use client';
-import { movieCard } from '@/mock/movie/mock';
-import { fetchMovieResponse } from '@/mock/movie/MovieInterface';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, useBreakpoint } from '@yamada-ui/react';
-import { MovieCard } from './_components/block/MovieCard';
+import { fetchMovie } from '../hooks/useMovie'; // フェッチ関数をインポート
+import { MovieCard } from './_components/block/MovieCard'; // コンポーネントのインポート
+import { fetchCategory } from '../hooks/useCategory';
+
+interface Movie {
+	movie_id: number;
+	movie_image: string;
+	movie_name: string;
+}
+
+interface Category {
+	category_id: number;
+	category_name: string;
+}
 
 const Page = () => {
+	const [movies, setMovies] = useState<Movie[]>([]);
+	const [categorys, setCategorys] = useState<Category[]>([]);
 	const breakpoint = useBreakpoint();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const moviesData = await fetchMovie();
+			// 必要に応じてデータを整形
+			const formattedData: Movie[] = moviesData.map((movie: any) => ({
+				id: movie.movie_id,
+				movie_image: movie.movie_image1,
+				movie_name: movie.movie_name,
+			}));
+			setMovies(formattedData);
+		};
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		const fetchCategoryData = async () => {
+			const categoryData = await fetchCategory();
+			const formattedCategory: Category[] = categoryData.map(
+				(category: any) => ({
+					id: category.category_id,
+					category_name: category.category_name,
+				})
+			);
+			setCategorys(formattedCategory);
+		};
+		fetchCategoryData();
+	}, []);
 
 	return (
 		<Box
@@ -30,91 +71,14 @@ const Page = () => {
 					}}
 				>
 					ジャンル
+					{/* 他のジャンルを表示 */}
+					<ul>
+						{categorys.map((category) => (
+							<li key={category.category_id}>{category.category_name}</li>
+						))}
+					</ul>
+					{/* ... */}
 				</div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					アクション
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					冒険
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					アニメ
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					ドキュメンタリー
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					SF
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					恋愛
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
-				<div
-					style={{
-						height: '50px',
-						textAlign: 'center',
-						fontSize: '30px',
-						lineHeight: '1.5',
-						color: '#fff',
-					}}
-				>
-					ホラー
-				</div>
-				<div style={{ height: '2px', backgroundColor: '#fff' }}></div>
 			</div>
 			<div style={{ width: '80%', maxWidth: '1200px', marginBottom: '15px' }}>
 				<div
@@ -160,18 +124,12 @@ const Page = () => {
 					</p>
 				</div>
 				<Box display="flex" alignItems="start" flexWrap="wrap">
-					{movieCard.map((data: fetchMovieResponse) => (
+					{movies.map((movie: Movie) => (
 						<MovieCard
-							key={data.id}
-							movie_image={data.movie_image}
-							title={data.title}
-						/>
-					))}
-					{movieCard.map((data: fetchMovieResponse) => (
-						<MovieCard
-							key={data.id}
-							movie_image={data.movie_image}
-							title={data.title}
+							key={movie.movie_id}
+							id={movie.movie_id}
+							movie_image={movie.movie_image}
+							movie_name={movie.movie_name}
 						/>
 					))}
 				</Box>
