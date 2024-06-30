@@ -3,7 +3,7 @@
 import { Box, GridItem, SimpleGrid, Text, Image } from '@yamada-ui/react';
 import React, { useState } from 'react';
 
-const Limited = () => {
+const Permanent = () => {
 	const [showText, setShowText] = useState(Array(4).fill(false));
 
 	const handleImageClick = (index: number) => {
@@ -76,4 +76,4 @@ const Limited = () => {
 	);
 };
 
-export default Limited;
+export default Permanent;
