@@ -2,6 +2,7 @@
 
 import { Box, GridItem, SimpleGrid, Text, Image } from '@yamada-ui/react';
 import React, { useState } from 'react';
+import { limitedImages, limitedDetails } from '../atom/data';
 
 const Limited = () => {
 	const [showText, setShowText] = useState(Array(4).fill(false));
@@ -11,9 +12,6 @@ const Limited = () => {
 		newShowText[index] = !newShowText[index];
 		setShowText(newShowText);
 	};
-
-	//ドロップダウン表示内容
-	const details = ['つみき', 'きつね', 'ねずみ', 'みんと'];
 
 	return (
 		<Box m="10px auto 50px auto">
@@ -31,12 +29,7 @@ const Limited = () => {
 			</Box>
 
 			<SimpleGrid w="1450px" m="0 auto" columns={{ base: 2, md: 1 }} gap="md">
-				{[
-					'pilotfilm.jpg',
-					'pilotfilm.jpg',
-					'pilotfilm.jpg',
-					'pilotfilm.jpg',
-				].map((img, index) => (
+				{limitedImages.map((img, index) => (
 					<GridItem key={index} w="full" rounded="md">
 						<Box position="relative">
 							<Box
@@ -65,7 +58,7 @@ const Limited = () => {
 									color="#fff"
 									p="10px"
 								>
-									<Text>{details[index]}</Text>
+									<Text>{limitedDetails[index]}</Text>
 								</Box>
 							)}
 						</Box>
