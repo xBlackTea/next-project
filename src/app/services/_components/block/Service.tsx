@@ -2,6 +2,7 @@
 
 import { Box, GridItem, SimpleGrid, Text, Image } from '@yamada-ui/react';
 import React, { useState } from 'react';
+import { images, details } from '../atom/data';
 
 const Service = () => {
 	const [showText, setShowText] = useState(Array(4).fill(false));
@@ -11,9 +12,6 @@ const Service = () => {
 		newShowText[index] = !newShowText[index];
 		setShowText(newShowText);
 	};
-
-	//ドロップダウン表示内容
-	const details = ['りんご', 'ごりら', 'らっぱ', 'ぱんつ'];
 
 	return (
 		<Box m="10px auto 50px auto">
@@ -31,12 +29,7 @@ const Service = () => {
 			</Box>
 
 			<SimpleGrid w="1450px" m="0 auto" columns={{ base: 2, md: 1 }} gap="md">
-				{[
-					'dolby_cinema.jpg',
-					'dolby_cinema.jpg',
-					'dolby_cinema.jpg',
-					'dolby_cinema.jpg',
-				].map((img, index) => (
+				{images.map((img, index) => (
 					<GridItem key={index} w="full" rounded="md">
 						<Box position="relative">
 							<Box
