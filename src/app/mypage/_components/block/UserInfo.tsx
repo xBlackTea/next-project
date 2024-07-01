@@ -14,20 +14,18 @@ const UserInfo = () => {
 	return (
 		<Box bgColor="#fff" color="#000" py="20px">
 			<Box
-					w="80%"
-					m="0 auto"
-					bgColor="#111"
-					lineHeight="1.5"
-					color="#fff"
-					p="10px"
-				>
-			
+				w="80%"
+				m="0 auto"
+				bgColor="#111"
+				lineHeight="1.5"
+				color="#fff"
+				p="10px"
+			>
 				<Text ml="1vw" fontSize="2rem">
 					ユーザー情報
 				</Text>
-				
 			</Box>
-		
+
 			<Box display="flex" flexWrap="wrap" w="80%" m="20px auto" gap="10px">
 				<Box
 					display="flex"
@@ -37,14 +35,12 @@ const UserInfo = () => {
 					overflow="hidden"
 				>
 					<Box display="flex" flexDirection="column" p="10px" w="100%">
-					
-							<Box>
-								<Text>性</Text>
-								<Box display="flex">
-									<text>春</text>
-								</Box>
+						<Box>
+							<Text>性</Text>
+							<Box display="flex">
+								<text>春</text>
 							</Box>
-						
+						</Box>
 					</Box>
 				</Box>
 				<Box
@@ -55,14 +51,12 @@ const UserInfo = () => {
 					overflow="hidden"
 				>
 					<Box display="flex" flexDirection="column" p="10px" w="100%">
-						
-							<Box>
-								<Text>名</Text>
-								<Box display="flex" w="100%">
-									太郎
-								</Box>
+						<Box>
+							<Text>名</Text>
+							<Box display="flex" w="100%">
+								太郎
 							</Box>
-						
+						</Box>
 					</Box>
 				</Box>
 			</Box>
@@ -107,30 +101,30 @@ const UserInfo = () => {
 			</Box>
 
 			<form>
-			<Box
-				w="80%"
-				m="0 auto"
-				bgColor="#111"
-				lineHeight="1.5"
-				color="#fff"
-				p="10px"
-				display="flex"
-				justifyContent="space-between"
-				alignItems="center"
-			>
+				<Box
+					w="80%"
+					m="0 auto"
+					bgColor="#111"
+					lineHeight="1.5"
+					color="#fff"
+					p="10px"
+					display="flex"
+					justifyContent="space-between"
+					alignItems="center"
+				>
 					<Text ml="1vw" fontSize="2rem">
 						ログイン設定
 					</Text>
 					<Text
-					as="button"
-					color="blue"
-					_hover={{ color: 'darkblue' }}
-					// onClick={() => {
-					// 	// Handle edit action here
-					// }}
-				>
-					変更
-				</Text>
+						as="button"
+						color="blue"
+						_hover={{ color: 'darkblue' }}
+						// onClick={() => {
+						// 	// Handle edit action here
+						// }}
+					>
+						変更
+					</Text>
 				</Box>
 
 				<Box display="flex" flexWrap="wrap" w="80%" m="20px auto" gap="10px">
@@ -142,14 +136,12 @@ const UserInfo = () => {
 						overflow="hidden"
 					>
 						<Box display="flex" flexDirection="column" p="10px" w="100%">
-							
-								<Box>
-									<Text>E-MAIL</Text>
-									<Box display="flex" bgColor="#fff">
-										<Input name="e-mail" placeholder="email" w="100%" />
-									</Box>
+							<Box>
+								<Text>E-MAIL</Text>
+								<Box display="flex" bgColor="#fff">
+									<Input name="e-mail" placeholder="email" w="100%" />
 								</Box>
-							
+							</Box>
 						</Box>
 					</Box>
 					<Box
@@ -160,14 +152,12 @@ const UserInfo = () => {
 						overflow="hidden"
 					>
 						<Box display="flex" flexDirection="column" p="10px" w="100%">
-							
-								<Box>
-									<Text>パスワード</Text>
-									<Box display="flex" bgColor="#fff" >
-										<Input name="password" placeholder="パスワード" w="100%" />
-									</Box>
+							<Box>
+								<Text>パスワード</Text>
+								<Box display="flex" bgColor="#fff">
+									<Input name="password" placeholder="パスワード" w="100%" />
 								</Box>
-							
+							</Box>
 						</Box>
 					</Box>
 				</Box>

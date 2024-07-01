@@ -1,7 +1,7 @@
 import { Box, Center } from '@yamada-ui/react';
 import React from 'react';
-import UserInfo from  './_components/block/UserInfo';
-import {TicketInfo} from './_components/block/TicketInfo';
+import UserInfo from './_components/block/UserInfo';
+import { TicketInfo } from './_components/block/TicketInfo';
 
 const page = () => {
 	return (
