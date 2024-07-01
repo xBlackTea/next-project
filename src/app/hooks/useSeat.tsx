@@ -3,7 +3,7 @@
 import { Context, SeatInfoProps } from '@/provider/Provider';
 import { useContext } from 'react';
 
-export const useMusic = () => {
+export const useSeat = () => {
 	const context = useContext(Context);
 	if (!context) {
 		throw new Error('Context is not provided');

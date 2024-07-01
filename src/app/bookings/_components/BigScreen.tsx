@@ -12,11 +12,12 @@ import {
 	rightBackSeat,
 } from '../wideSeatList';
 import { SeatButton } from './SeatButton';
+import { SeatInfoProps } from '@/provider/Provider';
 
 type SeatType = {
 	id: number;
 	x_axis: string;
-	y_axis: string;
+	y_axis: number;
 };
 
 export const BigScreen = () => {
@@ -50,17 +51,29 @@ export const BigScreen = () => {
 					>
 						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftFrontSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
 							{centerFrontSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightFrontSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 					</Box>
@@ -73,17 +86,29 @@ export const BigScreen = () => {
 					>
 						<Box display={'flex'} w={'90px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftMiddleSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
 							{centerMiddleSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'90px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightMiddleSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 					</Box>
@@ -96,17 +121,29 @@ export const BigScreen = () => {
 					>
 						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftBackSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
 							{centerBackSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightBackSeat.map((data: SeatType) => (
-								<SeatButton key={data.id} />
+								<SeatButton
+									key={data.id}
+									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
+									y_axis={data.y_axis}
+								/>
 							))}
 						</Box>
 					</Box>
