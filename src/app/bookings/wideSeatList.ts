@@ -1,7 +1,7 @@
 type SeatType = {
 	id: number;
 	x_axis: string;
-	y_axis: string;
+	y_axis: number;
 };
 
 const leftFrontSeat: SeatType[] = [];
@@ -24,7 +24,7 @@ for (let row = 0; row < rowsFront.length; row++) {
 		leftFrontSeat.push({
 			id: row * seatsPerRowFrontLeft + seat,
 			x_axis: rowsFront[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -35,7 +35,7 @@ for (let row = 0; row < rowsFront.length; row++) {
 		centerFrontSeat.push({
 			id: row * seatsPerRowFrontCenter + (seat - 5),
 			x_axis: rowsFront[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -46,7 +46,7 @@ for (let row = 0; row < rowsFront.length; row++) {
 		rightFrontSeat.push({
 			id: row * seatsPerRowFrontRight + seat,
 			x_axis: rowsFront[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -57,7 +57,7 @@ for (let row = 0; row < rowsMiddle.length; row++) {
 		leftMiddleSeat.push({
 			id: row * seatsPerRowMiddleLeft + seat,
 			x_axis: rowsMiddle[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -68,7 +68,7 @@ for (let row = 0; row < rowsMiddle.length; row++) {
 		centerMiddleSeat.push({
 			id: row * seatsPerRowMiddleCenter + seat,
 			x_axis: rowsMiddle[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -79,7 +79,7 @@ for (let row = 0; row < rowsMiddle.length; row++) {
 		rightMiddleSeat.push({
 			id: row * seatsPerRowMiddleRight + seat,
 			x_axis: rowsMiddle[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -90,7 +90,7 @@ for (let row = 0; row < rowsBack.length; row++) {
 		leftBackSeat.push({
 			id: row * seatsPerRowBackLeft + seat,
 			x_axis: rowsBack[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -101,7 +101,7 @@ for (let row = 0; row < rowsBack.length; row++) {
 		centerBackSeat.push({
 			id: row * seatsPerRowBackCenter + seat,
 			x_axis: rowsBack[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
@@ -112,7 +112,7 @@ for (let row = 0; row < rowsBack.length; row++) {
 		rightBackSeat.push({
 			id: row * seatsPerRowBackRight + seat,
 			x_axis: rowsBack[row],
-			y_axis: seat.toString(),
+			y_axis: seat,
 		});
 	}
 }
