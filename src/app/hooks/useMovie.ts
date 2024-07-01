@@ -5,6 +5,6 @@ export const fetchMovie = async () => {
 		return data;
 	} catch (error) {
 		console.error('Failed not Movie', error);
-		return [];
+		return null;
 	}
 };
