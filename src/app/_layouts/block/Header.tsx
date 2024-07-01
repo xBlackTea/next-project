@@ -19,19 +19,14 @@ export const Header = () => {
 				alignItems="center"
 			>
 				<HeaderLogo />
-
-				{['sm', 'md'].includes(breakpoint) ? (
-					<MenuButton />
-				) : (
-					<Box
-						display="flex"
-						justifyContent="center"
-						alignItems="center"
-						gap="10px"
-					>
-						<ScreenButton />
-					</Box>
-				)}
+				<Box
+					display="flex"
+					justifyContent="center"
+					alignItems="center"
+					gap="10px"
+				>
+					<ScreenButton />
+				</Box>
 			</Box>
 		</>
 	);
