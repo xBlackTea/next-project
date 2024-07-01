@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Box, useBreakpoint } from '@yamada-ui/react';
+import { Box, useBreakpoint, Link } from '@yamada-ui/react';
 import { fetchMovie } from '../hooks/useMovie'; // フェッチ関数をインポート
 import { MovieCard } from './_components/block/MovieCard'; // コンポーネントのインポート
 import { fetchCategory } from '../hooks/useCategory';
@@ -26,7 +26,7 @@ const Page = () => {
 			const moviesData = await fetchMovie();
 			// 必要に応じてデータを整形
 			const formattedData: Movie[] = moviesData.map((movie: any) => ({
-				id: movie.movie_id,
+				movie_id: movie.movie_id,
 				movie_image: movie.movie_image1,
 				movie_name: movie.movie_name,
 			}));
@@ -125,12 +125,18 @@ const Page = () => {
 				</div>
 				<Box display="flex" alignItems="start" flexWrap="wrap">
 					{movies.map((movie: Movie) => (
-						<MovieCard
+						<Link
 							key={movie.movie_id}
-							id={movie.movie_id}
-							movie_image={movie.movie_image}
-							movie_name={movie.movie_name}
-						/>
+							href={`../movies/${movie.movie_id}`}
+							display={'block'}
+						>
+							<MovieCard
+								key={movie.movie_id}
+								movie_id={movie.movie_id}
+								movie_image={movie.movie_image}
+								movie_name={movie.movie_name}
+							/>
+						</Link>
 					))}
 				</Box>
 			</div>

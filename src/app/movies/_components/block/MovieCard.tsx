@@ -12,9 +12,9 @@ import {
 
 type issueMovieProps = {
 	key: number;
-	id: number;
 	movie_image: string;
 	movie_name: string;
+	movie_id: number;
 };
 
 export function MovieCard(props: issueMovieProps) {

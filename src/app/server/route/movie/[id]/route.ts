@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse, NextRequest } from 'next/server';
 import { Pool } from 'pg';
 import bcrypt from 'bcrypt';
-import { error } from 'console';
 
 // db接続
 const pool = new Pool({

@@ -1,5 +1,5 @@
-import { MovieCaption } from '@/app/movie_detail/[id]/_components/MovieCaption';
-import { ScheduleAccordion } from '@/app/movie_detail/[id]/_components/ScheduleAccordion';
+import { MovieCaption } from '@/app/movies/[id]/_components/MovieCaption';
+import { ScheduleAccordion } from '@/app/movies/[id]/_components/ScheduleAccordion';
 import { TheaterSchedule } from '@/app/theaters/[id]/theater_schedule/_components/TheaterSchedule';
 import { ThemeSemantics } from '@yamada-ui/react';
 import { text } from 'stream/consumers';

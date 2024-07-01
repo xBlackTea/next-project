@@ -15,6 +15,7 @@ import ShopList from './_components/block/ShopList';
 import { EventList } from './_components/block/EventList';
 import { ServiceList } from './_components/block/ServiceList';
 import { fetchMovie } from './hooks/useMovie';
+import Link from 'next/link';
 
 interface Movie {
 	movie_id: number;
@@ -31,7 +32,7 @@ export default function Page() {
 			const moviesData = await fetchMovie();
 
 			const formattedMovie: Movie[] = moviesData.map((movie: any) => ({
-				id: movie.movie_id,
+				movie_id: movie.movie_id,
 				movie_image: movie.movie_image1,
 				movie_name: movie.movie_name,
 			}));
@@ -53,12 +54,14 @@ export default function Page() {
 					alignItems="center"
 				>
 					{movies.map((movie: Movie) => (
-						<MovieCard
-							key={movie.movie_id}
-							movie_image={movie.movie_image}
-							title={movie.movie_name}
-							id={movie.movie_id}
-						/>
+						<Link key={movie.movie_id} href={`./movies/${movie.movie_id}`}>
+							<MovieCard
+								key={movie.movie_id}
+								movie_image={movie.movie_image}
+								title={movie.movie_name}
+								id={movie.movie_id}
+							/>
+						</Link>
 					))}
 				</Box>
 			</TopSectionContainer>
