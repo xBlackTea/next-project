@@ -1,12 +1,19 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import { BigScreen } from './_components/BigScreen';
 import { BreadcrumbList } from './_components/BreadCrumbList';
 import { Box, Button } from '@yamada-ui/react';
 
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
+import { useSeat } from '../hooks/useSeat';
 
-const page = () => {
+const Page = () => {
+	const { handleReservedSeatInfo } = useSeat();
+	useEffect(() => {
+		handleReservedSeatInfo(5);
+	}, []);
+
 	return (
 		<>
 			<Box maxW={'1500px'} m={'20px'}>
@@ -34,4 +41,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;

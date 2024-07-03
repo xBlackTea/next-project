@@ -11,16 +11,24 @@ interface Props {
 }
 
 export const SeatButton = (props: Props) => {
-	const { seatInfo, toggleSeat } = useSeat();
+	const { seatInfo, toggleSeat, reservedSeatInfo } = useSeat();
 
 	const isSelected = seatInfo[props.x_axis][props.y_axis - 1]; // y_axis は1始まりのため、-1します
 
 	return (
 		<Box
 			as="button"
+			disabled={
+				reservedSeatInfo[props.x_axis as keyof SeatInfoProps][props.y_axis - 1]
+			}
 			w={'25px'}
 			h={'35px'}
 			bg={isSelected ? '#aff' : '#ddd'}
+			_disabled={{
+				bg: '#999',
+				cursor: 'not-allowed',
+				opacity: 0.6,
+			}}
 			rounded={'5px'}
 			onClick={() => toggleSeat(props.x_axis, props.y_axis - 1)} // y_axis は1始まりのため、-1します
 		></Box>
