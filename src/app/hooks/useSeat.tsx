@@ -1,6 +1,7 @@
 'use client';
 
 import { Context, SeatInfoProps } from '@/provider/Provider';
+import axios from 'axios';
 import { useContext } from 'react';
 
 export const useSeat = () => {
@@ -9,7 +10,8 @@ export const useSeat = () => {
 		throw new Error('Context is not provided');
 	}
 
-	const { seatInfo, setSeatInfo } = context;
+	const { seatInfo, setSeatInfo, reservedSeatInfo, setReservedSeatInfo } =
+		context;
 
 	const toggleSeat = (row: keyof SeatInfoProps, index: number) => {
 		setSeatInfo((prevSeatInfo) => {
@@ -18,10 +20,67 @@ export const useSeat = () => {
 			return { ...prevSeatInfo, [row]: updatedRow };
 		});
 	};
+	// console.log(reservedSeatInfo)
+
+	const handleReservedSeatInfo = async (movieId: number): Promise<void> => {
+		try {
+			const response = await fetch(`../server/route/schedule/movie/${movieId}`);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			const reservedSeats = await response.json();
+			console.log(reservedSeats);
+
+			const updatedReservedSeatInfo = { ...reservedSeatInfo };
+
+			reservedSeats.forEach((seat: any) => {
+				const seatId = seat.seat_id;
+				const row = getRow(seatId);
+				const index = getIndex(seatId);
+
+				if (updatedReservedSeatInfo[row]) {
+					updatedReservedSeatInfo[row][index] = true;
+				}
+			});
+
+			setReservedSeatInfo(updatedReservedSeatInfo);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const getRow = (seatId: number): keyof SeatInfoProps => {
+		if (seatId <= 22) return 'a';
+		if (seatId <= 44) return 'b';
+		if (seatId <= 66) return 'c';
+		if (seatId <= 84) return 'd';
+		if (seatId <= 102) return 'e';
+		if (seatId <= 120) return 'f';
+		if (seatId <= 138) return 'g';
+		if (seatId <= 156) return 'h';
+		if (seatId <= 178) return 'i';
+		return 'j';
+	};
+
+	const getIndex = (seatId: number): number => {
+		if (seatId <= 22) return seatId - 1;
+		if (seatId <= 44) return seatId - 23;
+		if (seatId <= 66) return seatId - 45;
+		if (seatId <= 84) return seatId - 67;
+		if (seatId <= 102) return seatId - 85;
+		if (seatId <= 120) return seatId - 103;
+		if (seatId <= 138) return seatId - 121;
+		if (seatId <= 156) return seatId - 139;
+		if (seatId <= 178) return seatId - 157;
+		return seatId - 179;
+	};
 
 	return {
 		seatInfo,
 		setSeatInfo,
 		toggleSeat,
+		handleReservedSeatInfo,
+		reservedSeatInfo,
+		setReservedSeatInfo,
 	};
 };
