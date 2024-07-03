@@ -39,13 +39,12 @@ model Schedule {
   schedule_id   Int      @id @default(autoincrement())
   screen_id     Int
   movie_id      Int
-  seat_id       Int
+  seat_ids      Int[]  // seat_idを配列に変更
   movie_start   String
 
   // 外部キー設定
   screen Screen @relation(fields: [screen_id], references: [screen_id])
   movie  Movie  @relation(fields: [movie_id], references: [movie_id])
-  seat   Seat   @relation(fields: [seat_id], references: [seat_id])
   users  User[]
 }
 
@@ -69,9 +68,6 @@ model Movie {
 model Seat {
   seat_id   Int      @id @default(autoincrement())
   seat_point String  @unique
-
-  // リレーション
-  schedules Schedule[]
 }
 
 // CashMethodモデル
