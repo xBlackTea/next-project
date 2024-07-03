@@ -32,25 +32,52 @@ export async function GET() {
 		client.release();
 	}
 }
-
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {
-		const { screen_id, movie_id, seat_id, movie_start }: Schedule =
-			await req.json();
+		const {
+			screen_id,
+			movie_id,
+			seat_ids,
+			movie_start,
+		}: {
+			screen_id: number;
+			movie_id: number;
+			seat_ids: number[];
+			movie_start: string;
+		} = await req.json();
 		const client = await pool.connect();
 		try {
-			const query = `
-            INSERT INTO "Schedule" (screen_id, movie_id, seat_id, movie_start)
-            VALUES ($1,$2,$3,$4)
-            RETURNING *`;
-			const values = [screen_id, movie_id, seat_id, movie_start];
-			const result = await client.query(query, values);
-			return NextResponse.json(result.rows[0], { status: 201 });
+			// 配列の長さに応じて複数のINSERT文を生成
+			const insertQueries = seat_ids.map((seat_id) => ({
+				text: `
+                    INSERT INTO "Schedule" (screen_id, movie_id, seat_id, movie_start)
+                    VALUES ($1, $2, $3, $4)
+                    RETURNING *`,
+				values: [screen_id, movie_id, seat_id, movie_start],
+			}));
+
+			// トランザクションを開始
+			await client.query('BEGIN');
+
+			// 各INSERT文を順番に実行して結果を取得
+			const results = await Promise.all(
+				insertQueries.map(async (query) => {
+					const result = await client.query(query.text, query.values);
+					return result.rows[0];
+				})
+			);
+
+			// トランザクションをコミット
+			await client.query('COMMIT');
+
+			return NextResponse.json(results, { status: 201 });
 		} catch (error) {
-			console.error('Error executing query', error);
+			console.error('Error executing queries', error);
+			// ロールバック
+			await client.query('ROLLBACK');
 			return NextResponse.json(
-				{ error: 'Error executing query' },
+				{ error: 'Error executing queries' },
 				{ status: 500 }
 			);
 		} finally {
