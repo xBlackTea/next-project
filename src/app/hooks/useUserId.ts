@@ -37,28 +37,27 @@ const fetchUserId = async (
 			throw new Error('Failed to fetch user data');
 		}
 		const user = await response.json();
-		if (user.schedule_id) {
-			const scheduleResponse = await fetch(
-				`../server/route/schedule/${user.schedule_id}`
-			);
+		if (user) {
+			const scheduleResponse = await fetch('../server/route/schedule');
 			if (!scheduleResponse.ok) {
 				throw new Error('Failed to fetch schedule data');
 			}
-			const schedule = await scheduleResponse.json();
+			const schedules = await scheduleResponse.json();
 
 			// movie_idからmovieデータを取得
-			const movieResponse = await fetch(
-				`../server/route/movie/${schedule.movie_id}`
-			);
+			const movieResponse = await fetch('../server/route/movie');
 			if (!movieResponse.ok) {
 				throw new Error('Failed to fetch movie data');
 			}
 			const movie = await movieResponse.json();
 
-			// scheduleにmovieデータを追加
-			schedule.movie = movie;
+			// 各スケジュールにmovieデータを追加
+			schedules.forEach((schedule: Schedule) => {
+				schedule.movie =
+					movie.find((m: Movie) => m.movie_id === schedule.movie_id) || null;
+			});
 
-			return { user, schedules: [schedule] };
+			return { user, schedules };
 		} else {
 			return { user, schedules: null };
 		}
@@ -70,7 +69,7 @@ const fetchUserId = async (
 
 const useUserId = () => {
 	const [user, setUser] = useState<User | null>(null);
-	const [schedules, setSchedule] = useState<Schedule[] | null>(null);
+	const [schedules, setSchedules] = useState<Schedule[] | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const userId = 11;
@@ -82,7 +81,7 @@ const useUserId = () => {
 			const userData = await fetchUserId(userId);
 			if (userData) {
 				setUser(userData.user);
-				setSchedule(userData.schedules);
+				setSchedules(userData.schedules);
 			} else {
 				setError('Failed to fetch user data');
 			}
@@ -93,6 +92,7 @@ const useUserId = () => {
 			fetchData();
 		}
 	}, [userId]);
+
 	return { user, schedules, loading, error };
 };
 
