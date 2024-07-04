@@ -9,8 +9,21 @@ import {
 	Text,
 	useBreakpoint,
 } from '@yamada-ui/react';
+import user from '../../../hooks/useUserId'; // User型のインポートパスを調整してください
 
-const UserInfo = () => {
+type UserInfoProps = {
+	user: {
+		user_id: number;
+		first_name: string;
+		last_name: string;
+		schedule_id: number | null;
+		e_mail: string;
+		password: string;
+		birthday: string;
+		gender: string;
+	};
+};
+const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
 	return (
 		<Box bgColor="#fff" color="#000" py="20px">
 			<Box
@@ -38,7 +51,7 @@ const UserInfo = () => {
 						<Box>
 							<Text>性</Text>
 							<Box display="flex">
-								<text>春</text>
+								<text>{user.first_name}</text>
 							</Box>
 						</Box>
 					</Box>
@@ -54,7 +67,7 @@ const UserInfo = () => {
 						<Box>
 							<Text>名</Text>
 							<Box display="flex" w="100%">
-								太郎
+								{user.last_name}
 							</Box>
 						</Box>
 					</Box>
@@ -74,7 +87,7 @@ const UserInfo = () => {
 							<Box>
 								<Text>誕生日</Text>
 								<Box display="flex">
-									<text>2003/4/1</text>
+									<text>{user.birthday}</text>
 								</Box>
 							</Box>
 						</Box>
@@ -92,7 +105,7 @@ const UserInfo = () => {
 							<Box>
 								<Text>性別</Text>
 								<Box display="flex">
-									<text>男性</text>
+									<text>{user.gender}</text>
 								</Box>
 							</Box>
 						</Box>

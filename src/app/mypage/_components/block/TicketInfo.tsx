@@ -1,33 +1,30 @@
-'use client';
+// src/app/mypage/_components/block/TicketInfo.tsx
+import React from 'react';
+import { Box, Center, Text, Accordion, AccordionItem } from '@yamada-ui/react';
 
-import {
-	Box,
-	Button,
-	Center,
-	Input,
-	Radio,
-	RadioGroup,
-	Text,
-	useBreakpoint,
-	Image,
-	Accordion,
-	AccordionItem,
-} from '@yamada-ui/react';
-
-import { useRouter } from 'next/navigation';
-
-import React, { useEffect, useState } from 'react';
-
-interface Movie {
+type Movie = {
 	movie_id: number;
 	movie_image: string;
 	movie_name: string;
-}
+};
 
-export const TicketInfo = () => {
-	const router = useRouter();
-	const breakpoint = useBreakpoint();
+type Schedule = {
+	schedule_id: number;
+	screen_id: number;
+	movie_id: number;
+	seat_id: number[] | null;
+	movie_start: string;
+	movie: Movie | null;
+};
 
+type TicketInfoProps = {
+	schedules: Schedule[] | null;
+};
+
+export const TicketInfo: React.FC<TicketInfoProps> = ({ schedules }) => {
+	if (!schedules) {
+		return null; // schedulesがnullの場合、何も表示しない
+	}
 	return (
 		<Box bgColor="#fff" color="#000" py="20px">
 			<Box
@@ -44,93 +41,101 @@ export const TicketInfo = () => {
 			</Box>
 			<Center>
 				<Accordion defaultIndex={[1, 2]} isMultiple w="80%">
-					<AccordionItem label="名探偵コナン">
-						<Box
-							display="flex"
-							flexWrap="wrap"
-							w="80%"
-							m="20px auto"
-							gap="10px"
+					{schedules.map((schedule) => (
+						<AccordionItem
+							key={schedule.schedule_id}
+							label={
+								schedule.movie ? schedule.movie.movie_name : 'Unknown Movie'
+							}
 						>
 							<Box
 								display="flex"
-								w="calc(50% - 10px)"
-								bgColor="#f3f3f3"
-								boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-								overflow="hidden"
+								flexWrap="wrap"
+								w="80%"
+								m="20px auto"
+								gap="10px"
 							>
-								<Box display="flex" flexDirection="column" p="10px" w="100%">
-									<Box>
-										<Text>劇場情報</Text>
-										<Box display="flex">
-											<Text>スクリーン3</Text>
+								<Box
+									display="flex"
+									w="calc(50% - 10px)"
+									bgColor="#f3f3f3"
+									boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+									overflow="hidden"
+								>
+									<Box display="flex" flexDirection="column" p="10px" w="100%">
+										<Box>
+											<Text>劇場情報</Text>
+											<Box display="flex">
+												<Text>スクリーン{schedule.screen_id}</Text>
+											</Box>
+										</Box>
+									</Box>
+								</Box>
+								<Box
+									display="flex"
+									w="calc(50% - 10px)"
+									bgColor="#f3f3f3"
+									boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+									overflow="hidden"
+								>
+									<Box display="flex" flexDirection="column" p="10px" w="100%">
+										<Box>
+											<Text>作品情報</Text>
+											<Box display="flex" w="100%">
+												<Text>
+													{schedule.movie
+														? schedule.movie.movie_name
+														: 'Unknown Movie'}
+												</Text>
+											</Box>
 										</Box>
 									</Box>
 								</Box>
 							</Box>
 							<Box
 								display="flex"
-								w="calc(50% - 10px)"
-								bgColor="#f3f3f3"
-								boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-								overflow="hidden"
+								flexWrap="wrap"
+								w="80%"
+								m="20px auto"
+								gap="10px"
 							>
-								<Box display="flex" flexDirection="column" p="10px" w="100%">
-									<Box>
-										<Text>作品情報</Text>
-										<Box display="flex" w="100%">
-											<Text>名探偵コナン</Text>
-										</Box>
-									</Box>
-								</Box>
-							</Box>
-						</Box>
-
-						<Box
-							display="flex"
-							flexWrap="wrap"
-							w="80%"
-							m="20px auto"
-							gap="10px"
-						>
-							<Box
-								display="flex"
-								w="calc(50% - 10px)"
-								bgColor="#f3f3f3"
-								boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-								overflow="hidden"
-							>
-								<Box display="flex" flexDirection="column" p="10px" w="100%">
-									<Box display="flex">
+								<Box
+									display="flex"
+									w="calc(50% - 10px)"
+									bgColor="#f3f3f3"
+									boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+									overflow="hidden"
+								>
+									<Box display="flex" flexDirection="column" p="10px" w="100%">
 										<Box>
 											<Text>座席情報</Text>
-											<Box display="flex">
-												<Text>A5</Text>
+											<Box display="flex" w="100%">
+												<Text>{schedule.seat_id}</Text>
+											</Box>
+										</Box>
+									</Box>
+								</Box>
+								<Box
+									display="flex"
+									w="calc(50% - 10px)"
+									bgColor="#f3f3f3"
+									boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+									overflow="hidden"
+								>
+									<Box display="flex" flexDirection="column" p="10px" w="100%">
+										<Box display="flex">
+											<Box>
+												<Text>上映日時</Text>
+												<Box display="flex">
+													<Text>{schedule.movie_start}</Text>
+												</Box>
 											</Box>
 										</Box>
 									</Box>
 								</Box>
 							</Box>
-							<Box
-								display="flex"
-								w="calc(50% - 10px)"
-								bgColor="#f3f3f3"
-								boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-								overflow="hidden"
-							>
-								<Box display="flex" flexDirection="column" p="10px" w="100%">
-									<Box display="flex">
-										<Box>
-											<Text>上映日時</Text>
-											<Box display="flex">
-												<Text>2024/7/14/14:00~</Text>
-											</Box>
-										</Box>
-									</Box>
-								</Box>
-							</Box>
-						</Box>
-					</AccordionItem>
+						</AccordionItem>
+					))}
 				</Accordion>
 			</Center>
 		</Box>

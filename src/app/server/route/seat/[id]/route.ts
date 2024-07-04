@@ -4,7 +4,6 @@ import { Pool } from 'pg';
 import bcrypt from 'bcrypt';
 import { error } from 'console';
 
-// db接続
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 });
@@ -17,19 +16,32 @@ interface Seat {
 // データ単体取得
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: { id: number } }
+	{ params }: { params: { id: string } }
 ) {
 	const client = await pool.connect();
-	const { id } = params;
+	const ids = params.id.split(',').map((id) => parseInt(id, 10));
 
 	try {
-		const ret = await client.query('SELECT * FROM "Seat" WHERE seat_id = $1', [
-			id,
-		]);
-		if (ret.rows.length === 0) {
+		const seats = await Promise.all(
+			ids.map(async (id) => {
+				const ret = await client.query(
+					'SELECT * FROM "Seat" WHERE seat_id = $1',
+					[id]
+				);
+				if (ret.rows.length === 0) {
+					return null;
+				}
+				return ret.rows[0];
+			})
+		);
+
+		const filteredSeats = seats.filter((seat) => seat !== null);
+
+		if (filteredSeats.length === 0) {
 			return NextResponse.json({ error: 'seat not found' }, { status: 404 });
 		}
-		return NextResponse.json(ret.rows[0]);
+
+		return NextResponse.json(filteredSeats);
 	} catch (error) {
 		console.error('Error executing query', error);
 		return NextResponse.json(
