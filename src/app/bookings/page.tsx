@@ -6,10 +6,10 @@ import { Box, Button } from '@yamada-ui/react';
 
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
-import { useSeat } from '../hooks/useSeat';
+import { useSeat } from '../hooks';
 
 const Page = () => {
-	const { handleReservedSeatInfo } = useSeat();
+	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
 	useEffect(() => {
 		handleReservedSeatInfo(5);
 	}, []);
@@ -30,8 +30,12 @@ const Page = () => {
 						</Box>
 						<Box>
 							<BigScreen />
-							<Button w={'100%'} rounded={'none'}>
-								次へ進む
+							<Button
+								w={'100%'}
+								rounded={'none'}
+								onClick={() => handleReserveSeat(1, 5, '7/5')}
+							>
+								選択した座席を予約する
 							</Button>
 						</Box>
 					</Box>
