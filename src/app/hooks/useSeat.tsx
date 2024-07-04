@@ -29,7 +29,6 @@ export const useSeat = () => {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 			const reservedSeats = await response.json();
-			console.log(reservedSeats);
 
 			const updatedReservedSeatInfo = { ...reservedSeatInfo };
 
@@ -44,6 +43,52 @@ export const useSeat = () => {
 			});
 
 			setReservedSeatInfo(updatedReservedSeatInfo);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const handleReserveSeat = async (
+		screenId: number,
+		movieId: number,
+		movieStart: string
+	): Promise<void> => {
+		try {
+			const seatIds: number[] = [];
+
+			// 各行の座席を連結
+			const allSeats = Object.values(seatInfo).flat();
+
+			// 各座席の選択状態をチェック
+			allSeats.forEach((isSelected, index) => {
+				if (isSelected) {
+					seatIds.push(index + 1); // インデックスは0始まりなので+1
+				}
+			});
+
+			const seatData = {
+				screen_id: screenId,
+				movie_id: movieId,
+				seat_ids: seatIds,
+				movie_start: movieStart,
+			};
+
+			// デバッグ用にseatDataをログ出力
+			console.log(seatData);
+
+			const response = await fetch(`../server/route/schedule`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(seatData),
+			});
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			console.log('Response:', data);
 		} catch (err) {
 			console.error(err);
 		}
@@ -80,6 +125,7 @@ export const useSeat = () => {
 		setSeatInfo,
 		toggleSeat,
 		handleReservedSeatInfo,
+		handleReserveSeat,
 		reservedSeatInfo,
 		setReservedSeatInfo,
 	};
