@@ -1,27 +1,55 @@
-import {
-	Box,
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-} from '@yamada-ui/react';
+'use client';
+
+import { Box } from '@yamada-ui/react';
 import React from 'react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 export const BreadcrumbList = () => {
+	const { id } = useParams();
+
 	return (
-		<>
-			<Box w="100%" p="5px" m="20px 0" color="#fff" bgColor="breadcrumbList.bg">
-				<Breadcrumb separator="-">
-					<BreadcrumbItem>
-						<BreadcrumbLink href="/">トップ</BreadcrumbLink>
-					</BreadcrumbItem>
-					<BreadcrumbItem>
-						<BreadcrumbLink href="/">映画一覧</BreadcrumbLink>
-					</BreadcrumbItem>
-					<BreadcrumbItem isCurrentPage>
-						<BreadcrumbLink href="/">映画詳細</BreadcrumbLink>
-					</BreadcrumbItem>
-				</Breadcrumb>
-			</Box>
-		</>
+		<div
+			style={{
+				width: '100%',
+				height: '30px',
+				marginTop: '15px',
+				borderRadius: '2px',
+				backgroundColor: '#111',
+			}}
+		>
+			<p
+				style={{
+					paddingLeft: '10px',
+					fontSize: '16px',
+					lineHeight: '1.8',
+					color: '#fff',
+				}}
+			>
+				<Link href="/" passHref>
+					<span
+						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
+					>
+						トップページ
+					</span>
+				</Link>
+				{' > '}
+				<Link href="/movies" passHref>
+					<span
+						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
+					>
+						映画一覧
+					</span>
+				</Link>
+				{' > '}
+				<Link href={`/movies/${id}`} passHref>
+					<span
+						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
+					>
+						映画詳細
+					</span>
+				</Link>
+			</p>
+		</div>
 	);
 };

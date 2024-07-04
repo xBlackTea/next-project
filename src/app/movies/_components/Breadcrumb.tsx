@@ -1,28 +1,43 @@
 import React from 'react';
 import { Box } from '@yamada-ui/react';
+import Link from 'next/link';
 
 const Breadcrumb = () => {
 	return (
-		<Box width="100%" marginTop="15px">
-			<div
+		<div
+			style={{
+				width: '100%',
+				height: '30px',
+				marginTop: '15px',
+				borderRadius: '2px',
+				backgroundColor: '#111',
+			}}
+		>
+			<p
 				style={{
-					height: '30px',
-					borderRadius: '2px',
-					backgroundColor: '#111',
+					paddingLeft: '10px',
+					fontSize: '16px',
+					lineHeight: '1.8',
+					color: '#fff',
 				}}
 			>
-				<p
-					style={{
-						paddingLeft: '10px',
-						fontSize: '16px',
-						lineHeight: '1.8',
-						color: '#fff',
-					}}
-				>
-					トップページ {' > '} 作品一覧
-				</p>
-			</div>
-		</Box>
+				<Link href="/" passHref>
+					<span
+						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
+					>
+						トップページ
+					</span>
+				</Link>
+				{' > '}
+				<Link href="/movies" passHref>
+					<span
+						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
+					>
+						映画一覧
+					</span>
+				</Link>
+			</p>
+		</div>
 	);
 };
 

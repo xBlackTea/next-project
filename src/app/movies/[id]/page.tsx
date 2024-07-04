@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box } from '@yamada-ui/react';
 import { BreadcrumbList } from './_components/BreadcrumbList';
-import { MovieCaption } from './_components/MovieCaption';
+import { Title } from './_components/Title';
 import { MovieInformation } from './_components/MovieInformation';
 import { ScheduleAccordion } from './_components/ScheduleAccordion';
 import { useParams, useSearchParams } from 'next/navigation';
@@ -18,27 +18,34 @@ const Page = () => {
 	console.log(id_num);
 	console.log(movie);
 	if (!movie) {
-		return <div>No movie data found</div>;
-	}
-
-	return (
-		<>
-			<Box w="80%" maxW="1500px" m="0 auto">
+		return (
+			<Box
+				margin="0 auto"
+				marginBottom="15px"
+				maxWidth="1500px"
+				width="100%"
+				height="auto"
+				backgroundColor="#fff"
+			>
 				<BreadcrumbList />
+				<Title />
 			</Box>
-
-			<Box w="80%" maxW="1500px" m="0 auto">
-				<MovieCaption />
-			</Box>
-
-			<Box w="80%" maxW="1500px" m="0 auto">
-				<MovieInformation movie={movie} />
-			</Box>
-
-			<Box w="80%" maxW="1500px" m="0 auto">
-				<ScheduleAccordion />
-			</Box>
-		</>
+		);
+	}
+	return (
+		<Box
+			margin="0 auto"
+			marginBottom="15px"
+			maxWidth="1500px"
+			width="100%"
+			height="auto"
+			backgroundColor="#fff"
+		>
+			<BreadcrumbList />
+			<Title />
+			<MovieInformation movie={movie} />
+			<ScheduleAccordion />
+		</Box>
 	);
 };
 

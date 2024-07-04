@@ -1,4 +1,4 @@
-import { MovieCaption } from '@/app/movies/[id]/_components/MovieCaption';
+// import { MovieCaption } from '@/app/movies/[id]/_components/MovieCaption';
 import { ScheduleAccordion } from '@/app/movies/[id]/_components/ScheduleAccordion';
 import { TheaterSchedule } from '@/app/theaters/[id]/theater_schedule/_components/TheaterSchedule';
 import { ThemeSemantics } from '@yamada-ui/react';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@yamada-ui/react';
 
-const Title = () => {
+export const Title = () => {
 	return (
 		<div
 			style={{
@@ -20,10 +20,8 @@ const Title = () => {
 					color: '#fff',
 				}}
 			>
-				作品一覧
+				作品詳細
 			</p>
 		</div>
 	);
 };
-
-export default Title;
