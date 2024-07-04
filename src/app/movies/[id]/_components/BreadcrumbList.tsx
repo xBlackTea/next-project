@@ -38,7 +38,7 @@ export const BreadcrumbList = () => {
 					<span
 						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
 					>
-						映画一覧
+						映画案内
 					</span>
 				</Link>
 				{' > '}

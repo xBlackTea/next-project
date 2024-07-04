@@ -17,18 +17,20 @@ export const TheaterSchedule = (props: propsType) => {
 	return (
 		<>
 			{props.reservation === true ? (
-				<Link href="#">
+				<Link href="/bookings">
 					<Card
-						bg={hovered ? '#64dcf8' : '#62c0ff'}
+						backgroundColor="#111"
+						color="#fff"
 						key={props.id}
-						// w="25%"
-						w="200px"
-						h="170px"
-						// variant="outline"
+						w="226px"
+						h="204px"
 						borderRadius="none"
-						// m="2px"
 						p="2px"
 						ref={ref}
+						_hover={{
+							backgroundColor: '#08f',
+							transition: 'background-color 0.3s ease',
+						}}
 					>
 						<Box margin="auto">
 							<Text fontSize="1.4rem">{props.screening_time}</Text>
@@ -40,13 +42,11 @@ export const TheaterSchedule = (props: propsType) => {
 			) : (
 				<Card
 					key={props.key}
-					// w="25%"
-					w="200px"
-					h="170px"
+					w="226px"
+					h="204px"
 					opacity="0.5"
 					variant="none"
 					borderRadius="none"
-					// m="2px"
 					p="2px"
 				>
 					<Box margin="auto">

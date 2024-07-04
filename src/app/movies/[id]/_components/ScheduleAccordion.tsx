@@ -112,7 +112,7 @@ export const ScheduleAccordion = () => {
 		<>
 			<Box margin="15px 0">
 				<SegmentedControl
-					borderRadius="0"
+					borderRadius="2px"
 					w="100%"
 					items={dateItems}
 					value={selectedDate.toString()}
@@ -128,6 +128,7 @@ export const ScheduleAccordion = () => {
 					}}
 				/>
 				<Accordion
+					marginTop={'15px'}
 					sx={{
 						...style,
 					}}
