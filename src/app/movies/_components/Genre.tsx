@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Flex, Text } from '@yamada-ui/react';
 import { fetchCategory } from '../../hooks/useCategory';
+import Placeholder from './Placeholder';
 
 interface Category {
 	category_id: number;
@@ -14,6 +15,7 @@ const Genre = ({
 }) => {
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [selectedGenres, setSelectedGenres] = useState<number[]>([0]);
+	const [loading, setLoading] = useState(true);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -27,6 +29,7 @@ const Genre = ({
 				{ category_id: 0, category_name: 'すべて' },
 				...formattedCategory,
 			]);
+			setLoading(false);
 		};
 		fetchCategoryData();
 	}, []);
@@ -103,27 +106,42 @@ const Genre = ({
 				alignItems="center"
 				margin="0 40px" // 矢印ボタンのために余白を調整
 			>
-				{categories.map((category) => (
-					<Box
-						key={category.category_id}
-						onClick={() => handleGenreClick(category.category_id)}
-						marginRight="10px"
-						padding="0 10px"
-						backgroundColor={
-							selectedGenres.includes(category.category_id) ? '#08f' : '#111'
-						}
-						borderRadius="5px"
-						color="#fff"
-						textAlign="center"
-						height="40px"
-						display="flex"
-						alignItems="center"
-						justifyContent="center"
-						cursor="pointer"
-					>
-						<Text fontSize="16px">{category.category_name}</Text>
-					</Box>
-				))}
+				{loading ? (
+					<>
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+					</>
+				) : (
+					categories.map((category) => (
+						<Box
+							key={category.category_id}
+							onClick={() => handleGenreClick(category.category_id)}
+							marginRight="10px"
+							padding="0 10px"
+							backgroundColor={
+								selectedGenres.includes(category.category_id) ? '#08f' : '#111'
+							}
+							borderRadius="5px"
+							color="#fff"
+							textAlign="center"
+							height="40px"
+							display="flex"
+							alignItems="center"
+							justifyContent="center"
+							cursor="pointer"
+						>
+							<Text fontSize="16px">{category.category_name}</Text>
+						</Box>
+					))
+				)}
 			</Flex>
 			<Box
 				as="button"
