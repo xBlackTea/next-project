@@ -1,15 +1,21 @@
-'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Flex, Text } from '@yamada-ui/react';
 import { fetchCategory } from '../../hooks/useCategory';
+import Placeholder from './Placeholder';
 
 interface Category {
 	category_id: number;
 	category_name: string;
 }
 
-const Genre = () => {
+const Genre = ({
+	onGenreChange,
+}: {
+	onGenreChange: (selectedGenres: number[]) => void;
+}) => {
 	const [categories, setCategories] = useState<Category[]>([]);
+	const [selectedGenres, setSelectedGenres] = useState<number[]>([0]);
+	const [loading, setLoading] = useState(true);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -19,10 +25,35 @@ const Genre = () => {
 				category_id: category.category_id,
 				category_name: category.category_name,
 			}));
-			setCategories(formattedCategory);
+			setCategories([
+				{ category_id: 0, category_name: 'すべて' },
+				...formattedCategory,
+			]);
+			setLoading(false);
 		};
 		fetchCategoryData();
 	}, []);
+
+	const handleGenreClick = (category_id: number) => {
+		if (category_id === 0) {
+			// If "すべて" is clicked, reset the selection
+			setSelectedGenres([0]);
+			onGenreChange([]);
+		} else {
+			setSelectedGenres((prev) => {
+				let newSelection = prev.includes(category_id)
+					? prev.filter((id) => id !== category_id)
+					: [...prev, category_id];
+				if (newSelection.length === 0) {
+					newSelection.push(0); // Ensure "すべて" is selected if no genre is selected
+				} else {
+					newSelection = newSelection.filter((id) => id !== 0); // Ensure "すべて" is removed if other genres are selected
+				}
+				onGenreChange(newSelection);
+				return newSelection;
+			});
+		}
+	};
 
 	const scroll = (direction: 'left' | 'right') => {
 		if (scrollContainerRef.current) {
@@ -75,23 +106,42 @@ const Genre = () => {
 				alignItems="center"
 				margin="0 40px" // 矢印ボタンのために余白を調整
 			>
-				{categories.map((category) => (
-					<Box
-						key={category.category_id}
-						marginRight="10px"
-						padding="0 10px"
-						backgroundColor="#111"
-						borderRadius="5px"
-						color="#fff"
-						textAlign="center"
-						height="40px"
-						display="flex"
-						alignItems="center"
-						justifyContent="center"
-					>
-						<Text fontSize="16px">{category.category_name}</Text>
-					</Box>
-				))}
+				{loading ? (
+					<>
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder width="150px" height="40px" marginRight="10px" />
+					</>
+				) : (
+					categories.map((category) => (
+						<Box
+							key={category.category_id}
+							onClick={() => handleGenreClick(category.category_id)}
+							marginRight="10px"
+							padding="0 10px"
+							backgroundColor={
+								selectedGenres.includes(category.category_id) ? '#08f' : '#111'
+							}
+							borderRadius="5px"
+							color="#fff"
+							textAlign="center"
+							height="40px"
+							display="flex"
+							alignItems="center"
+							justifyContent="center"
+							cursor="pointer"
+						>
+							<Text fontSize="16px">{category.category_name}</Text>
+						</Box>
+					))
+				)}
 			</Flex>
 			<Box
 				as="button"
