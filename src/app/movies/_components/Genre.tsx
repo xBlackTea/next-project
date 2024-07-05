@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Flex, Text } from '@yamada-ui/react';
 import { fetchCategory } from '../../hooks/useCategory';
@@ -8,8 +7,13 @@ interface Category {
 	category_name: string;
 }
 
-const Genre = () => {
+const Genre = ({
+	onGenreChange,
+}: {
+	onGenreChange: (selectedGenres: number[]) => void;
+}) => {
 	const [categories, setCategories] = useState<Category[]>([]);
+	const [selectedGenres, setSelectedGenres] = useState<number[]>([0]);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -19,10 +23,34 @@ const Genre = () => {
 				category_id: category.category_id,
 				category_name: category.category_name,
 			}));
-			setCategories(formattedCategory);
+			setCategories([
+				{ category_id: 0, category_name: 'すべて' },
+				...formattedCategory,
+			]);
 		};
 		fetchCategoryData();
 	}, []);
+
+	const handleGenreClick = (category_id: number) => {
+		if (category_id === 0) {
+			// If "すべて" is clicked, reset the selection
+			setSelectedGenres([0]);
+			onGenreChange([]);
+		} else {
+			setSelectedGenres((prev) => {
+				let newSelection = prev.includes(category_id)
+					? prev.filter((id) => id !== category_id)
+					: [...prev, category_id];
+				if (newSelection.length === 0) {
+					newSelection.push(0); // Ensure "すべて" is selected if no genre is selected
+				} else {
+					newSelection = newSelection.filter((id) => id !== 0); // Ensure "すべて" is removed if other genres are selected
+				}
+				onGenreChange(newSelection);
+				return newSelection;
+			});
+		}
+	};
 
 	const scroll = (direction: 'left' | 'right') => {
 		if (scrollContainerRef.current) {
@@ -78,9 +106,12 @@ const Genre = () => {
 				{categories.map((category) => (
 					<Box
 						key={category.category_id}
+						onClick={() => handleGenreClick(category.category_id)}
 						marginRight="10px"
 						padding="0 10px"
-						backgroundColor="#111"
+						backgroundColor={
+							selectedGenres.includes(category.category_id) ? '#08f' : '#111'
+						}
 						borderRadius="5px"
 						color="#fff"
 						textAlign="center"
@@ -88,6 +119,7 @@ const Genre = () => {
 						display="flex"
 						alignItems="center"
 						justifyContent="center"
+						cursor="pointer"
 					>
 						<Text fontSize="16px">{category.category_name}</Text>
 					</Box>

@@ -1,172 +1,84 @@
-// 'use client';
-// import React, { useEffect, useState } from 'react';
-// import { Box, useBreakpoint, Link } from '@yamada-ui/react';
-// import { fetchMovie } from '../hooks/useMovie'; // フェッチ関数をインポート
-// import { MovieCard } from './_components/block/MovieCard'; // コンポーネントのインポート
-// import { fetchCategory } from '../hooks/useCategory';
+'use client';
+import React, { useEffect, useState } from 'react';
+import { Box, useBreakpoint } from '@yamada-ui/react';
 
-// interface Movie {
-// 	movie_id: number;
-// 	movie_image: string;
-// 	movie_name: string;
-// }
-
-// interface Category {
-// 	category_id: number;
-// 	category_name: string;
-// }
-
-// const Page = () => {
-// 	const [movies, setMovies] = useState<Movie[]>([]);
-// 	const [categorys, setCategorys] = useState<Category[]>([]);
-// 	const breakpoint = useBreakpoint();
-
-// 	useEffect(() => {
-// 		const fetchData = async () => {
-// 			const moviesData = await fetchMovie();
-// 			// 必要に応じてデータを整形
-// 			const formattedData: Movie[] = moviesData.map((movie: any) => ({
-// 				movie_id: movie.movie_id,
-// 				movie_image: movie.movie_image1,
-// 				movie_name: movie.movie_name,
-// 			}));
-// 			setMovies(formattedData);
-// 		};
-// 		fetchData();
-// 	}, []);
-
-// 	useEffect(() => {
-// 		const fetchCategoryData = async () => {
-// 			const categoryData = await fetchCategory();
-// 			const formattedCategory: Category[] = categoryData.map(
-// 				(category: any) => ({
-// 					id: category.category_id,
-// 					category_name: category.category_name,
-// 				})
-// 			);
-// 			setCategorys(formattedCategory);
-// 		};
-// 		fetchCategoryData();
-// 	}, []);
-
-// 	return (
-// 		<Box
-// 			display="flex"
-// 			margin="0 auto"
-// 			w={breakpoint === 'sm' ? '100%' : breakpoint === 'md' ? '90%' : '80%'}
-// 			maxWidth="1500px"
-// 			height="auto"
-// 			backgroundColor="#fff"
-// 		>
-// 			<div style={{ width: '20%', maxWidth: '300px', backgroundColor: '#111' }}>
-// 				<div style={{ height: '15px', color: '#fff' }}></div>
-// 				<div
-// 					style={{
-// 						height: '50px',
-// 						backgroundColor: '#08f',
-// 						textAlign: 'center',
-// 						fontSize: '30px',
-// 						lineHeight: '1.5',
-// 						color: '#fff',
-// 					}}
-// 				>
-// 					ジャンル
-// 					{/* 他のジャンルを表示 */}
-// 					<ul>
-// 						{categorys.map((category) => (
-// 							<li key={category.category_id}>{category.category_name}</li>
-// 						))}
-// 					</ul>
-// 					{/* ... */}
-// 				</div>
-// 			</div>
-// 			<div style={{ width: '80%', maxWidth: '1200px', marginBottom: '15px' }}>
-// 				<div
-// 					style={{
-// 						width: 'calc(100% - 15px)',
-// 						height: '30px',
-// 						marginTop: '15px',
-// 						marginLeft: '15px',
-// 						borderRadius: '2px',
-// 						backgroundColor: '#111',
-// 					}}
-// 				>
-// 					<p
-// 						style={{
-// 							paddingLeft: '10px',
-// 							fontSize: '16px',
-// 							lineHeight: '1.8',
-// 							color: '#fff',
-// 						}}
-// 					>
-// 						トップページ {' > '} 作品一覧
-// 					</p>
-// 				</div>
-// 				<div
-// 					style={{
-// 						width: 'calc(100% - 15px)',
-// 						height: '60px',
-// 						marginTop: '15px',
-// 						marginLeft: '15px',
-// 						borderRadius: '2px',
-// 						backgroundColor: '#111',
-// 					}}
-// 				>
-// 					<p
-// 						style={{
-// 							paddingLeft: '10px',
-// 							fontSize: '30px',
-// 							lineHeight: '1.8',
-// 							color: '#fff',
-// 						}}
-// 					>
-// 						作品一覧
-// 					</p>
-// 				</div>
-// 				<Box display="flex" alignItems="start" flexWrap="wrap">
-// 					{movies.map((movie: Movie) => (
-// 						<Link
-// 							key={movie.movie_id}
-// 							href={`../movies/${movie.movie_id}`}
-// 							display={'block'}
-// 						>
-// 							<MovieCard
-// 								key={movie.movie_id}
-// 								movie_id={movie.movie_id}
-// 								movie_image={movie.movie_image}
-// 								movie_name={movie.movie_name}
-// 							/>
-// 						</Link>
-// 					))}
-// 				</Box>
-// 			</div>
-// 		</Box>
-// 	);
-// };
-
-// export default Page;
-
-import React from 'react';
-import { Box } from '@yamada-ui/react';
-import Breadcrumb from './_components/Breadcrumb';
 import Title from './_components/Title';
 import Genre from './_components/Genre';
 import Content from './_components/Content';
+import BreadcrumbList from './_components/BreadcrumbList';
+import { fetchMovie } from '../hooks/useMovie'; // フェッチ関数をインポート
+import { MovieCard } from './_components/MovieCard'; // コンポーネントのインポート
+import Link from 'next/link';
+
+interface Movie {
+	movie_id: number;
+	movie_image: string;
+	movie_name: string;
+	category_id: number;
+}
 
 const Page = () => {
+	const [movies, setMovies] = useState<Movie[]>([]);
+	const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+	const breakpoint = useBreakpoint();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const moviesData = await fetchMovie();
+			const formattedData: Movie[] = moviesData.map((movie: any) => ({
+				movie_id: movie.movie_id,
+				movie_image: movie.movie_image1,
+				movie_name: movie.movie_name,
+				category_id: movie.category_id, // Assuming each movie has a category_id field
+			}));
+			setMovies(formattedData);
+			setFilteredMovies(formattedData);
+		};
+		fetchData();
+	}, []);
+
+	const handleGenreChange = (selectedGenres: number[]) => {
+		if (selectedGenres.length === 0 || selectedGenres.includes(0)) {
+			setFilteredMovies(movies);
+		} else {
+			setFilteredMovies(
+				movies.filter((movie) => selectedGenres.includes(movie.category_id))
+			);
+		}
+	};
+
 	return (
 		<Box
 			margin="0 auto"
-			marginBottom="15px"
 			maxWidth="1500px"
 			width="100%"
 			height="auto"
 			backgroundColor="#fff"
 		>
-			<Breadcrumb />
+			<BreadcrumbList />
 			<Title />
-			<Genre />
-			<Content />
+			<Genre onGenreChange={handleGenreChange} />
+			<Box
+				display="flex"
+				alignItems="start"
+				flexWrap="wrap"
+				gap="15px"
+				marginTop="15px"
+				marginBottom="15px"
+			>
+				{filteredMovies.map((movie: Movie) => (
+					<Link key={movie.movie_id} href={`../movies/${movie.movie_id}`}>
+						<Box display="block">
+							<MovieCard
+								key={movie.movie_id}
+								movie_id={movie.movie_id}
+								movie_image={movie.movie_image}
+								movie_name={movie.movie_name}
+							/>
+						</Box>
+					</Link>
+				))}
+			</Box>
 		</Box>
 	);
 };

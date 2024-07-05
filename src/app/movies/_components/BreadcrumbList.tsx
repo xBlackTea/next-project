@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@yamada-ui/react';
 import Link from 'next/link';
 
-const Breadcrumb = () => {
+const BreadcrumbList = () => {
 	return (
 		<div
 			style={{
@@ -41,4 +41,4 @@ const Breadcrumb = () => {
 	);
 };
 
-export default Breadcrumb;
+export default BreadcrumbList;
