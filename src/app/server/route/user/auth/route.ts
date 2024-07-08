@@ -12,26 +12,6 @@ const pool = new Pool({
 	database: process.env.DB_NAME,
 });
 
-// サインインPOSTメソッドの処理
-// export async function POST(req: NextRequest) {
-// 	try {
-// 		const { e_mail, password } = await req.json();
-// 		const { error } = await supabase.auth.signInWithPassword({
-// 			email: e_mail,
-// 			password: password,
-// 		});
-// 		if (error) {
-// 			return NextResponse.json({ error: error.message }, { status: 500 });
-// 		}
-// 		return NextResponse.json({ message: 'success' }, { status: 200 });
-// 	} catch (error) {
-// 		console.error('Invalid request payload', error);
-// 		return NextResponse.json(
-// 			{ error: 'Invalid request payload' },
-// 			{ status: 400 }
-// 		);
-// 	}
-
 export async function GET(req: NextRequest) {
 	try {
 		const client = await pool.connect();
@@ -47,17 +27,43 @@ export async function GET(req: NextRequest) {
 }
 
 // サインインPOSTメソッドの処理
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
 	try {
-		const { e_mail, password } = await req.json();
-		const { error } = await supabase.auth.signInWithPassword({
-			email: e_mail,
+		const { email, password } = await req.json();
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email: email,
 			password: password,
 		});
 		if (error) {
 			return NextResponse.json({ error: error.message }, { status: 500 });
 		}
-		return NextResponse.json({ message: 'success' }, { status: 200 });
+
+		const { session } = data;
+
+		if (!session) {
+			return NextResponse.json({ error: 'Session not found' }, { status: 500 });
+		}
+		const response = NextResponse.json({ message: 'success' }, { status: 200 });
+
+		response.cookies.set('access_token', session.access_token, {
+			httpOnly: true,
+			secure: true,
+			path: '/',
+		});
+
+		response.cookies.set('refresh_token', session.refresh_token, {
+			httpOnly: true,
+			secure: true,
+			path: '/',
+		});
+
+		response.cookies.set('user_id', session.user.id, {
+			httpOnly: true,
+			secure: true,
+			path: '/',
+		});
+
+		return response;
 	} catch (error) {
 		console.error('Invalid request payload', error);
 		return NextResponse.json(
