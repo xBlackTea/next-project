@@ -1,10 +1,9 @@
 'use client';
-import React, { useEffect, useState, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import Image from 'next/image';
 import { Box, useBreakpoint } from '@yamada-ui/react';
 
 const TheaterTokyo = () => {
-	const [isClient, setIsClient] = useState(false);
 	const breakpoint = useBreakpoint();
 
 	const handleMapClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -63,9 +62,8 @@ const TheaterTokyo = () => {
 						<Image
 							src="/hal_tokyo.jpg"
 							alt="HAL Tokyo"
-							layout="fill"
-							objectFit="cover"
-							style={{ borderRadius: '2px' }}
+							fill
+							style={{ borderRadius: '2px', objectFit: 'cover' }}
 						/>
 					</Box>
 				</Box>
@@ -73,10 +71,12 @@ const TheaterTokyo = () => {
 					flex="7"
 					display="flex"
 					flexDirection="column"
-					marginLeft={['sm', 'md'].includes(breakpoint) ? '10px' : '0'}
+					margin={['sm', 'md'].includes(breakpoint) ? '0 10px 0 10px' : '0'}
 				>
 					<Box
-						width="calc(100% - 10px)"
+						width={
+							['sm', 'md'].includes(breakpoint) ? '100%' : 'calc(100% - 10px)'
+						}
 						height="100%"
 						borderRadius="2px"
 						border="solid 1px #ddd"
@@ -96,7 +96,9 @@ const TheaterTokyo = () => {
 						<br />
 					</Box>
 					<Box
-						width="calc(100% - 10px)"
+						width={
+							['sm', 'md'].includes(breakpoint) ? '100%' : 'calc(100% - 10px)'
+						}
 						height="auto"
 						borderRadius="2px"
 						border="solid 1px #ddd"

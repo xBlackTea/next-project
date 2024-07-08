@@ -1,42 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
+import { Box, Text } from '@yamada-ui/react';
 
 const BreadcrumbList = () => {
 	return (
-		<div
-			style={{
-				width: '100%',
-				height: '30px',
-				marginTop: '15px',
-				borderRadius: '2px',
-				backgroundColor: '#111',
-			}}
+		<Box
+			width="100%"
+			height="30px"
+			marginTop="15px"
+			borderRadius="2px"
+			backgroundColor="#111"
 		>
-			<p
-				style={{
-					paddingLeft: '10px',
-					fontSize: '16px',
-					lineHeight: '1.8',
-					color: '#fff',
-				}}
-			>
+			<Text paddingLeft="10px" fontSize="16px" lineHeight="1.8" color="#fff">
 				<Link href="/" passHref>
-					<span
-						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
-					>
+					<Text as="span" color="#fff" textDecoration="none" cursor="pointer">
 						トップページ
-					</span>
+					</Text>
 				</Link>
 				{' > '}
 				<Link href="/theaters" passHref>
-					<span
-						style={{ color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
-					>
+					<Text as="span" color="#fff" textDecoration="none" cursor="pointer">
 						劇場案内
-					</span>
+					</Text>
 				</Link>
-			</p>
-		</div>
+			</Text>
+		</Box>
 	);
 };
 
