@@ -11,8 +11,7 @@ datasource db {
 model User {
   user_id     Int      @id @default(autoincrement())
   first_name  String
-  last_name   String
-  schedule_id Int?      
+  last_name   String   
   e_mail      String   @unique
   password    String  
   birthday    String
@@ -21,7 +20,7 @@ model User {
   updated_at  DateTime @updatedAt
 
   // 外部キー設定
-  schedule Schedule? @relation(fields: [schedule_id], references: [schedule_id])
+  schedules UserSchedule[]
   cashes   Cash[]
 }
 
@@ -39,13 +38,14 @@ model Schedule {
   schedule_id   Int      @id @default(autoincrement())
   screen_id     Int
   movie_id      Int
-  seat_ids      Int[]  // seat_idを配列に変更
-  movie_start   String
+  seat_id       Int[]  // seat_idを配列に変更
+  time_id       Int
 
   // 外部キー設定
   screen Screen @relation(fields: [screen_id], references: [screen_id])
   movie  Movie  @relation(fields: [movie_id], references: [movie_id])
-  users  User[]
+  time   MovieTime @relation(fields: [time_id], references: [time_id])
+  users  UserSchedule[]
 }
 
 // Movieモデル
@@ -57,6 +57,8 @@ model Movie {
   category_id  Int
   movie_image1  String
   movie_image2  String
+  movie_cast String
+  movie_director String
 
   // 外部キー設定
   category Category @relation(fields: [category_id], references: [category_id])
@@ -121,4 +123,25 @@ model Cash {
   cashMethod CashMethod @relation(fields: [method_id], references: [method_id])
   price      Price      @relation(fields: [price_id], references: [price_id])
   discount   Discount   @relation(fields: [discount_id], references: [discount_id])
+}
+
+// timeモデル
+model MovieTime {
+  time_id Int @id @default(autoincrement())
+  movie_start String
+
+  // 外部キー設定
+  schedules Schedule[]
+}
+
+// UserScheduleモデル
+model UserSchedule {
+  user_id Int
+  schedule_id Int
+
+  // 外部キー
+  user User @relation(fields: [user_id], references: [user_id])
+  schedule Schedule @relation(fields: [schedule_id], references: [schedule_id])
+
+  @@id([user_id,schedule_id])
 }
