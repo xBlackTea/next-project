@@ -1,7 +1,6 @@
 'use client';
 
 import { Context, SeatInfoProps } from '@/provider/Provider';
-import axios from 'axios';
 import { useContext } from 'react';
 
 export const useSeat = () => {

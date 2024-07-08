@@ -2,15 +2,12 @@ import { Box, Divider, Text } from '@yamada-ui/react';
 import React from 'react';
 import {
 	leftFrontSeat,
-	centerFrontSeat,
 	rightFrontSeat,
 	leftMiddleSeat,
-	centerMiddleSeat,
 	rightMiddleSeat,
 	leftBackSeat,
-	centerBackSeat,
 	rightBackSeat,
-} from '../wideSeatList';
+} from '../_components/middleSeatList';
 import { SeatButton } from './SeatButton';
 import { SeatInfoProps } from '@/provider/Provider';
 
@@ -20,7 +17,7 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const BigScreen = () => {
+export const MiddleScreen = () => {
 	return (
 		<>
 			<Box w={'100%'}>
@@ -58,16 +55,7 @@ export const BigScreen = () => {
 								/>
 							))}
 						</Box>
-						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
-							{centerFrontSeat.map((data: SeatType) => (
-								<SeatButton
-									key={data.id}
-									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
-									y_axis={data.y_axis}
-								/>
-							))}
-						</Box>
-						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'250px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightFrontSeat.map((data: SeatType) => (
 								<SeatButton
 									key={data.id}
@@ -83,6 +71,7 @@ export const BigScreen = () => {
 						gap={'20px'}
 						justifyContent={'center'}
 						my={'20px'}
+						ml={'60px'}
 					>
 						<Box display={'flex'} w={'90px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftMiddleSeat.map((data: SeatType) => (
@@ -93,16 +82,7 @@ export const BigScreen = () => {
 								/>
 							))}
 						</Box>
-						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
-							{centerMiddleSeat.map((data: SeatType) => (
-								<SeatButton
-									key={data.id}
-									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
-									y_axis={data.y_axis}
-								/>
-							))}
-						</Box>
-						<Box display={'flex'} w={'90px'} gap={'5px'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'250px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightMiddleSeat.map((data: SeatType) => (
 								<SeatButton
 									key={data.id}
@@ -128,16 +108,7 @@ export const BigScreen = () => {
 								/>
 							))}
 						</Box>
-						<Box display={'flex'} w={'360px'} gap={'5px'} flexWrap={'wrap'}>
-							{centerBackSeat.map((data: SeatType) => (
-								<SeatButton
-									key={data.id}
-									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
-									y_axis={data.y_axis}
-								/>
-							))}
-						</Box>
-						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'250px'} gap={'5px'} flexWrap={'wrap'}>
 							{rightBackSeat.map((data: SeatType) => (
 								<SeatButton
 									key={data.id}
