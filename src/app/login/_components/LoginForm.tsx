@@ -9,70 +9,35 @@ import {
 } from '@yamada-ui/react';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { signInByEmail } from './Login';
 
 export const LoginForm = () => {
-	// const breakpoint = useBreakpoint();
-
-	// 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-	// 		e.preventDefault();
-	// 		const formData = new FormData(e.currentTarget);
-	// 		const data = {
-	// 			e_mail: formData.get('e_mail'),
-	// 			password: formData.get('password'),
-	// 		};
-	// 		try {
-	// 			const res = await fetch('/server/route/user/auth', {
-	// 				method: 'POST',
-	// 				headers: {
-	// 					'Content-Type': 'application/json',
-	// 				},
-	// 				body: JSON.stringify(data),
-	// 			});
-	// 			if (res.ok) {
-	// 				const json = await res.json();
-	// 				console.log(json);
-	// 			} else {
-	// 				console.error('HTTP-Error: ' + res.status);
-	// 			}
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 		}
-	// 	};
-
-	// 	return (
-	// 		<>
-	// 			<Box
-	// 				w={breakpoint === 'sm' ? '100%' : breakpoint === 'md' ? '90%' : '70%'}
-	// 				m="40px"
-	// 			>
-	// 				<form onClick={handleSubmit}>
-	// 					<Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
-	// 						LOG IN
-	// 					</Text>
+	const [email, setEmail] = React.useState('');
+	const [password, setPassword] = React.useState('');
 
 	const router = useRouter();
 	const breakpoint = useBreakpoint();
 
+	// fetchでログイン処理を行う
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-		const data = {
-			e_mail: formData.get('e_mail'),
-			password: formData.get('password'),
-		};
-		try {
-			const login = await signInByEmail(
-				data.e_mail as string,
-				data.password as string
-			);
-			console.log(login);
+		const res = await fetch('/server/route/user/auth', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		});
+
+		if (res.ok) {
 			router.push('/');
-		} catch (error) {
-			console.error('Error executing query', error);
+		} else {
+			const data = await res.json();
+			alert(data.error);
 		}
 	};
-
 	return (
 		<>
 			<Box
@@ -86,12 +51,23 @@ export const LoginForm = () => {
 
 					<Box m="20px 0">
 						<Text>MAIL</Text>
-						<Input name="e_mail" placeholder="メールアドレス" />
+						<Input
+							name="email"
+							placeholder="メールアドレス"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
 					</Box>
 
 					<Box m="20px 0 ">
 						<Text>PASSWORD</Text>
-						<Input name="password" type="password" placeholder="パスワード" />
+						<Input
+							name="password"
+							type="password"
+							placeholder="パスワード"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
 						{/* <Input mt="20px" type="password" placeholder="パスワード再入力" /> */}
 					</Box>
 
