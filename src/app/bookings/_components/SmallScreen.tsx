@@ -3,11 +3,9 @@ import React from 'react';
 import {
 	leftFrontSeat,
 	rightFrontSeat,
-	leftMiddleSeat,
-	rightMiddleSeat,
 	leftBackSeat,
 	rightBackSeat,
-} from '../_components/middleSeatList';
+} from '../_components/smallSeatList';
 import { SeatButton } from './SeatButton';
 import { SeatInfoProps } from '@/provider/Provider';
 
@@ -17,7 +15,7 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const MiddleScreen = () => {
+export const SmallScreen = () => {
 	return (
 		<>
 			<Box w={'100%'}>
@@ -33,7 +31,7 @@ export const MiddleScreen = () => {
 				</Box>
 				<Box bg={'#15202b'} p={'15px 15px 15px 20px'} mb={'6px'} w={'50vw'}>
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
-						Screen2
+						Screen3
 					</Text>
 					<Box as="center">
 						<Divider variant="solid" w={'80%'} m={'10px auto'} />
@@ -46,7 +44,7 @@ export const MiddleScreen = () => {
 						justifyContent={'center'}
 						my={'20px'}
 					>
-						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'55px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftFrontSeat.map((data: SeatType) => (
 								<SeatButton
 									key={data.id}
@@ -65,33 +63,6 @@ export const MiddleScreen = () => {
 							))}
 						</Box>
 					</Box>
-					{/* 2列目 */}
-					<Box
-						display={'flex'}
-						gap={'20px'}
-						justifyContent={'center'}
-						my={'20px'}
-						ml={'60px'}
-					>
-						<Box display={'flex'} w={'90px'} gap={'5px'} flexWrap={'wrap'}>
-							{leftMiddleSeat.map((data: SeatType) => (
-								<SeatButton
-									key={data.id}
-									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
-									y_axis={data.y_axis}
-								/>
-							))}
-						</Box>
-						<Box display={'flex'} w={'250px'} gap={'5px'} flexWrap={'wrap'}>
-							{rightMiddleSeat.map((data: SeatType) => (
-								<SeatButton
-									key={data.id}
-									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
-									y_axis={data.y_axis}
-								/>
-							))}
-						</Box>
-					</Box>
 					{/* 3列目 */}
 					<Box
 						display={'flex'}
@@ -99,7 +70,7 @@ export const MiddleScreen = () => {
 						justifyContent={'center'}
 						my={'20px'}
 					>
-						<Box display={'flex'} w={'150px'} gap={'5px'} flexWrap={'wrap'}>
+						<Box display={'flex'} w={'55px'} gap={'5px'} flexWrap={'wrap'}>
 							{leftBackSeat.map((data: SeatType) => (
 								<SeatButton
 									key={data.id}

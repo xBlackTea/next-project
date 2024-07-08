@@ -10,7 +10,7 @@ import {
 	leftBackSeat,
 	centerBackSeat,
 	rightBackSeat,
-} from '../wideSeatList';
+} from './wideSeatList';
 import { SeatButton } from './SeatButton';
 import { SeatInfoProps } from '@/provider/Provider';
 

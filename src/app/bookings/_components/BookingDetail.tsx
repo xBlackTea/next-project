@@ -46,7 +46,7 @@ export const BookingDetail = () => {
 					<Text color={'#fff'}>名探偵コナン 100万ドルの五稜星</Text>
 				</Box>
 				<Box display={'flex'} justifyContent={'center'}>
-					<Image src="/コナン1.jpg" alt="movieImage" w="70%" p={'6px'} />
+					<Image src="/コナン1.jpg" alt="movieImage" w="80%" pb={'10px'} />
 				</Box>
 			</Box>
 		</>
