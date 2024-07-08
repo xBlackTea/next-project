@@ -7,6 +7,7 @@ import { Box, Button } from '@yamada-ui/react';
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
 import { useSeat } from '../hooks';
+import { MiddleScreen } from './_components/MiddleScreen';
 
 const Page = () => {
 	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
@@ -22,14 +23,22 @@ const Page = () => {
 					<BookingCaption />
 
 					<Box display={'flex'} gap={'10px'}>
-						<Box>
+						<Box
+							display={'flex'}
+							flexDirection={'column'}
+							justifyContent={'space-between'}
+							w={'100%'}
+						>
 							<BookingDetail />
-							<Button w={'100%'} rounded={'none'}>
-								キャンセル
-							</Button>
+							<Box alignItems={'space-between'}>
+								<Button w={'100%'} rounded={'none'}>
+									キャンセル
+								</Button>
+							</Box>
 						</Box>
 						<Box>
 							<BigScreen />
+							{/* <MiddleScreen /> */}
 							<Button
 								w={'100%'}
 								rounded={'none'}
