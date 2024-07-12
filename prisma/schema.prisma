@@ -137,12 +137,15 @@ model MovieTime {
 
 // UserScheduleモデル
 model UserSchedule {
+
   user_id String
+  user_schedule_id Int @id @default(autoincrement())
+
+
   schedule_id Int
 
   // 外部キー
   user User @relation(fields: [user_id], references: [user_id])
   schedule Schedule @relation(fields: [schedule_id], references: [schedule_id])
 
-  @@id([user_id,schedule_id])
 }

@@ -22,7 +22,6 @@ interface User {
 	e_mail: string;
 	birthday: Date;
 	gender: string;
-	schedule_id: number;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -47,15 +46,8 @@ export async function GET() {
 // ユーザー登録POSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {
-		const {
-			first_name,
-			last_name,
-			e_mail,
-			birthday,
-			password,
-			schedule_id,
-			gender,
-		}: User = await req.json();
+		const { first_name, last_name, e_mail, birthday, password, gender }: User =
+			await req.json();
 
 		// パスワードのハッシュ化
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -73,8 +65,10 @@ export async function POST(req: NextRequest) {
 			}
 
 			const query = `
+
         INSERT INTO "User" (user_id, first_name, last_name, password, e_mail, birthday, schedule_id, gender, created_at, updated_at) 
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW()) 
+
         RETURNING *`;
 
 			const values = [
@@ -84,7 +78,6 @@ export async function POST(req: NextRequest) {
 				hashedPassword,
 				e_mail,
 				birthday,
-				schedule_id,
 				gender,
 			];
 			const result = await client.query(query, values);
@@ -112,15 +105,8 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
 	try {
-		const {
-			first_name,
-			last_name,
-			password,
-			e_mail,
-			birthday,
-			gender,
-			schedule_id,
-		}: User = await req.json();
+		const { first_name, last_name, password, e_mail, birthday, gender }: User =
+			await req.json();
 
 		// パスワードのハッシュ化
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -138,7 +124,6 @@ export async function PUT(req: NextRequest) {
 				e_mail,
 				birthday,
 				gender,
-				schedule_id,
 			];
 
 			const result = await client.query(query, values);
