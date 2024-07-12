@@ -1,13 +1,22 @@
 'use client';
 
 import { Box, Center } from '@yamada-ui/react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import UserInfo from './_components/block/UserInfo';
 import { TicketInfo } from './_components/block/TicketInfo';
 import useUserId from '../hooks/useUserId';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
 	const { user, schedules, loading, error } = useUserId();
+	const router = useRouter();
+	const [token, setToken] = useState('');
+
+	useEffect(() => {
+		const token = Cookies.get('user_email');
+		setToken(token || '');
+	}, []);
 
 	if (loading) {
 		return <p>Loading...</p>; // ローディング中
@@ -21,6 +30,11 @@ const Page = () => {
 		return <p>No user or schedules found</p>; // ユーザまたはスケジュールが見つからない場合
 	}
 
+	if (!token) {
+		router.push('/login');
+	}
+
+	console.log(token);
 	return (
 		<Box m="0 auto">
 			<Center

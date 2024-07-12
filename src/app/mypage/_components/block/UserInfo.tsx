@@ -23,6 +23,7 @@ type UserInfoProps = {
 		gender: string;
 	};
 };
+
 const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
 	return (
 		<Box bgColor="#fff" color="#000" py="20px">
