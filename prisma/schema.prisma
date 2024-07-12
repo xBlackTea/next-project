@@ -84,10 +84,21 @@ model CashMethod {
 // Priceモデル
 model Price {
   price_id Int @id @default(autoincrement())
-  price    Int
+  price_sum    Int
+  ticket_id    Int
 
   // リレーション
   cashes Cash[]
+  ticket Ticket @relation(fields: [ticket_id], references: [ticket_id]) 
+}
+
+// Ticketモデル
+model Ticket{
+  ticket_id Int @id @default(autoincrement())
+  ticket_price Int
+
+  //リレーション
+  price Price[]
 }
 
 // Discountモデル
