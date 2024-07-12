@@ -6,7 +6,7 @@ const StartOverBtn = () => {
 		<Link href="/">
 			<Box w="95%" m="10px auto">
 				<Button w="100%" h="70px" p="20px 0" colorScheme="gray">
-					決済情報を入力しなおす
+					チケットを選びなおす
 				</Button>
 			</Box>
 		</Link>

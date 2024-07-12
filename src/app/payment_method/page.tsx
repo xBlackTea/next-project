@@ -1,16 +1,19 @@
 //page.tsx
-import { Box, Center } from '@yamada-ui/react';
+import { Box, Button, Center, Text } from '@yamada-ui/react';
 import React from 'react';
+import Tickets from './_components/block/Tickets';
 import PaymentMethod from './_components/block/PaymentMethod';
+import StartOverBtn from './_components/block/StartOverBtn';
+import Link from 'next/link';
 
 const page = () => {
 	return (
-		<Box>
-			<Center
+		<Box maxW="1500px" m="0 auto">
+			<Box
 				style={{
-					width: ' 100%',
+					width: '1500px',
 					height: '30px',
-					margin: '0 auto',
+					margin: '10px auto',
 					borderRadius: '2px',
 					backgroundColor: '#111',
 				}}
@@ -25,17 +28,64 @@ const page = () => {
 				>
 					<a href="../">トップページ</a>
 					{' > '}
-					<a href="">劇場案内</a>
-					{' > '}
-					<a href="">劇場詳細</a>
-					{' > '}
-					<a href="">作品詳細</a>
-					{' > '}
 					<a href="">決済情報入力</a>
 				</p>
-			</Center>
+			</Box>
+			<Box
+				w="1500px"
+				m="20px auto"
+				bgColor="#111"
+				lineHeight="1.5"
+				color="#fff"
+				p="10px"
+			>
+				<Text ml="1vw" fontSize="2rem">
+					決済情報入力
+				</Text>
+			</Box>
 
-			<PaymentMethod />
+			<Box
+				display="flex"
+				sx={{
+					'@media screen and (max-width: 1000px)': {
+						display: 'block',
+					},
+				}}
+			>
+				<Tickets />
+				<PaymentMethod />
+				<Box
+					sx={{
+						'@media screen and (min-width: 1000px)': {
+							display: 'none',
+						},
+					}}
+				>
+					<StartOverBtn />
+				</Box>
+			</Box>
+
+			<Box
+				display="flex"
+				maxW="1500px"
+				m="20px auto"
+				justifyContent="space-between"
+			>
+				<Box w="600px" p="10px 20px">
+					<Link href="/">
+						<Button w="100%" h="50px" p="20px 0" colorScheme="gray">
+							キャンセル
+						</Button>
+					</Link>
+				</Box>
+				<Box w="900px" p="10px 20px">
+					<Link href="/next-page">
+						<Button w="100%" h="50px" p="20px 0" colorScheme="blue">
+							次へ進む
+						</Button>
+					</Link>
+				</Box>
+			</Box>
 		</Box>
 	);
 };
