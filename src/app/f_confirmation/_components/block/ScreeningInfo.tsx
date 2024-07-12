@@ -1,4 +1,4 @@
-import { Box, Text, Button } from '@yamada-ui/react';
+import { Box, Text, Button, Link } from '@yamada-ui/react';
 import React from 'react';
 
 const ScreeningInfo = () => {
@@ -94,9 +94,11 @@ const ScreeningInfo = () => {
 					},
 				}}
 			>
-				<Button w="100%" h="70px" p="20px 0" colorScheme="gray">
-					決済情報を入力しなおす
-				</Button>
+				<Link href="/">
+					<Button w="100%" h="70px" p="20px 0" colorScheme="gray">
+						決済情報を入力しなおす
+					</Button>
+				</Link>
 			</Box>
 		</Box>
 	);
