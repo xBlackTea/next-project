@@ -78,7 +78,7 @@ export const LoginForm = () => {
 							colorScheme="secondary"
 							type="submit"
 						>
-							登録
+							ログイン
 						</Button>
 					</Center>
 				</form>

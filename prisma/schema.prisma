@@ -9,13 +9,14 @@ datasource db {
 
 // Userモデル
 model User {
-  user_id     Int      @id @default(autoincrement())
+  user_id     String      @id @default(uuid())
   first_name  String
   last_name   String   
   e_mail      String   @unique
   password    String  
   birthday    String
   gender      String
+  schedule_id Int[]
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
@@ -124,7 +125,7 @@ model Cash {
   cash_id     Int @id @default(autoincrement())
   movie_id    Int
   price_id    Int
-  user_id     Int
+  user_id     String
   method_id   Int
   discount_id Int
 
@@ -147,8 +148,11 @@ model MovieTime {
 
 // UserScheduleモデル
 model UserSchedule {
+
+  user_id String
   user_schedule_id Int @id @default(autoincrement())
-  user_id Int
+
+
   schedule_id Int
 
   // 外部キー

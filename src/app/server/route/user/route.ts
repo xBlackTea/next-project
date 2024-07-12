@@ -53,12 +53,26 @@ export async function POST(req: NextRequest) {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		const client = await pool.connect();
+
 		try {
+			// SupaBaseにユーザー登録
+			const { data, error: signUpError } = await supabase.auth.signUp({
+				email: e_mail,
+				password: password,
+			});
+			if (signUpError) {
+				throw signUpError;
+			}
+
 			const query = `
-        INSERT INTO "User" (first_name, last_name, password, e_mail, birthday,  gender, created_at, updated_at) 
-        VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW()) 
+
+        INSERT INTO "User" (user_id, first_name, last_name, password, e_mail, birthday, schedule_id, gender, created_at, updated_at) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW()) 
+
         RETURNING *`;
+
 			const values = [
+				data.user?.id,
 				first_name,
 				last_name,
 				hashedPassword,
@@ -69,15 +83,6 @@ export async function POST(req: NextRequest) {
 			const result = await client.query(query, values);
 
 			const ret = NextResponse.json(result.rows[0], { status: 201 });
-
-			// SupaBaseにユーザー登録
-			const { error: signUpError } = await supabase.auth.signUp({
-				email: e_mail,
-				password: password,
-			});
-			if (signUpError) {
-				throw signUpError;
-			}
 
 			return ret;
 		} catch (error) {
