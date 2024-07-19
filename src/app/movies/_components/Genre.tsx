@@ -451,16 +451,66 @@ const Genre = ({
 			>
 				{loading ? (
 					<>
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
-						<Placeholder width="150px" height="40px" marginRight="10px" />
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
+						<Placeholder
+							width="150px"
+							minWidth="150px"
+							height="40px"
+							marginRight="10px"
+						/>
 					</>
 				) : (
 					categories.map((category) => (
