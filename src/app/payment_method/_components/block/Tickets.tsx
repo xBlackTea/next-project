@@ -51,7 +51,7 @@ const Ticket = () => {
 				fontSize="1.2rem"
 				mb="4px"
 				borderRadius="3px"
-				boxShadow="0 4px 8px rgba(0, 0, 0, 0.5)"
+				boxShadow="0 2px 3px rgba(0, 0, 0, 0.5)"
 				sx={{
 					'@media screen and (max-width: 1000px)': {
 						w: '95%',
@@ -59,7 +59,7 @@ const Ticket = () => {
 				}}
 			>
 				<Text>一般 : </Text>
-				<Box>1800円　{ticketTypes.general.count}枚</Box>
+				<Box>1800円/{ticketTypes.general.count}枚</Box>
 			</Box>
 			<Box
 				display="flex"
@@ -69,7 +69,7 @@ const Ticket = () => {
 				fontSize="1.2rem"
 				mb="4px"
 				borderRadius="3px"
-				boxShadow="0 4px 8px rgba(0, 0, 0, 0.5)"
+				boxShadow="0 2px 3px rgba(0, 0, 0, 0.5)"
 				sx={{
 					'@media screen and (max-width: 1000px)': {
 						w: '95%',
@@ -77,7 +77,7 @@ const Ticket = () => {
 				}}
 			>
 				<Text>大学生 : </Text>
-				<Box>1600円　{ticketTypes.university.count}枚</Box>
+				<Box>1600円/{ticketTypes.university.count}枚</Box>
 			</Box>
 			<Box
 				display="flex"
@@ -87,7 +87,7 @@ const Ticket = () => {
 				fontSize="1.2rem"
 				mb="4px"
 				borderRadius="3px"
-				boxShadow="0 4px 8px rgba(0, 0, 0, 0.5)"
+				boxShadow="0 2px 3px rgba(0, 0, 0, 0.5)"
 				sx={{
 					'@media screen and (max-width: 1000px)': {
 						w: '95%',
@@ -95,7 +95,7 @@ const Ticket = () => {
 				}}
 			>
 				<Text>高校生・中学生 : </Text>
-				<Box>1400円　{ticketTypes.highSchool.count}枚</Box>
+				<Box>1400円/{ticketTypes.highSchool.count}枚</Box>
 			</Box>
 			<Box
 				display="flex"
@@ -105,7 +105,7 @@ const Ticket = () => {
 				fontSize="1.2rem"
 				mb="4px"
 				borderRadius="3px"
-				boxShadow="0 4px 8px rgba(0, 0, 0, 0.5)"
+				boxShadow="0 2px 3px rgba(0, 0, 0, 0.5)"
 				sx={{
 					'@media screen and (max-width: 1000px)': {
 						w: '95%',
@@ -113,7 +113,7 @@ const Ticket = () => {
 				}}
 			>
 				<Text>小学生・幼児 : </Text>
-				<Box>1200円　{ticketTypes.elementary.count}枚</Box>
+				<Box>1200円/{ticketTypes.elementary.count}枚</Box>
 			</Box>
 			<Box
 				display="flex"
@@ -123,7 +123,7 @@ const Ticket = () => {
 				fontSize="1.2rem"
 				mb="4px"
 				borderRadius="3px"
-				boxShadow="0 4px 8px rgba(0, 0, 0, 0.5)"
+				boxShadow="0 2px 3px rgba(0, 0, 0, 0.5)"
 				sx={{
 					'@media screen and (max-width: 1000px)': {
 						w: '95%',
