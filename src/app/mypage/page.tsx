@@ -11,12 +11,16 @@ import { useRouter } from 'next/navigation';
 const Page = () => {
 	const { user, schedules, loading, error } = useUserId();
 	const router = useRouter();
-	const [token, setToken] = useState('');
+	const [token, setToken] = useState<string>('');
 
 	useEffect(() => {
-		const token = Cookies.get('user_email');
-		setToken(token || '');
-	}, []);
+		const token = Cookies.get('user_id');
+		if (token) {
+			setToken(token);
+		} else {
+			router.push('/login');
+		}
+	}, [router]);
 
 	if (loading) {
 		return <p>Loading...</p>; // ローディング中
@@ -28,10 +32,6 @@ const Page = () => {
 
 	if (!user) {
 		return <p>No user or schedules found</p>; // ユーザまたはスケジュールが見つからない場合
-	}
-
-	if (!token) {
-		router.push('/login');
 	}
 
 	console.log(token);

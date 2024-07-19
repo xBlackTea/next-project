@@ -57,7 +57,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 			path: '/',
 		});
 
-		response.cookies.set('user_email', session.user.email ?? '', {
+		response.cookies.set('user_id', session.user.id, {
 			// httpOnly: true,
 			secure: true,
 			path: '/',
