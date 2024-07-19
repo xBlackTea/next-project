@@ -3,6 +3,7 @@ import React from 'react';
 import ScreeningInfo from './_components/block/ScreeningInfo';
 import PaymentInfo from './_components/block/PaymentInfo';
 import StartOverBtn from './_components/block/StartOverBtn';
+import Tabs from './_components/block/Tabs';
 
 const page = () => {
 	return (
@@ -29,6 +30,10 @@ const page = () => {
 					<a href="">最終確認</a>
 				</p>
 			</Box>
+
+			{/* タブ */}
+			<Tabs />
+
 			<Box
 				w="1500px"
 				m="20px auto"
