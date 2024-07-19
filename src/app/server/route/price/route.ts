@@ -12,7 +12,8 @@ const pool = new Pool({
 
 interface Price {
 	price_id: number;
-	price: number;
+	price_sum: number;
+	ticket_id: number;
 }
 
 // GETメソッドの処理
@@ -35,14 +36,14 @@ export async function GET() {
 // POSTメソッドの処理
 export async function POST(req: NextRequest) {
 	try {
-		const { price }: Price = await req.json();
+		const { price_sum, ticket_id }: Price = await req.json();
 		const client = await pool.connect();
 		try {
 			const query = `
-            INSERT INTO "Price" (price)
+            INSERT INTO "Price" (price_sum,ticket_id)
             VALUES ($1)
             RETURNING *`;
-			const values = [price];
+			const values = [price_sum, ticket_id];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {

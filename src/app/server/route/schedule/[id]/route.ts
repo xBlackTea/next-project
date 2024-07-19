@@ -14,7 +14,7 @@ interface Schedule {
 	screen_id: number;
 	movie_id: number;
 	seat_id: number;
-	movie_start: string;
+	time_id: number;
 }
 
 // データ単体取得
@@ -54,16 +54,16 @@ export async function PUT(
 	{ params }: { params: { id: number } }
 ) {
 	try {
-		const { movie_start }: Schedule = await req.json();
+		const { time_id }: Schedule = await req.json();
 		const client = await pool.connect();
 		const { id } = params;
 		try {
 			const query = `
             UPDATE "Schedule"
-            SET movie_start = $1
+            SET time_id = $1
             WHERE schedule_id = $2
             RETURNING *`;
-			const values = [movie_start, id];
+			const values = [time_id, id];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {

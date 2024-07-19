@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 		const client = await pool.connect();
 		try {
 			const query = `
-            INSERT INTO "MovieStart" (movie_start)
+            INSERT INTO "MovieTime" (movie_start)
             VALUES ($1)
             RETURNING *`;
 			const values = [movie_start];
