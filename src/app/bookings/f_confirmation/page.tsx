@@ -1,9 +1,9 @@
 import { Box, Button, Text, Link } from '@yamada-ui/react';
 import React from 'react';
-import ScreeningInfo from './_components/block/ScreeningInfo';
-import PaymentInfo from './_components/block/PaymentInfo';
-import StartOverBtn from './_components/block/StartOverBtn';
-import Tabs from './_components/block/Tabs';
+import ScreeningInfo from './_components/ScreeningInfo';
+import PaymentInfo from './_components/PaymentInfo';
+import StartOverBtn from './_components/StartOverBtn';
+import Tabs from './_components/Tabs';
 
 const page = () => {
 	return (
