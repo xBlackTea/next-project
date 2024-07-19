@@ -12,9 +12,14 @@ import React from 'react';
 interface theaterType {
 	theaterImage: string;
 	theaterName: string;
+	theaterInformation: string;
 }
 
-const TheaterCard = ({ theaterImage, theaterName }: theaterType) => {
+const TheaterCard = ({
+	theaterImage,
+	theaterName,
+	theaterInformation,
+}: theaterType) => {
 	return (
 		<>
 			<Card
@@ -55,8 +60,7 @@ const TheaterCard = ({ theaterImage, theaterName }: theaterType) => {
 
 					<CardBody>
 						<Text wordBreak="break-all" lineClamp={5}>
-							『SLAMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-							DUNK』（スラムダンク）は、バスケットボールを題材にした井上雄彦による日本の漫画作品。主人公の不良少年桜木花道の挑戦と成長を軸にしたバスケットボール漫画。
+							{theaterInformation}
 						</Text>
 					</CardBody>
 				</VStack>
