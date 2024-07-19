@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 type User = {
-	user_id: number;
+	user_id: string;
 	first_name: string;
 	last_name: string;
 	schedule_id: number | null;
@@ -29,7 +30,7 @@ type Movie = {
 };
 
 const fetchUserId = async (
-	id: number
+	id: String
 ): Promise<{ user: User; schedules: Schedule[] | null } | null> => {
 	try {
 		const response = await fetch(`../server/route/user/${id}`);
@@ -72,13 +73,15 @@ const useUserId = () => {
 	const [schedules, setSchedules] = useState<Schedule[] | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const userId = 11;
+	const [userId, setUserId] = useState<String | null>('');
 
 	useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
 			setError(null);
-			const userData = await fetchUserId(userId);
+			const idToken = Cookies.get('user_id');
+			setUserId(idToken || '');
+			const userData = await fetchUserId(userId || '');
 			if (userData) {
 				setUser(userData.user);
 				setSchedules(userData.schedules);

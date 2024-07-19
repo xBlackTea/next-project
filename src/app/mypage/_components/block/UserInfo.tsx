@@ -13,7 +13,7 @@ import user from '../../../hooks/useUserId'; // User型のインポートパス�
 
 type UserInfoProps = {
 	user: {
-		user_id: number;
+		user_id: string;
 		first_name: string;
 		last_name: string;
 		schedule_id: number | null;
