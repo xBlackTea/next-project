@@ -9,6 +9,7 @@ import {
 } from '@yamada-ui/react';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export const LoginForm = () => {
 	const [email, setEmail] = React.useState('');
@@ -82,6 +83,22 @@ export const LoginForm = () => {
 						</Button>
 					</Center>
 				</form>
+
+				<Box>
+					<Text>
+						アカウントをお持ちでない方は
+						<Link
+							href={'/login/signup'}
+							style={{
+								color: 'red',
+								fontWeight: 'bold',
+							}}
+						>
+							こちら
+						</Link>
+						から
+					</Text>
+				</Box>
 			</Box>
 		</>
 	);
