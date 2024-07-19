@@ -3,10 +3,12 @@ import { Box } from '@yamada-ui/react';
 
 const Placeholder = ({
 	width,
+	minWidth,
 	height,
 	marginRight,
 }: {
 	width: string;
+	minWidth?: string;
 	height: string;
 	marginRight?: string;
 }) => {
@@ -14,6 +16,7 @@ const Placeholder = ({
 		<Box
 			width={width}
 			height={height}
+			minWidth={minWidth}
 			marginRight={marginRight}
 			backgroundColor="#ddd"
 			display="flex"
