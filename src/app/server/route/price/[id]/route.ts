@@ -11,7 +11,8 @@ const pool = new Pool({
 
 interface Price {
 	price_id: number;
-	price: number;
+	price_sum: number;
+	ticket_id: number;
 }
 
 // データ単体取得
@@ -48,16 +49,17 @@ export async function PATCH(
 	{ params }: { params: { id: number } }
 ) {
 	try {
-		const { price }: Price = await req.json();
+		const { price_sum, ticket_id }: Price = await req.json();
 		const client = await pool.connect();
 		const { id } = params;
 		try {
 			const query = `
             UPDATE "Price"
-            SET price = $1
-            WHERE price_id = $2
+            SET price_sum = $1,
+			ticket_id = $2
+            WHERE price_id = $3
             RETURNING *`;
-			const values = [price, id];
+			const values = [price_sum, ticket_id, id];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {

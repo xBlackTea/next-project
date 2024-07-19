@@ -13,7 +13,7 @@ interface Schedule {
 	screen_id: number;
 	movie_id: number;
 	seat_id: number;
-	movie_start: string;
+	time_id: number;
 }
 
 // GETメソッドの処理
@@ -39,22 +39,22 @@ export async function POST(req: NextRequest) {
 			screen_id,
 			movie_id,
 			seat_ids,
-			movie_start,
+			time_id,
 		}: {
 			screen_id: number;
 			movie_id: number;
 			seat_ids: number[];
-			movie_start: string;
+			time_id: number;
 		} = await req.json();
 		const client = await pool.connect();
 		try {
 			// 配列の長さに応じて複数のINSERT文を生成
 			const insertQueries = seat_ids.map((seat_id) => ({
 				text: `
-                    INSERT INTO "Schedule" (screen_id, movie_id, seat_id, movie_start)
+                    INSERT INTO "Schedule" (screen_id, movie_id, seat_id, time_id)
                     VALUES ($1, $2, $3, $4)
                     RETURNING *`,
-				values: [screen_id, movie_id, seat_id, movie_start],
+				values: [screen_id, movie_id, seat_id, time_id],
 			}));
 
 			// トランザクションを開始

@@ -12,7 +12,7 @@ interface Schedule {
 	screen_id: number;
 	movie_id: number;
 	seat_id: number;
-	movie_start: string;
+	time_id: number;
 }
 
 // movie_idを使用したデータ単体取得
@@ -29,10 +29,7 @@ export async function GET(
 			[id]
 		);
 		if (ret.rows.length === 0) {
-			return NextResponse.json(
-				{ error: 'No data found for the given movie_id' },
-				{ status: 404 }
-			);
+			return NextResponse.json([]);
 		}
 		return NextResponse.json(ret.rows);
 	} catch (error) {
