@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
 import { BigScreen } from './_components/BigScreen';
+import { MiddleScreen } from './_components/MiddleScreen';
+import { SmallScreen } from './_components/SmallScreen';
 import { BreadcrumbList } from './_components/BreadCrumbList';
 import { Box, Button } from '@yamada-ui/react';
 
@@ -22,14 +24,28 @@ const Page = () => {
 					<BookingCaption />
 
 					<Box display={'flex'} gap={'10px'}>
-						<Box>
+						<Box
+							display={'flex'}
+							flexDirection={'column'}
+							justifyContent={'space-between'}
+							w={'100%'}
+						>
 							<BookingDetail />
-							<Button w={'100%'} rounded={'none'}>
-								キャンセル
-							</Button>
+							<Box alignItems={'space-between'}>
+								<Button w={'100%'} rounded={'none'}>
+									キャンセル
+								</Button>
+							</Box>
 						</Box>
-						<Box>
-							<BigScreen />
+						<Box
+							display={'flex'}
+							flexDirection={'column'}
+							justifyContent={'space-between'}
+							w={'100%'}
+						>
+							{/* <BigScreen /> */}
+							<MiddleScreen />
+							{/* <SmallScreen /> */}
 							<Button
 								w={'100%'}
 								rounded={'none'}

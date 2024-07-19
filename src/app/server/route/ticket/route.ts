@@ -1,31 +1,20 @@
-// movieモデルのAPIを定義
 import { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Pool } from 'pg';
-import bcrypt from 'bcrypt';
 
-// db接続
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 });
 
-interface Movie {
-	movie_id: number;
-	movie_name: string;
-	movie_detail: string;
-	movie_time: number;
-	category_id: number;
-	movie_image1: string;
-	movie_image2: string;
-	movie_cast: string;
-	movie_director: string;
+interface Ticket {
+	ticket_id: number;
+	ticket_price: number;
 }
 
-// GETメソッドの処理
 export async function GET() {
 	const client = await pool.connect();
 	try {
-		const ret = await client.query('SELECT * FROM "Movie"', []);
+		const ret = await client.query('SELECT * FROM "Ticket"', []);
 		return NextResponse.json(ret.rows);
 	} catch (error) {
 		console.error('Error executing query', error);
@@ -38,35 +27,17 @@ export async function GET() {
 	}
 }
 
-// POSTメソッドの処理
+// POSTメソッド
 export async function POST(req: NextRequest) {
 	try {
-		const {
-			movie_name,
-			movie_detail,
-			movie_time,
-			category_id,
-			movie_image1,
-			movie_image2,
-			movie_cast,
-			movie_director,
-		}: Movie = await req.json();
+		const { ticket_price }: Ticket = await req.json();
 		const client = await pool.connect();
 		try {
 			const query = `
-            INSERT INTO "Movie" (movie_name, movie_detail, movie_time, category_id, movie_image1, movie_image2, movie_cast, movie_director)
-            VALUES ($1, $2, $3, $4,$5,$6,$7,$8)
+            INSERT INTO "Ticket" (ticket_price)
+            VALUES ($1)
             RETURNING *`;
-			const values = [
-				movie_name,
-				movie_detail,
-				movie_time,
-				category_id,
-				movie_image1,
-				movie_image2,
-				movie_cast,
-				movie_director,
-			];
+			const values = [ticket_price];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {

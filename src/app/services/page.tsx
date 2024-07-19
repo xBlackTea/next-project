@@ -5,7 +5,7 @@ import Service from './_components/block/Service';
 const page = () => {
 	return (
 		<Box>
-			<Center
+			<Box
 				style={{
 					width: ' 1500px',
 					height: '30px',
@@ -26,7 +26,7 @@ const page = () => {
 					{' > '}
 					<a href="">サービス案内</a>
 				</p>
-			</Center>
+			</Box>
 
 			<Service />
 		</Box>
