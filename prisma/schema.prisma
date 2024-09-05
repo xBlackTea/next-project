@@ -39,7 +39,7 @@ model Schedule {
   schedule_id   Int      @id @default(autoincrement())
   screen_id     Int
   movie_id      Int
-  seat_id       Int[]  // seat_idを配列に変更
+  seat_id       Int  // seat_idを配列に変更
   time_id       Int
 
   // 外部キー設定
