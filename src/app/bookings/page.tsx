@@ -13,7 +13,7 @@ import { useSeat } from '../hooks';
 const Page = () => {
 	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
 	useEffect(() => {
-		handleReservedSeatInfo(1);
+		handleReservedSeatInfo(2);
 	}, []);
 
 	return (
@@ -49,7 +49,7 @@ const Page = () => {
 							<Button
 								w={'100%'}
 								rounded={'none'}
-								onClick={() => handleReserveSeat(1, 1, 1)}
+								onClick={() => handleReserveSeat(1, 2, 1)}
 							>
 								選択した座席を予約する
 							</Button>

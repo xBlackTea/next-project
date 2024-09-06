@@ -71,6 +71,7 @@ model Movie {
 model Seat {
   seat_id   Int      @id @default(autoincrement())
   seat_point String  @unique
+
 }
 
 // CashMethodモデル
