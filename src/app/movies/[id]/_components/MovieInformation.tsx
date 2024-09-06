@@ -19,7 +19,7 @@ type MovieInformationProps = {
 export function MovieInformation({ movie }: MovieInformationProps) {
 	const movieDetail = movieCard[0];
 
-	console.log(decodeURIComponent(movie.movie_image2));
+	// console.log(decodeURIComponent(movie.movie_image2));
 
 	const breakpoint = useBreakpoint();
 	const isSmallScreen = ['sm', 'md'].includes(breakpoint);

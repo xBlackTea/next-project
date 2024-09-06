@@ -29,7 +29,6 @@ export const ScheduleList = (props: scheduleType) => {
 		};
 		fetchData();
 	}, []);
-	console.log(screen);
 	return (
 		<>
 			{props.reservation === true ? (
