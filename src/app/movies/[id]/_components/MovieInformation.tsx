@@ -11,6 +11,8 @@ type MovieInformationProps = {
 		movie_time: number;
 		movie_image1: string;
 		movie_image2: string;
+		movie_cast: string;
+		movie_director: string;
 	};
 };
 
@@ -82,8 +84,8 @@ export function MovieInformation({ movie }: MovieInformationProps) {
 					</Text>
 					<Text padding="0 10px 0 10px">上映時間: {movie.movie_time} 分</Text>
 					<Text padding="0 10px 0 10px">
-						監督: 永岡智佳
-						出演:【声の出演】高山みなみ／山崎和佳奈／小山力也／山口勝平 ほか
+						監督: {movie.movie_director}
+						出演:【声の出演】{movie.movie_cast} ほか
 					</Text>
 					<Text
 						fontSize="1.2rem"
