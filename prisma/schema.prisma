@@ -39,14 +39,13 @@ model Schedule {
   schedule_id   Int      @id @default(autoincrement())
   screen_id     Int
   movie_id      Int
-  seat_id       Int[]  // seat_idを配列に変更
+  seat_id       Int  // seat_idを配列に変更
   time_id       Int
 
   // 外部キー設定
   screen Screen @relation(fields: [screen_id], references: [screen_id])
   movie  Movie  @relation(fields: [movie_id], references: [movie_id])
   time   MovieTime @relation(fields: [time_id], references: [time_id])
-  seat Seat[]
   users  UserSchedule[]
 }
 
@@ -73,7 +72,6 @@ model Seat {
   seat_id   Int      @id @default(autoincrement())
   seat_point String  @unique
 
-  schedule Schedule[]
 }
 
 // CashMethodモデル
