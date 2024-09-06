@@ -14,12 +14,14 @@ const Page = () => {
 	const [token, setToken] = useState<string>('');
 
 	useEffect(() => {
-		const token = Cookies.get('user_id');
-		if (token) {
-			setToken(token);
+		const cookie = Cookies.get('user_id');
+
+		if (cookie) {
+			router.push('/mypage');
 		} else {
 			router.push('/login');
 		}
+		setToken(cookie ?? '');
 	}, [router]);
 
 	if (loading) {
@@ -34,7 +36,6 @@ const Page = () => {
 		return <p>No user or schedules found</p>; // ユーザまたはスケジュールが見つからない場合
 	}
 
-	console.log(token);
 	return (
 		<Box m="0 auto">
 			<Center

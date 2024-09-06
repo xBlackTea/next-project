@@ -80,8 +80,8 @@ const useUserId = () => {
 			setLoading(true);
 			setError(null);
 			const idToken = Cookies.get('user_id');
-			setUserId(idToken || '');
-			const userData = await fetchUserId(userId || '');
+			setUserId(idToken ?? '');
+			const userData = await fetchUserId(userId ?? '');
 			if (userData) {
 				setUser(userData.user);
 				setSchedules(userData.schedules);
