@@ -11,7 +11,7 @@ const Title = () => {
 			marginTop="15px"
 		>
 			<Text paddingLeft="10px" fontSize="30px" lineHeight="1.8" color="#fff">
-				作品一覧
+				作品案内
 			</Text>
 		</Box>
 	);
