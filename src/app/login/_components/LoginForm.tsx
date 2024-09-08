@@ -33,7 +33,10 @@ export const LoginForm = () => {
 		});
 
 		if (res.ok) {
-			router.push('/');
+			const data = await res.json();
+			if (data.message === 'success') {
+				router.push('/mypage:id');
+			}
 		} else {
 			const data = await res.json();
 			alert(data.error);

@@ -10,19 +10,6 @@ import { useRouter } from 'next/navigation';
 
 const Page = () => {
 	const { user, schedules, loading, error } = useUserId();
-	const router = useRouter();
-	const [token, setToken] = useState<string>('');
-
-	useEffect(() => {
-		const cookie = Cookies.get('user_id');
-
-		if (cookie) {
-			router.push('/mypage');
-		} else {
-			router.push('/login');
-		}
-		setToken(cookie ?? '');
-	}, [router]);
 
 	if (loading) {
 		return <p>Loading...</p>; // ローディング中
