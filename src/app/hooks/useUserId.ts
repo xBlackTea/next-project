@@ -91,9 +91,8 @@ const useUserId = () => {
 			setLoading(false);
 		};
 
-		if (userId) {
-			fetchData();
-		}
+		const user = fetchData();
+		console.log(user);
 	}, [userId]);
 
 	return { user, schedules, loading, error };
