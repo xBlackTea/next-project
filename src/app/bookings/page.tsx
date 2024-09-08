@@ -9,6 +9,7 @@ import { Box, Button } from '@yamada-ui/react';
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
 import { useSeat } from '../hooks';
+import { time } from 'console';
 
 const Page = () => {
 	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
