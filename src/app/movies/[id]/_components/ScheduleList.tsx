@@ -55,7 +55,14 @@ export const ScheduleList = (props: scheduleType) => {
 		<>
 			{props.reservation === true ? (
 				screen.map((screen, index) => (
-					<Link key={index} href={`../../../bookings`} passHref>
+					<Link
+						key={index}
+						href={{
+							pathname: '/bookings',
+							query: { screen_id: screen.screen_id },
+						}}
+						passHref
+					>
 						<Card w="200px" m="5px" p="5px">
 							<Text>{time[index]?.movie_start || '時間未定'}</Text>
 							<Text>Screen{screen.screen_id}</Text>
