@@ -33,7 +33,7 @@ export const BookingDetail = () => {
 					display={'flex'}
 					alignItems={'center'}
 				>
-					<Text color={'#fff'}>7月5日 14:00~15:30</Text>
+					<Text color={'#fff'}></Text>
 				</Box>
 				<Box
 					h={'40px'}
@@ -43,10 +43,10 @@ export const BookingDetail = () => {
 					display={'flex'}
 					alignItems={'center'}
 				>
-					<Text color={'#fff'}>名探偵コナン 100万ドルの五稜星</Text>
+					<Text color={'#fff'}></Text>
 				</Box>
 				<Box display={'flex'} justifyContent={'center'}>
-					<Image src="/コナン1.jpg" alt="movieImage" w="80%" pb={'10px'} />
+					<Image src="/" alt="movieImage" w="80%" pb={'10px'} />
 				</Box>
 			</Box>
 		</>
