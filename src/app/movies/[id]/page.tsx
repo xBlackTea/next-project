@@ -44,7 +44,7 @@ const Page = () => {
 			<BreadcrumbList />
 			<Title />
 			<MovieInformation movie={movie} />
-			<ScheduleAccordion />
+			<ScheduleAccordion movie={movie} />
 		</Box>
 	);
 };
