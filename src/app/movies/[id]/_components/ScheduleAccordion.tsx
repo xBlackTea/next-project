@@ -101,7 +101,20 @@ import { scheduleData } from '@/mock/schedule/mock';
 import { fetchScheduleInterface } from '@/mock/schedule/scheduleInterface';
 import { getNextWeekDates } from '@/utils/scheduleDate';
 
-export const ScheduleAccordion = () => {
+type MovieInformationProps = {
+	movie: {
+		movie_id: number;
+		movie_name: string;
+		movie_detail: string;
+		movie_time: number;
+		movie_image1: string;
+		movie_image2: string;
+		movie_cast: string;
+		movie_director: string;
+	};
+};
+
+export const ScheduleAccordion = ({ movie }: MovieInformationProps) => {
 	const breakpoint = useBreakpointValue({ base: 'base', sm: 'sm', md: 'md' });
 	const isSmallScreen = ['sm', 'md'].includes(breakpoint);
 
@@ -171,6 +184,7 @@ export const ScheduleAccordion = () => {
 										screening_time={data.screening_time}
 										screen_number={data.screen_number}
 										reservation={data.reservation}
+										movie_id={movie.movie_id}
 									/>
 								))}
 							</Grid>

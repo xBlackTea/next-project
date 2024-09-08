@@ -3,24 +3,34 @@ import React, { useEffect } from 'react';
 import { BigScreen } from './_components/BigScreen';
 import { SmallScreen } from './_components/SmallScreen';
 import { BreadcrumbList } from './_components/BreadCrumbList';
-import { Box, Button } from '@yamada-ui/react';
+import { Box, Button, useTime } from '@yamada-ui/react';
 
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
 import { useSeat } from '../hooks';
 import { useSearchParams } from 'next/navigation';
 import { MiddleScreen } from './_components/MiddleScreen';
+import useMovieId from '../hooks/useMovieId';
+import useTimeId from '../hooks/useTimeId';
 
 const Page = () => {
 	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
 
 	const router = useSearchParams();
 	const screen_id = router.get('screen_id');
+	const movie_id = router.get('movie_id');
+	const time_id = router.get('time_id');
 
 	const screen_number = Number(screen_id);
+	const movie_number = Number(movie_id);
+	const time_number = Number(time_id);
+
+	const { time, loading_time, error_time } = useTimeId(time_number);
+
+	const { movie, loading, error } = useMovieId(movie_number);
 
 	useEffect(() => {
-		handleReservedSeatInfo(2);
+		handleReservedSeatInfo(movie_number);
 	}, []);
 
 	const renderScreenComponent = () => {
@@ -45,6 +55,14 @@ const Page = () => {
 		}
 	};
 
+	if (!movie) {
+		return <p>loading</p>;
+	}
+
+	if (!time) {
+		return <p>loading</p>;
+	}
+
 	return (
 		<>
 			<Box maxW={'1500px'} m={'20px'}>
@@ -59,7 +77,7 @@ const Page = () => {
 							justifyContent={'space-between'}
 							w={'100%'}
 						>
-							<BookingDetail />
+							<BookingDetail movie={movie} time={time} />
 							<Box alignItems={'space-between'}>
 								<Button w={'100%'} rounded={'none'}>
 									キャンセル
@@ -76,7 +94,9 @@ const Page = () => {
 							<Button
 								w={'100%'}
 								rounded={'none'}
-								onClick={() => handleReserveSeat(screen_number, 2, 1)}
+								onClick={() =>
+									handleReserveSeat(screen_number, movie_number, time_number)
+								}
 							>
 								選択した座席を予約する
 							</Button>

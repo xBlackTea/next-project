@@ -10,6 +10,7 @@ type scheduleType = {
 	screening_time: string;
 	screen_number: string;
 	reservation: boolean;
+	movie_id: number;
 };
 
 interface Screen {
@@ -59,7 +60,11 @@ export const ScheduleList = (props: scheduleType) => {
 						key={index}
 						href={{
 							pathname: '/bookings',
-							query: { screen_id: screen.screen_id },
+							query: {
+								screen_id: screen.screen_id,
+								movie_id: props.movie_id,
+								time_id: time[index]?.time_id,
+							},
 						}}
 						passHref
 					>
