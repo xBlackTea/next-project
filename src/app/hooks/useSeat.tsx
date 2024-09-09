@@ -1,10 +1,12 @@
 'use client';
 
 import { Context, SeatInfoProps } from '@/provider/Provider';
+import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 
 export const useSeat = () => {
 	const context = useContext(Context);
+	const router = useRouter();
 	if (!context) {
 		throw new Error('Context is not provided');
 	}
@@ -88,6 +90,7 @@ export const useSeat = () => {
 
 			const data = await response.json();
 			console.log('Response:', data);
+			router.push('/ticketselect');
 		} catch (err) {
 			console.error(err);
 		}

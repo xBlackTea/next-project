@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 
 type TicketType = 'normal' | 'middleStudent' | 'kids' | 'collegeStudent';
 
@@ -7,11 +7,21 @@ type TicketOperations = {
 	[K in TicketType as `${K}TicketPlus` | `${K}TicketMinus`]: () => void;
 };
 
+interface Ticket {
+	ticket_id: number;
+	ticket_price: number;
+	type: string;
+}
+
 type UseTicketReturn = {
 	normal: number;
 	middleStudent: number;
 	kids: number;
 	collegeStudent: number;
+	normalPrice: number;
+	middleStudentPrice: number;
+	kidsPrice: number;
+	collegeStudentPrice: number;
 	totalPrice: number;
 } & TicketOperations;
 
@@ -23,15 +33,37 @@ export const useTicket = (): UseTicketReturn => {
 		collegeStudent: 0,
 	});
 
-	const prices = useMemo(
-		() => ({
-			normal: 1800,
-			collegeStudent: 1600,
-			middleStudent: 1400,
-			kids: 1200,
-		}),
-		[]
-	);
+	const [prices, setPrice] = useState({
+		normal: 0,
+		collegeStudent: 0,
+		middleStudent: 0,
+		kids: 0,
+	});
+
+	useEffect(() => {
+		const fetchTicketPrices = async () => {
+			const res = await fetch('../server/route/ticket');
+			const data = await res.json();
+
+			// Map ticket prices based on type
+			const prices = {
+				normal:
+					data.find((ticket: Ticket) => ticket.type === 'normal')
+						?.ticket_price || 0,
+				kids:
+					data.find((ticket: Ticket) => ticket.type === 'kids')?.ticket_price ||
+					0,
+				collegeStudent:
+					data.find((ticket: Ticket) => ticket.type === 'collegeStudent')
+						?.ticket_price || 0,
+				middleStudent:
+					data.find((ticket: Ticket) => ticket.type === 'middleStudent')
+						?.ticket_price || 0,
+			};
+			setPrice(prices);
+		};
+		fetchTicketPrices();
+	}, []);
 
 	const totalPrice = useMemo(() => {
 		return Object.entries(tickets).reduce((total, [type, count]) => {
@@ -59,5 +91,9 @@ export const useTicket = (): UseTicketReturn => {
 		...tickets,
 		totalPrice,
 		...ticketOperations,
+		normalPrice: prices.normal,
+		middleStudentPrice: prices.middleStudent,
+		collegeStudentPrice: prices.collegeStudent,
+		kidsPrice: prices.kids,
 	} as UseTicketReturn;
 };
