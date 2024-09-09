@@ -25,24 +25,24 @@ const Page = () => {
 		const data = {
 			tortalPrice: formData.get('Price_sum'),
 		};
-		try {
-			const res = await fetch('/server/route/user', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			if (res.ok) {
-				const json = await res.json();
-				console.log(json);
-				router.push('/');
-			} else {
-				console.error('HTTP-Error: ' + res.status);
-			}
-		} catch (e) {
-			console.error(e);
-		}
+		// try {
+		// 	const res = await fetch('/server/route/user', {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify(data),
+		// 	});
+		// 	if (res.ok) {
+		// 		const json = await res.json();
+		// 		console.log(json);
+		// 		router.push('/');
+		// 	} else {
+		// 		console.error('HTTP-Error: ' + res.status);
+		// 	}
+		// } catch (e) {
+		// 	console.error(e);
+		// }
 	};
 	return (
 		<div>
@@ -74,11 +74,9 @@ const Page = () => {
 
 								<Box w={'100%'}>
 									<BigScreen />
-									<Link href="/payment_method">
-										<Button w={'100%'} rounded={'none'} type="submit">
-											次へ進む
-										</Button>
-									</Link>
+									<Button w={'100%'} rounded={'none'} type="submit">
+										次へ進む
+									</Button>
 								</Box>
 							</Box>
 						</Box>

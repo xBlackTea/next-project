@@ -9,6 +9,10 @@ export const TicketSelect = () => {
 		middleStudent,
 		kids,
 		collegeStudent,
+		normalPrice,
+		middleStudentPrice,
+		kidsPrice,
+		collegeStudentPrice,
 		totalPrice,
 		normalTicketPlus,
 		normalTicketMinus,
@@ -52,7 +56,7 @@ export const TicketSelect = () => {
 				>
 					<Text color={'#fff'}>一般</Text>
 					<Box display={'flex'} gap={'10px'} alignItems={'center'}>
-						<Text color={'#fff'}>1800円</Text>
+						<Text color={'#fff'}>{normalPrice}円</Text>
 						<Text color={'#fff'}>{normal}枚</Text>
 						<button style={buttonStyle} onClick={normalTicketPlus}>
 							+
@@ -73,7 +77,7 @@ export const TicketSelect = () => {
 				>
 					<Text color={'#fff'}>大学生</Text>
 					<Box display={'flex'} gap={'10px'} alignItems={'center'}>
-						<Text color={'#fff'}>1600円</Text>
+						<Text color={'#fff'}>{collegeStudentPrice}円</Text>
 						<Text color={'#fff'}>{collegeStudent}枚</Text>
 						<button style={buttonStyle} onClick={collegeStudentTicketPlus}>
 							+
@@ -94,7 +98,7 @@ export const TicketSelect = () => {
 				>
 					<Text color={'#fff'}>中学生・高校生</Text>
 					<Box display={'flex'} gap={'10px'} alignItems={'center'}>
-						<Text color={'#fff'}>1400円</Text>
+						<Text color={'#fff'}>{middleStudentPrice}円</Text>
 						<Text color={'#fff'}>{middleStudent}枚</Text>
 						<button style={buttonStyle} onClick={middleStudentTicketPlus}>
 							+
@@ -115,7 +119,7 @@ export const TicketSelect = () => {
 				>
 					<Text color={'#fff'}>小学生・園児</Text>
 					<Box display={'flex'} gap={'10px'} alignItems={'center'}>
-						<Text color={'#fff'}>1200円</Text>
+						<Text color={'#fff'}>{kidsPrice}円</Text>
 						<Text color={'#fff'}>{kids}枚</Text>
 						<button style={buttonStyle} onClick={kidsTicketPlus}>
 							+
