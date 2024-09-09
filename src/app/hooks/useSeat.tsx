@@ -90,7 +90,12 @@ export const useSeat = () => {
 
 			const data = await response.json();
 			console.log('Response:', data);
-			router.push('/ticketselect');
+			const queryString = new URLSearchParams({
+				seatCount: seatIds.length.toString(),
+			}).toString();
+
+			// クエリパラメータを含むURLにナビゲート
+			router.push(`/bookings/ticketselect?${queryString}`);
 		} catch (err) {
 			console.error(err);
 		}

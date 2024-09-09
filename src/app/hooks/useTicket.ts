@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 type TicketType = 'normal' | 'middleStudent' | 'kids' | 'collegeStudent';
 
@@ -26,6 +27,9 @@ type UseTicketReturn = {
 } & TicketOperations;
 
 export const useTicket = (): UseTicketReturn => {
+	const searchParams = useSearchParams();
+	const seatCountQuery = searchParams.get('seatCount');
+	const seatCount = seatCountQuery ? Number(seatCountQuery) : 0;
 	const [tickets, setTickets] = useState({
 		normal: 0,
 		middleStudent: 0,
@@ -45,7 +49,6 @@ export const useTicket = (): UseTicketReturn => {
 			const res = await fetch('../server/route/ticket');
 			const data = await res.json();
 
-			// Map ticket prices based on type
 			const prices = {
 				normal:
 					data.find((ticket: Ticket) => ticket.type === 'normal')
@@ -71,12 +74,21 @@ export const useTicket = (): UseTicketReturn => {
 		}, 0);
 	}, [tickets, prices]);
 
-	const updateTicket = useCallback((type: TicketType, increment: number) => {
-		setTickets((prev) => ({
-			...prev,
-			[type]: Math.max(0, prev[type] + increment),
-		}));
-	}, []);
+	const updateTicket = useCallback(
+		(type: TicketType, increment: number) => {
+			const totalTickets = Object.values(tickets).reduce(
+				(sum, val) => sum + val,
+				0
+			);
+			if (totalTickets + increment <= seatCount) {
+				setTickets((prev) => ({
+					...prev,
+					[type]: Math.max(0, prev[type] + increment),
+				}));
+			}
+		},
+		[seatCount, tickets]
+	);
 
 	const ticketOperations = useMemo(() => {
 		const operations: Record<string, () => void> = {};
