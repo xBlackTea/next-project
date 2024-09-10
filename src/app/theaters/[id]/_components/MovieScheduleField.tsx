@@ -116,7 +116,7 @@ export function MovieScheduleField(movie: MovieCardProps) {
 				>
 					<Box position="relative">
 						<Image
-							src={encodeURIComponent(movie.movie_image)}
+							src={`/${movie.movie_image}`}
 							alt={movie.movie_image}
 							width="100%"
 							objectFit="cover"
