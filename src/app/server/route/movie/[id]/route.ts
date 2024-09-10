@@ -13,6 +13,8 @@ interface Movie {
 	movie_name: string;
 	movie_detail: string;
 	movie_time: number;
+	movie_image1: string;
+	movie_image2: string;
 	category_id: number;
 }
 
@@ -49,8 +51,14 @@ export async function PATCH(
 	{ params }: { params: { id: number } }
 ) {
 	try {
-		const { movie_name, movie_detail, movie_time, category_id }: Movie =
-			await req.json();
+		const {
+			movie_name,
+			movie_detail,
+			movie_time,
+			category_id,
+			movie_image1,
+			movie_image2,
+		}: Movie = await req.json();
 		const client = await pool.connect();
 		const { id } = params;
 		try {
@@ -59,10 +67,20 @@ export async function PATCH(
             SET movie_name = $1,
             movie_detail = $2,
             movie_time = $3,
-            category_id = $4
-            WHERE movie_id = $5
+            category_id = $4,
+			movie_image1 = $5,
+			movie_image2 = $6,
+            WHERE movie_id = $7
             RETURNING *`;
-			const values = [movie_name, movie_detail, movie_time, category_id, id];
+			const values = [
+				movie_name,
+				movie_detail,
+				movie_time,
+				category_id,
+				movie_image1,
+				movie_image2,
+				id,
+			];
 			const result = await client.query(query, values);
 			return NextResponse.json(result.rows[0], { status: 201 });
 		} catch (error) {
