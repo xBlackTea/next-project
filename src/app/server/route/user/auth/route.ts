@@ -58,7 +58,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		});
 
 		response.cookies.set('user_id', session.user.id, {
-			httpOnly: true,
+			httpOnly: false,
 			secure: true,
 			path: '/',
 		});

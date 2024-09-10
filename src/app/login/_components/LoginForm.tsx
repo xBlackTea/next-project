@@ -34,8 +34,9 @@ export const LoginForm = () => {
 
 		if (res.ok) {
 			const data = await res.json();
+			console.log(data);
 			if (data.message === 'success') {
-				router.push('/mypage:id');
+				router.push('/');
 			}
 		} else {
 			const data = await res.json();

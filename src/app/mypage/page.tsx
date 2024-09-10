@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import UserInfo from './_components/block/UserInfo';
 import { TicketInfo } from './_components/block/TicketInfo';
 import useUserId from '../hooks/useUserId';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
 const Page = () => {

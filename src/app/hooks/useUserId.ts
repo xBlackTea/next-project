@@ -73,7 +73,7 @@ const useUserId = () => {
 	const [schedules, setSchedules] = useState<Schedule[] | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const [userId, setUserId] = useState<String | null>('');
+	const [userId, setUserId] = useState<string | null>('');
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -91,8 +91,7 @@ const useUserId = () => {
 			setLoading(false);
 		};
 
-		const user = fetchData();
-		console.log(user);
+		fetchData();
 	}, [userId]);
 
 	return { user, schedules, loading, error };
