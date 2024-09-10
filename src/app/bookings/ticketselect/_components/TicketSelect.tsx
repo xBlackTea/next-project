@@ -2,6 +2,8 @@
 import { useTicket } from '@/app/hooks/useTicket';
 import { Box, Text } from '@yamada-ui/react';
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
+import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
 
 export const TicketSelect = () => {
 	const {
@@ -33,6 +35,10 @@ export const TicketSelect = () => {
 		background: '#fff',
 		borderRadius: '3px',
 	};
+
+	// グローバルステート
+	const setTotalPrice = useSetRecoilState(totalPriceState);
+	setTotalPrice(totalPrice);
 
 	return (
 		<>

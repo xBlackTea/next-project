@@ -16,33 +16,39 @@ import {
 import { TicketSelect } from './_components/TicketSelect';
 import { BigScreen } from '../_components/BigScreen';
 import { useRouter } from 'next/navigation';
+import { useRecoilValue } from 'recoil';
+import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
+import { getRandomInt } from '@/utils/randomInt';
 
 const Page = () => {
 	const router = useRouter();
+	const totalPrice = useRecoilValue(totalPriceState);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
 		const data = {
-			tortalPrice: formData.get('Price_sum'),
+			price_sum: totalPrice,
+			ticket_id: getRandomInt(1, 9999),
 		};
-		// try {
-		// 	const res = await fetch('/server/route/user', {
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify(data),
-		// 	});
-		// 	if (res.ok) {
-		// 		const json = await res.json();
-		// 		console.log(json);
-		// 		router.push('/');
-		// 	} else {
-		// 		console.error('HTTP-Error: ' + res.status);
-		// 	}
-		// } catch (e) {
-		// 	console.error(e);
-		// }
+		console.log(data);
+		try {
+			const res = await fetch('/server/route/price', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+			if (res.ok) {
+				const json = await res.json();
+				console.log(json);
+				alert('購入が完了しました');
+				router.push('/');
+			} else {
+				console.error('HTTP-Error: ' + res.status);
+			}
+		} catch (e) {
+			console.error(e);
+		}
 	};
 	return (
 		<div>

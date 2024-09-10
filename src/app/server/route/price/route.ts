@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
 		try {
 			const query = `
             INSERT INTO "Price" (price_sum,ticket_id)
-            VALUES ($1)
+            VALUES ($1, $2)
             RETURNING *`;
 			const values = [price_sum, ticket_id];
 			const result = await client.query(query, values);
