@@ -55,9 +55,7 @@ const TheaterCard = ({
 					>
 						<Heading size="md">{theaterName}</Heading>
 						<Heading className="goTheaterPage" size="sm" color="secondary">
-							<Link
-								href={`../../theaters/${id}/theater_schedule`}
-							>{`劇場を見る >`}</Link>
+							<Link href={`../../theaters/${id}`}>{`劇場を見る >`}</Link>
 						</Heading>
 					</CardHeader>
 
