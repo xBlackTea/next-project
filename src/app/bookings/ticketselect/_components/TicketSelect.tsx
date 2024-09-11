@@ -1,6 +1,6 @@
 'use client';
 import { useTicket } from '@/app/hooks/useTicket';
-import { Box, Text } from '@yamada-ui/react';
+import { Box, Text, Button } from '@yamada-ui/react';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
@@ -88,12 +88,12 @@ export const TicketSelect = () => {
 						<Box display={'flex'} gap={'10px'} alignItems={'center'}>
 							<Text color={'#fff'}>{price}円</Text>
 							<Text color={'#fff'}>{count}枚</Text>
-							<button style={buttonStyle} onClick={plus}>
+							<Button style={buttonStyle} onClick={plus}>
 								+
-							</button>
-							<button style={buttonStyle} onClick={minus}>
+							</Button>
+							<Button style={buttonStyle} onClick={minus}>
 								-
-							</button>
+							</Button>
 						</Box>
 					</Box>
 				))}

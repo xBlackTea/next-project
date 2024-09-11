@@ -31,7 +31,7 @@ const Page = () => {
 		};
 		console.log(data);
 		try {
-			const res = await fetch('/server/route/price', {
+			const res = await fetch('/server/route/cash', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ const Page = () => {
 			if (res.ok) {
 				const json = await res.json();
 				console.log(json);
-				alert('購入が完了しました');
 				router.push('/');
 			} else {
 				console.error('HTTP-Error: ' + res.status);
