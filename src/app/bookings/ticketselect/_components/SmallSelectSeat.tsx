@@ -5,8 +5,8 @@ import {
 	rightFrontSeat,
 	leftBackSeat,
 	rightBackSeat,
-} from '../_components/smallSeatList';
-import { SeatButton } from './SeatButton';
+} from '../../_components/smallSeatList';
+import { SeatButton } from '../../_components/SeatButton';
 import { SeatInfoProps } from '@/provider/Provider';
 
 type SeatType = {
@@ -15,8 +15,8 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const SmallScreen = () => {
-	const buttonColor = '#24bafa';
+export const SmallSelectSeat = () => {
+	const buttonColor = 'red';
 
 	return (
 		<>
