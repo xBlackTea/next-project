@@ -12,7 +12,7 @@ type Schedule = {
 	schedule_id: number;
 	screen_id: number;
 	movie_id: number;
-	seat_id: number[] | null;
+	seat_id: number | null;
 	movie_start: string;
 	movie: Movie | null;
 };
