@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { BigScreen } from './_components/BigScreen';
 import { SmallScreen } from './_components/SmallScreen';
 import { BreadcrumbList } from './_components/BreadCrumbList';
-import { Box, Button, useTime } from '@yamada-ui/react';
+import { Box, Button, Text, useTime } from '@yamada-ui/react';
 
 import { BookingDetail } from './_components/BookingDetail';
 import { BookingCaption } from './_components/BookingCaption';
@@ -12,6 +12,7 @@ import { useSearchParams } from 'next/navigation';
 import { MiddleScreen } from './_components/MiddleScreen';
 import useMovieId from '../hooks/useMovieId';
 import useTimeId from '../hooks/useTimeId';
+import Link from 'next/link';
 
 const Page = () => {
 	const { handleReservedSeatInfo, handleReserveSeat } = useSeat();
@@ -64,47 +65,82 @@ const Page = () => {
 	}
 
 	return (
-		<>
-			<Box maxW={'1500px'} m={'20px'}>
-				<Box w={'80%'} m={'auto'}>
-					<BreadcrumbList />
-					<BookingCaption />
+		<Box
+			margin="0 auto"
+			maxWidth="1500px"
+			width="100%"
+			height="auto"
+			backgroundColor="#fff"
+		>
+			<BreadcrumbList />
+			<BookingCaption />
 
-					<Box display={'flex'} gap={'10px'}>
-						<Box
-							display={'flex'}
-							flexDirection={'column'}
-							justifyContent={'space-between'}
-							w={'100%'}
-						>
-							<BookingDetail movie={movie} time={time} />
-							<Box alignItems={'space-between'}>
-								<Button w={'100%'} rounded={'none'}>
-									キャンセル
-								</Button>
-							</Box>
-						</Box>
-						<Box
-							display={'flex'}
-							flexDirection={'column'}
-							justifyContent={'space-between'}
-							w={'100%'}
-						>
-							{renderScreenComponent()}
-							<Button
-								w={'100%'}
-								rounded={'none'}
-								onClick={() =>
-									handleReserveSeat(screen_number, movie_number, time_number)
-								}
+			<Box display="flex" gap="10px">
+				<Box
+					display="flex"
+					flexDirection="column"
+					justifyContent="space-between"
+					maxW="300px"
+					minW="300px"
+					width="100%"
+					m="10px 0"
+				>
+					<BookingDetail movie={movie} time={time} />
+					<Box
+						alignItems="space-between"
+						width="100%"
+						height="40px"
+						borderRadius="2px"
+						backgroundColor="#111"
+						_hover={{
+							bg: '#08f',
+							color: '#fff',
+							transition: 'background-color 0.3s ease',
+						}}
+					>
+						<Link href="/" passHref>
+							<Text
+								paddingLeft="10px"
+								fontSize="20px"
+								lineHeight="2.0"
+								textAlign="center"
+								color="#fff"
 							>
-								選択した座席を予約する
-							</Button>
-						</Box>
+								キャンセル
+							</Text>
+						</Link>
 					</Box>
 				</Box>
+				<Box
+					display={'flex'}
+					flexDirection={'column'}
+					justifyContent={'space-between'}
+					maxW="1190px"
+					minW="1190px"
+					width="100%"
+					m="10px 0"
+				>
+					{renderScreenComponent()}
+					<Button
+						w="100%"
+						height="40px"
+						rounded="2px"
+						bgColor="#111"
+						color="#fff"
+						_hover={{
+							bg: '#08f',
+							color: '#fff',
+							transition: 'background-color 0.3s ease',
+						}}
+						onClick={() =>
+							handleReserveSeat(screen_number, movie_number, time_number)
+						}
+					>
+						選択した座席を予約する
+					</Button>
+				</Box>
 			</Box>
-		</>
+		</Box>
 	);
 };
 
