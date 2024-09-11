@@ -1,25 +1,25 @@
 'use client';
 import React from 'react';
+import { Box, Button } from '@yamada-ui/react';
 import { BreadcrumbList } from '../_components/BreadCrumbList';
 import { TicketCaption } from './_components/TicketCaption';
-import { Box, Button } from '@yamada-ui/react';
 import { TicketSelect } from './_components/TicketSelect';
 import { BigSelectSeat } from './_components/BigSelectSeat';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { SmallSelectSeat } from './_components/SmallSelectSeat';
 import { MiddleSelectSeat } from './_components/MiddleSelectSeat';
 import { useSeat } from '@/app/hooks';
+import { useRecoilValue } from 'recoil';
+import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
+import { getRandomInt } from '@/utils/randomInt';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Page = () => {
-	const { handleReserveSeat } = useSeat();
-	const router = useSearchParams();
-	const screen_id = router.get('screen_id');
-	const movie_id = router.get('movie_id');
-	const time_id = router.get('time_id');
-
+	const params = useSearchParams();
+  const router = useRouter();
+	const totalPrice = useRecoilValue(totalPriceState);
+  
+	const screen_id = params.get('screen_id');
 	const screen_number = Number(screen_id);
-	const movie_number = Number(movie_id);
-	const time_number = Number(time_id);
 
 	const renderScreenComponent = () => {
 		if (screen_number === 1) {
@@ -45,28 +45,30 @@ const Page = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
 		const data = {
-			tortalPrice: formData.get('Price_sum'),
+			price_sum: totalPrice,
+			ticket_id: getRandomInt(1, 9999),
 		};
-		// try {
-		// 	const res = await fetch('/server/route/user', {
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify(data),
-		// 	});
-		// 	if (res.ok) {
-		// 		const json = await res.json();
-		// 		console.log(json);
-		// 		router.push('/');
-		// 	} else {
-		// 		console.error('HTTP-Error: ' + res.status);
-		// 	}
-		// } catch (e) {
-		// 	console.error(e);
-		// }
+		console.log(data);
+		try {
+			const res = await fetch('/server/route/price', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+			if (res.ok) {
+				const json = await res.json();
+				console.log(json);
+				alert('購入が完了しました');
+				router.push('/');
+			} else {
+				console.error('HTTP-Error: ' + res.status);
+			}
+		} catch (e) {
+			console.error(e);
+		}
 	};
 	return (
 		<div>

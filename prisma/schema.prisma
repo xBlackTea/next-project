@@ -87,20 +87,20 @@ model CashMethod {
 model Price {
   price_id Int @id @default(autoincrement())
   price_sum    Int
-  ticket_id    Int
+  ticket_id    String
 
   // リレーション
-  cashes Cash[]
   ticket Ticket @relation(fields: [ticket_id], references: [ticket_id]) 
 }
 
 // Ticketモデル
 model Ticket{
-  ticket_id Int @id @default(autoincrement())
+  ticket_id String @id @default(uuid())
   ticket_price Int
 
   //リレーション
   price Price[]
+  cashes Cash[]
 }
 
 // Discountモデル
@@ -125,16 +125,17 @@ model Category {
 model Cash {
   cash_id     Int @id @default(autoincrement())
   movie_id    Int
-  price_id    Int
+  ticket_id   String
   user_id     String
   method_id   Int
   discount_id Int
+  price_sum   Int
 
   // 外部キー設定
   user       User       @relation(fields: [user_id], references: [user_id])
   movie      Movie      @relation(fields: [movie_id], references: [movie_id])
   cashMethod CashMethod @relation(fields: [method_id], references: [method_id])
-  price      Price      @relation(fields: [price_id], references: [price_id])
+  ticket     Ticket      @relation(fields: [ticket_id], references: [ticket_id])
   discount   Discount   @relation(fields: [discount_id], references: [discount_id])
 }
 
