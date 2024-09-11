@@ -92,6 +92,7 @@ export const useSeat = () => {
 			console.log('Response:', data);
 			const queryString = new URLSearchParams({
 				seatCount: seatIds.length.toString(),
+				screen_id: screenId.toString(),
 			}).toString();
 
 			// クエリパラメータを含むURLにナビゲート

@@ -21,6 +21,8 @@ type SeatType = {
 };
 
 export const BigScreen = () => {
+	const buttonColor = '#24bafa';
+
 	return (
 		<>
 			<Box w={'100%'}>
@@ -55,6 +57,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -64,6 +67,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -73,6 +77,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -90,6 +95,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -99,6 +105,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -108,6 +115,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -125,6 +133,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -134,6 +143,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
@@ -143,6 +153,7 @@ export const BigScreen = () => {
 									key={data.id}
 									x_axis={data.x_axis.toLowerCase() as keyof SeatInfoProps}
 									y_axis={data.y_axis}
+									buttonColor={buttonColor}
 								/>
 							))}
 						</Box>
