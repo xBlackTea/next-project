@@ -7,7 +7,7 @@ const pool = new Pool({
 });
 
 interface Ticket {
-	ticket_id: number;
+	ticket_id: string;
 	ticket_price: number;
 }
 
@@ -18,13 +18,13 @@ export async function GET() {
 
 		const ticketTypes = ret.rows.map((ticket: Ticket) => {
 			let type = '';
-			if (ticket.ticket_id == 1) {
+			if (ticket.ticket_id == '1') {
 				type = 'normal';
-			} else if (ticket.ticket_id == 2) {
+			} else if (ticket.ticket_id == '2') {
 				type = 'collegeStudent';
-			} else if (ticket.ticket_id == 3) {
+			} else if (ticket.ticket_id == '3') {
 				type = 'middleStudent';
-			} else if (ticket.ticket_id == 4) {
+			} else if (ticket.ticket_id == '4') {
 				type = 'kids';
 			}
 			return { ...ticket, type };
