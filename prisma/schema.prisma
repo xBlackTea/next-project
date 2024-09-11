@@ -87,7 +87,7 @@ model CashMethod {
 model Price {
   price_id Int @id @default(autoincrement())
   price_sum    Int
-  ticket_id    Int
+  ticket_id    String
 
   // リレーション
   cashes Cash[]
@@ -96,7 +96,7 @@ model Price {
 
 // Ticketモデル
 model Ticket{
-  ticket_id Int @id @default(autoincrement())
+  ticket_id String @id @default(uuid())
   ticket_price Int
 
   //リレーション
