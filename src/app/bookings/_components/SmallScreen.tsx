@@ -15,7 +15,11 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const SmallScreen = () => {
+interface SmallScreenProps {
+	screen_id: number;
+}
+
+export const SmallScreen: React.FC<SmallScreenProps> = ({ screen_id }) => {
 	const buttonColor = '#24bafa';
 
 	return (

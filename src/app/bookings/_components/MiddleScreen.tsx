@@ -17,7 +17,11 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const MiddleScreen = () => {
+type MiddleScreenProps = {
+	screen_id: number;
+};
+
+export const MiddleScreen: React.FC<MiddleScreenProps> = ({ screen_id }) => {
 	const buttonColor = '#24bafa';
 
 	return (
