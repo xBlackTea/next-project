@@ -1,9 +1,14 @@
 'use client';
 import { useTicket } from '@/app/hooks/useTicket';
-import { Box, Text } from '@yamada-ui/react';
+import { Box, Text, Button } from '@yamada-ui/react';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
+import {
+	normalTicketState,
+	univTicketState,
+	highSchoolTicketState,
+	childTicketState,
+} from '@/app/recoil/atoms/ticketAtoms';
 
 export const TicketSelect = () => {
 	const {
@@ -26,6 +31,16 @@ export const TicketSelect = () => {
 		collegeStudentTicketMinus,
 	} = useTicket();
 
+	// グローバルステート
+	const setNormalTicket = useSetRecoilState(normalTicketState);
+	const setUnivTicket = useSetRecoilState(univTicketState);
+	const setHighSchoolTicket = useSetRecoilState(highSchoolTicketState);
+	const setChildTicket = useSetRecoilState(childTicketState);
+	setNormalTicket(normal);
+	setUnivTicket(collegeStudent);
+	setHighSchoolTicket(middleStudent);
+	setChildTicket(kids);
+
 	const buttonStyle: React.CSSProperties = {
 		width: '20px',
 		height: '20px',
@@ -35,10 +50,6 @@ export const TicketSelect = () => {
 		background: '#fff',
 		borderRadius: '3px',
 	};
-
-	// グローバルステート
-	const setTotalPrice = useSetRecoilState(totalPriceState);
-	setTotalPrice(totalPrice);
 
 	return (
 		<>
@@ -106,12 +117,12 @@ export const TicketSelect = () => {
 						<Box display={'flex'} gap={'10px'} alignItems={'center'}>
 							<Text color={'#fff'}>{price}円</Text>
 							<Text color={'#fff'}>{count}枚</Text>
-							<button style={buttonStyle} onClick={plus}>
+							<Button style={buttonStyle} onClick={plus}>
 								+
-							</button>
-							<button style={buttonStyle} onClick={minus}>
+							</Button>
+							<Button style={buttonStyle} onClick={minus}>
 								-
-							</button>
+							</Button>
 						</Box>
 					</Box>
 				))}
