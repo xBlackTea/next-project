@@ -47,6 +47,7 @@ export const TicketSelect = () => {
 		textAlign: 'center',
 		fontSize: '0.9rem',
 		fontWeight: 'bold',
+		lineHeight: '0.9',
 		background: '#fff',
 		borderRadius: '3px',
 	};
@@ -117,12 +118,13 @@ export const TicketSelect = () => {
 						<Box display={'flex'} gap={'10px'} alignItems={'center'}>
 							<Text color={'#fff'}>{price}円</Text>
 							<Text color={'#fff'}>{count}枚</Text>
-							<Button style={buttonStyle} onClick={plus}>
+							{/* YamadaUIのButtonに変えないこと xBlackTea */}
+							<button style={buttonStyle} onClick={plus}>
 								+
-							</Button>
-							<Button style={buttonStyle} onClick={minus}>
+							</button>
+							<button style={buttonStyle} onClick={minus}>
 								-
-							</Button>
+							</button>
 						</Box>
 					</Box>
 				))}
