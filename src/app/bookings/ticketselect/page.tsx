@@ -15,9 +15,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const Page = () => {
 	const params = useSearchParams();
-  const router = useRouter();
+	const router = useRouter();
 	const totalPrice = useRecoilValue(totalPriceState);
-  
+
 	const screen_id = params.get('screen_id');
 	const screen_number = Number(screen_id);
 
@@ -43,32 +43,33 @@ const Page = () => {
 		}
 	};
 
+	// ticketselect?seatCount=1&screen_id=3
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
 		const data = {
 			price_sum: totalPrice,
-			ticket_id: getRandomInt(1, 9999),
+			ticket_id: [],
 		};
-		console.log(data);
-		try {
-			const res = await fetch('/server/route/price', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			if (res.ok) {
-				const json = await res.json();
-				console.log(json);
-				alert('購入が完了しました');
-				router.push('/');
-			} else {
-				console.error('HTTP-Error: ' + res.status);
-			}
-		} catch (e) {
-			console.error(e);
-		}
+		router.push('/payment_method?price_sum=' + data);
+		// try {
+		// 	const res = await fetch('/server/route/price', {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify(data),
+		// 	});
+		// 	if (res.ok) {
+		// 		const json = await res.json();
+		// 		console.log(json);
+		// 		router.push('/');
+		// 	} else {
+		// 		console.error('HTTP-Error: ' + res.status);
+		// 	}
+		// } catch (e) {
+		// 	console.error(e);
+		// }
 	};
 	return (
 		<div>

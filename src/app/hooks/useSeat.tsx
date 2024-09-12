@@ -3,8 +3,11 @@
 import { Context, SeatInfoProps } from '@/provider/Provider';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { seatState } from '../recoil/atoms/ticketAtoms';
 
 export const useSeat = () => {
+	const setSeatState = useSetRecoilState(seatState);
 	const context = useContext(Context);
 	const router = useRouter();
 	if (!context) {
@@ -75,7 +78,7 @@ export const useSeat = () => {
 			};
 
 			// デバッグ用にseatDataをログ出力
-			console.log(seatData);
+			setSeatState(seatData);
 
 			const response = await fetch(`../server/route/schedule`, {
 				method: 'POST',
