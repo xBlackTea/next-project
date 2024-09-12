@@ -36,21 +36,21 @@ const Page = () => {
 
 	const renderScreenComponent = () => {
 		if (screen_number === 1) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 2) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 3) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 4) {
-			return <MiddleScreen></MiddleScreen>;
+			return <MiddleScreen screen_id={screen_number}></MiddleScreen>;
 		} else if (screen_number === 5) {
-			return <MiddleScreen></MiddleScreen>;
+			return <MiddleScreen screen_id={screen_number}></MiddleScreen>;
 		} else if (screen_number === 6) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else if (screen_number === 7) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else if (screen_number === 8) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else {
 			return <div>該当するスクリーンが見つかりません</div>;
 		}

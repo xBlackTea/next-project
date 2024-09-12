@@ -20,7 +20,11 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const BigScreen = () => {
+interface BigScreenProps {
+	screen_id: number;
+}
+
+export const BigScreen: React.FC<BigScreenProps> = ({ screen_id }) => {
 	const buttonColor = '#24bafa';
 
 	return (
@@ -45,7 +49,7 @@ export const BigScreen = () => {
 				</Box>
 				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1190px">
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
-						Screen1
+						Screen{screen_id}
 					</Text>
 					<Box as="center">
 						<Divider variant="solid" w={'80%'} m={'10px auto'} />

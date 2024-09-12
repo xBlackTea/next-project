@@ -18,7 +18,6 @@ type UserInfoProps = {
 		user_id: string;
 		first_name: string;
 		last_name: string;
-		schedule_id: number | null;
 		e_mail: string;
 		password: string;
 		birthday: string;

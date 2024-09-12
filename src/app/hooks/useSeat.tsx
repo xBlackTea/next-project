@@ -89,10 +89,12 @@ export const useSeat = () => {
 			}
 
 			const data = await response.json();
-			console.log('Response:', data);
+			const scheduleId = data.schedule_id;
+
 			const queryString = new URLSearchParams({
 				seatCount: seatIds.length.toString(),
 				screen_id: screenId.toString(),
+				schedule_id: scheduleId,
 			}).toString();
 
 			// クエリパラメータを含むURLにナビゲート
