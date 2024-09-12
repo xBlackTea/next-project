@@ -77,7 +77,7 @@ const Page = () => {
 			<Box
 				display="flex"
 				gap="10px"
-				marginTop="15px"
+				margin="15px 0"
 				padding="10px"
 				borderRadius="2px"
 				border="solid 1px #ddd"
