@@ -15,7 +15,11 @@ type SeatType = {
 	y_axis: number;
 };
 
-export const SmallScreen = () => {
+interface SmallScreenProps {
+	screen_id: number;
+}
+
+export const SmallScreen: React.FC<SmallScreenProps> = ({ screen_id }) => {
 	const buttonColor = '#24bafa';
 
 	return (
@@ -38,7 +42,7 @@ export const SmallScreen = () => {
 						座席選択
 					</Text>
 				</Box>
-				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1190px">
+				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1170px">
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
 						Screen3
 					</Text>

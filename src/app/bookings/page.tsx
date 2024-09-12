@@ -36,21 +36,21 @@ const Page = () => {
 
 	const renderScreenComponent = () => {
 		if (screen_number === 1) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 2) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 3) {
-			return <BigScreen></BigScreen>;
+			return <BigScreen screen_id={screen_number}></BigScreen>;
 		} else if (screen_number === 4) {
-			return <MiddleScreen></MiddleScreen>;
+			return <MiddleScreen screen_id={screen_number}></MiddleScreen>;
 		} else if (screen_number === 5) {
-			return <MiddleScreen></MiddleScreen>;
+			return <MiddleScreen screen_id={screen_number}></MiddleScreen>;
 		} else if (screen_number === 6) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else if (screen_number === 7) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else if (screen_number === 8) {
-			return <SmallScreen></SmallScreen>;
+			return <SmallScreen screen_id={screen_number}></SmallScreen>;
 		} else {
 			return <div>該当するスクリーンが見つかりません</div>;
 		}
@@ -74,8 +74,14 @@ const Page = () => {
 		>
 			<BreadcrumbList />
 			<BookingCaption />
-
-			<Box display="flex" gap="10px">
+			<Box
+				display="flex"
+				gap="10px"
+				margin="15px 0"
+				padding="10px"
+				borderRadius="2px"
+				border="solid 1px #ddd"
+			>
 				<Box
 					display="flex"
 					flexDirection="column"
@@ -83,7 +89,6 @@ const Page = () => {
 					maxW="300px"
 					minW="300px"
 					width="100%"
-					m="10px 0"
 				>
 					<BookingDetail movie={movie} time={time} />
 					<Box
@@ -100,7 +105,6 @@ const Page = () => {
 					>
 						<Link href="/" passHref>
 							<Text
-								paddingLeft="10px"
 								fontSize="20px"
 								lineHeight="2.0"
 								textAlign="center"
@@ -115,10 +119,9 @@ const Page = () => {
 					display={'flex'}
 					flexDirection={'column'}
 					justifyContent={'space-between'}
-					maxW="1190px"
-					minW="1190px"
+					maxW="1170px"
+					minW="1170px"
 					width="100%"
-					m="10px 0"
 				>
 					{renderScreenComponent()}
 					<Button

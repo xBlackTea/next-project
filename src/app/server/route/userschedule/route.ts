@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 		const {
 			user_id,
 			schedule_ids,
-		}: { user_id: number; schedule_ids: number[] } = await req.json();
+		}: { user_id: string; schedule_ids: number[] } = await req.json();
 
 		// schedule_idsが配列であるかチェック
 		if (!Array.isArray(schedule_ids) || schedule_ids.length === 0) {
