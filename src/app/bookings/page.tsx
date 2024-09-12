@@ -86,8 +86,8 @@ const Page = () => {
 					display="flex"
 					flexDirection="column"
 					justifyContent="space-between"
-					maxW="300px"
-					minW="300px"
+					maxW="400px"
+					minW="400px"
 					width="100%"
 				>
 					<BookingDetail movie={movie} time={time} />
@@ -119,8 +119,8 @@ const Page = () => {
 					display={'flex'}
 					flexDirection={'column'}
 					justifyContent={'space-between'}
-					maxW="1170px"
-					minW="1170px"
+					maxW="1070px"
+					minW="1070px"
 					width="100%"
 				>
 					{renderScreenComponent()}
