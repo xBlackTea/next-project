@@ -27,21 +27,38 @@ export const BigSelectSeat = () => {
 		<>
 			<Box w={'100%'}>
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
-					display={'flex'}
-					alignItems={'center'}
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 				>
-					<Text color={'#fff'}>座席選択</Text>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						座席選択
+					</Text>
 				</Box>
-				<Box bg={'#15202b'} p={'15px 15px 15px 20px'} mb={'6px'} w={'50vw'}>
+				<Box
+					bgColor="#111"
+					p={'15px 15px 15px 20px'}
+					w="1070px"
+					h="715.5px"
+					mb="10px"
+					display="flex"
+					flexDirection="column"
+					justifyContent="center"
+					alignItems="center"
+				>
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
 						Screen1
 					</Text>
 					<Box as="center">
-						<Divider variant="solid" w={'80%'} m={'10px auto'} />
+						<Divider variant="solid" w="800px" m={'10px auto'} />
 						<Text color={'#fff'}>▲スクリーン</Text>
 					</Box>
 					{/* 1列目 */}

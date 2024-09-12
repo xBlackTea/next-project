@@ -42,12 +42,21 @@ export const SmallScreen: React.FC<SmallScreenProps> = ({ screen_id }) => {
 						座席選択
 					</Text>
 				</Box>
-				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1170px">
+				<Box
+					bgColor="#111"
+					p={'15px 15px 15px 20px'}
+					w="1070px"
+					h="715.5px"
+					display="flex"
+					flexDirection="column"
+					justifyContent="center"
+					alignItems="center"
+				>
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
 						Screen3
 					</Text>
 					<Box as="center">
-						<Divider variant="solid" w={'80%'} m={'10px auto'} />
+						<Divider variant="solid" w="800px" m={'10px auto'} />
 						<Text color={'#fff'}>▲スクリーン</Text>
 					</Box>
 					{/* 1列目 */}

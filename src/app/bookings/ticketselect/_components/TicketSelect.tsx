@@ -42,8 +42,24 @@ export const TicketSelect = () => {
 
 	return (
 		<>
-			<Box w={'100%'}>
-				{/* General display and ticket selection */}
+			<Box w="100%">
+				<Box
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
+				>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						チケット情報
+					</Text>
+				</Box>
 				{[
 					{
 						label: '一般',
@@ -76,10 +92,12 @@ export const TicketSelect = () => {
 				].map(({ label, count, price, plus, minus }, index) => (
 					<Box
 						key={index}
-						h={'40px'}
-						bg={'caption.bg'}
-						mb={'10px'}
-						p={'10px'}
+						h="40px"
+						marginBottom="10px"
+						padding="0 10px"
+						fontSize="20px"
+						lineHeight="2.0"
+						bgColor="#111"
 						display={'flex'}
 						justifyContent={'space-between'}
 						alignItems={'center'}
@@ -98,10 +116,12 @@ export const TicketSelect = () => {
 					</Box>
 				))}
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
+					h="40px"
+					marginBottom="10px"
+					padding="0 10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 					display={'flex'}
 					justifyContent={'space-between'}
 					alignItems={'center'}
