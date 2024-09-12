@@ -44,7 +44,7 @@ export const MiddleScreen: React.FC<MiddleScreenProps> = ({ screen_id }) => {
 						座席選択
 					</Text>
 				</Box>
-				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1190px">
+				<Box bgColor="#111" p={'15px 15px 15px 20px'} mb={'6px'} w="1170px">
 					<Text textAlign={'center'} color={'#fff'} fontSize={'1.4rem'}>
 						Screen2
 					</Text>
