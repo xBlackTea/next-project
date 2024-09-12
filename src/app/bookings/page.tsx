@@ -74,8 +74,14 @@ const Page = () => {
 		>
 			<BreadcrumbList />
 			<BookingCaption />
-
-			<Box display="flex" gap="10px">
+			<Box
+				display="flex"
+				gap="10px"
+				marginTop="15px"
+				padding="10px"
+				borderRadius="2px"
+				border="solid 1px #ddd"
+			>
 				<Box
 					display="flex"
 					flexDirection="column"
@@ -83,7 +89,6 @@ const Page = () => {
 					maxW="300px"
 					minW="300px"
 					width="100%"
-					m="10px 0"
 				>
 					<BookingDetail movie={movie} time={time} />
 					<Box
@@ -100,7 +105,6 @@ const Page = () => {
 					>
 						<Link href="/" passHref>
 							<Text
-								paddingLeft="10px"
 								fontSize="20px"
 								lineHeight="2.0"
 								textAlign="center"
@@ -115,10 +119,9 @@ const Page = () => {
 					display={'flex'}
 					flexDirection={'column'}
 					justifyContent={'space-between'}
-					maxW="1190px"
-					minW="1190px"
+					maxW="1170px"
+					minW="1170px"
 					width="100%"
-					m="10px 0"
 				>
 					{renderScreenComponent()}
 					<Button
