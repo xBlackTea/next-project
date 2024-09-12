@@ -21,53 +21,81 @@ type MovieInformationProps = {
 export const BookingDetail = ({ movie, time }: MovieInformationProps) => {
 	return (
 		<>
-			<Box w={'100%'}>
+			<Box w="100%">
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
-					display={'flex'}
-					alignItems={'center'}
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 				>
-					<Text color={'#fff'}>上映情報</Text>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						上映情報
+					</Text>
 				</Box>
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
-					display={'flex'}
-					alignItems={'center'}
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 				>
-					<Text color={'#fff'}>HAL名古屋</Text>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						HAL名古屋
+					</Text>
 				</Box>
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
-					display={'flex'}
-					alignItems={'center'}
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 				>
-					<Text color={'#fff'}>{movie.movie_name}</Text>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						{movie.movie_name}
+					</Text>
 				</Box>
 				<Box
-					h={'40px'}
-					bg={'caption.bg'}
-					mb={'10px'}
-					p={'10px'}
-					display={'flex'}
-					alignItems={'center'}
+					h="40px"
+					marginBottom="10px"
+					paddingLeft="10px"
+					fontSize="20px"
+					lineHeight="2.0"
+					bgColor="#111"
 				>
-					<Text color={'#fff'}>{time.movie_start}</Text>
+					<Text
+						color="#fff"
+						whiteSpace="nowrap"
+						overflow="hidden"
+						textOverflow="ellipsis"
+					>
+						{time.movie_start}
+					</Text>
 				</Box>
-				<Box display={'flex'} justifyContent={'center'}>
+				<Box display="flex" justifyContent="center">
 					<Image
 						src={`/${movie.movie_image1}`}
 						alt="movieImage"
-						w="80%"
-						pb={'10px'}
+						w="100%"
+						pb="10px"
 					/>
 				</Box>
 			</Box>
