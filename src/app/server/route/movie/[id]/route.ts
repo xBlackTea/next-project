@@ -16,6 +16,8 @@ interface Movie {
 	movie_image1: string;
 	movie_image2: string;
 	category_id: number;
+	movie_cast: string;
+	movie_director: string;
 }
 
 export async function GET(
@@ -58,6 +60,8 @@ export async function PATCH(
 			category_id,
 			movie_image1,
 			movie_image2,
+			movie_cast,
+			movie_director,
 		}: Movie = await req.json();
 		const client = await pool.connect();
 		const { id } = params;
@@ -70,7 +74,9 @@ export async function PATCH(
             category_id = $4,
 			movie_image1 = $5,
 			movie_image2 = $6,
-            WHERE movie_id = $7
+			movie_cast = $7,
+			movie_director = $8
+            WHERE movie_id = $9
             RETURNING *`;
 			const values = [
 				movie_name,
@@ -79,6 +85,8 @@ export async function PATCH(
 				category_id,
 				movie_image1,
 				movie_image2,
+				movie_cast,
+				movie_director,
 				id,
 			];
 			const result = await client.query(query, values);
