@@ -3,7 +3,12 @@ import { useTicket } from '@/app/hooks/useTicket';
 import { Box, Text, Button } from '@yamada-ui/react';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import { totalPriceState } from '@/app/recoil/atoms/ticketAtoms';
+import {
+	normalTicketState,
+	univTicketState,
+	highSchoolTicketState,
+	childTicketState,
+} from '@/app/recoil/atoms/ticketAtoms';
 
 export const TicketSelect = () => {
 	const {
@@ -26,6 +31,16 @@ export const TicketSelect = () => {
 		collegeStudentTicketMinus,
 	} = useTicket();
 
+	// グローバルステート
+	const setNormalTicket = useSetRecoilState(normalTicketState);
+	const setUnivTicket = useSetRecoilState(univTicketState);
+	const setHighSchoolTicket = useSetRecoilState(highSchoolTicketState);
+	const setChildTicket = useSetRecoilState(childTicketState);
+	setNormalTicket(normal);
+	setUnivTicket(collegeStudent);
+	setHighSchoolTicket(middleStudent);
+	setChildTicket(kids);
+
 	const buttonStyle: React.CSSProperties = {
 		width: '20px',
 		height: '20px',
@@ -35,10 +50,6 @@ export const TicketSelect = () => {
 		background: '#fff',
 		borderRadius: '3px',
 	};
-
-	// グローバルステート
-	const setTotalPrice = useSetRecoilState(totalPriceState);
-	setTotalPrice(totalPrice);
 
 	return (
 		<>

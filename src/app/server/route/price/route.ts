@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 		const client = await pool.connect();
 		try {
 			const query = `
-            INSERT INTO "Price" (price_sum,ticket_id)
+            INSERT INTO "Price" (price_sum, ticket_id)
             VALUES ($1, $2)
             RETURNING *`;
 			const values = [price_sum, ticket_id];
